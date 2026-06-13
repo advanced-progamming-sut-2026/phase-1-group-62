@@ -1,11 +1,13 @@
 @startuml
-title Plants vs. Zombies - Phase 0 (Final Structure)
+!pragma allowmixing true
+
+title Plants vs. Zombies - Phase 0 (Final Structure with JSON)
 
 skinparam classAttributeIconSize 0
 skinparam shadowing false
 skinparam defaultFontSize 11
 
-' ========== رنگ پکیج‌ها ==========
+' ========== رنگ‌ها ==========
 skinparam package {
     BackgroundColor #E8F4FD
     BorderColor #2C3E50
@@ -13,67 +15,87 @@ skinparam package {
     FontStyle bold
 }
 
-' ========== رنگ کلاس‌ها ==========
 skinparam class {
     BackgroundColor #FEF9E7
     BorderColor #D4AC0D
     FontColor #7D6608
 }
 
-' ========== رنگ اینترفیس و enum ==========
 skinparam enum {
     BackgroundColor #D5F5E3
     BorderColor #229954
     FontColor #145A32
 }
 
-' ========== رنگ Controller ==========
+' ========== MAIN ==========
+class Main #FADBD8
+
+' ========== CONTROLLER ==========
 package controller #F0F8E8 {
     class Controller #E8F8F5
     class GameController #E8F8F5
     class MenuController #E8F8F5
+    class GreenhouseController #E8F8F5
+    class ShopController #E8F8F5
+    class CommandParser #E8F8F5
 }
 
-' ========== رنگ Model ==========
-package models #E8F4FD {
+' ========== MODEL ==========
+package model #E8F4FD {
     class Game #D6EAF8
     class User #D6EAF8
     class Board #D6EAF8
     class Tile #D6EAF8
     class Level #D6EAF8
     class Wave #D6EAF8
+    class Sun #D6EAF8
+    class Bullet #D6EAF8
+    class LawnMower #D6EAF8
 }
 
-' ========== رنگ گیاهان ==========
-package models.entities.plant #D5F5E3 {
+' ========== ENUMS ==========
+package model.enums #D5F5E3 {
+    enum Difficulty #A9DFBF
+    enum Gender #A9DFBF
+    enum PlantTag #A9DFBF
+    enum SpecialLevelType #A9DFBF
+    enum SunType #A9DFBF
+    enum TileType #A9DFBF
+}
+
+' ========== ENTITIES - PLANT ==========
+package model.entities.plant #D5F5E3 {
     class Plant #ABEBC6
-    class PlantType #A9DFBF
-    class PlantFactory #A9DFBF
-    class PeaShooter #ABEBC6
-    class SunFlower #ABEBC6
-    class WallNut #ABEBC6
-    class PotatoMine #ABEBC6
-    class CherryBomb #ABEBC6
-    class Repeater #ABEBC6
-    class TallNut #ABEBC6
-    class Chomper #ABEBC6
-    class FumeShroom #ABEBC6
-    class Torchwood #ABEBC6
-    class LilyPad #ABEBC6
+    class ShootBehavior #ABEBC6
+    
+    package factory {
+        class PlantFactory #A9DFBF
+    }
+    
+    package loader {
+        class PlantLoader #A9DFBF
+    }
 }
 
-' ========== رنگ زامبی‌ها ==========
-package models.entities.zombies #FADBD8 {
+' ========== ENTITIES - ZOMBIE ==========
+package model.entities.zombie #FADBD8 {
     class Zombie #F1948A
-    enum ZombieType #F5B7B1
-    enum ArmorType #F5B7B1
     class Armor #F1948A
+    enum ArmorType #F5B7B1
     enum ZombieEffect #F5B7B1
-    class ZombieFactory #F1948A
+    class Spawner #F1948A
+    
+    package factory {
+        class ZombieFactory #F5B7B1
+    }
+    
+    package loader {
+        class ZombieLoader #F5B7B1
+    }
 }
 
-' ========== رنگ فصل‌ها ==========
-package models.season #FDEBD0 {
+' ========== SEASON ==========
+package model.season #FDEBD0 {
     class Season #F5CBA7
     class AncientEgypt #F5CBA7
     class FrostbiteCaves #F5CBA7
@@ -81,33 +103,51 @@ package models.season #FDEBD0 {
     class DarkAges #F5CBA7
 }
 
-' ========== رنگ گلخانه و فروشگاه ==========
-package models.greenhouse #E8DAEF {
+' ========== MINIGAME ==========
+package model.minigame #F9E79F {
+    class MiniGame #F7DC6F
+    class Vasebreaker #F7DC6F
+    class WallnutBowling #F7DC6F
+    class IZombie #F7DC6F
+    class Beghoul #F7DC6F
+    class Zombotany #F7DC6F
+}
+
+' ========== GREENHOUSE ==========
+package model.greenhouse #E8DAEF {
     class Greenhouse #D2B4DE
     class Pot #D2B4DE
 }
 
-package models.shop #E8DAEF {
+' ========== SHOP ==========
+package model.shop #E8DAEF {
     class Shop #D2B4DE
     class Item #D2B4DE
 }
 
-' ========== رنگ کونست ==========
-package models.quest #F9E79F {
+' ========== QUEST ==========
+package model.quest #F9E79F {
     class Quest #F7DC6F
     class DailyQuest #F7DC6F
     class StoryQuest #F7DC6F
     class EpicQuest #F7DC6F
 }
 
-class Leaderboard #F9E79F
+' ========== SCORE & LEADERBOARD ==========
+class model.score.ScoreGame #F9E79F
+class model.leaderboard.Leaderboard #F9E79F
 
-' ========== رنگ View ==========
-package views #FAD7A1 {
+' ========== VIEW ==========
+package view #FAD7A1 {
+    class View #F8C471
     class TerminalView #F8C471
     class GameView #F8C471
     
-    package menus #FAD7A1 {
+    package greenhouse {
+        class GreenhouseView #F8C471
+    }
+    
+    package menu {
         class Menu #F8C471
         class RegisterMenu #F8C471
         class LoginMenu #F8C471
@@ -117,21 +157,27 @@ package views #FAD7A1 {
         class SettingsMenu #F8C471
         class CollectionMenu #F8C471
         class NewsMenu #F8C471
+        class NetworkMenu #F8C471
     }
 }
 
-' ========== رنگ ابزارها ==========
-package utils #D5F5E3 {
+' ========== UTIL ==========
+package util #D5F5E3 {
     class FileManager #ABEBC6
     class HashUtil #ABEBC6
     class TimeManager #ABEBC6
     class Constants #ABEBC6
+    class Logger #ABEBC6
 }
 
-' ========== کلاس Main ==========
-class Main #FADBD8
+' ========== DATABASE (as classes with stereotype) ==========
+package database #F0F0F0 {
+    class "plants.json" as plantsJson <<file>>
+    class "zombies.json" as zombiesJson <<file>>
+}
 
-' ========== روابط ==========
+' ========== RELATIONSHIPS ==========
+
 Main --> Controller
 
 Controller --> GameController
@@ -139,8 +185,11 @@ Controller --> MenuController
 
 GameController --> Game
 GameController --> GameView
-
 MenuController --> Menu
+MenuController --> CommandParser
+GreenhouseController --> Greenhouse
+GreenhouseController --> GreenhouseView
+ShopController --> Shop
 
 Game *-- User
 Game *-- Board
@@ -148,41 +197,54 @@ Game *-- Level
 Game *-- Greenhouse
 Game *-- Shop
 Game *-- Leaderboard
+Game *-- ScoreGame
 
 Board *-- Tile
-Tile o-- Plant
-Tile o-- Zombie
+Board *-- LawnMower
+Board o-- Plant
+Board o-- Zombie
+Board o-- Sun
+Board o-- Bullet
+
+Tile --> TileType
 
 Level *-- Wave
 Level --> Season
+Level --> SpecialLevelType
 
-Plant <|-- PeaShooter
-Plant <|-- SunFlower
-Plant <|-- WallNut
-Plant <|-- PotatoMine
-Plant <|-- CherryBomb
-Plant <|-- Repeater
-Plant <|-- TallNut
-Plant <|-- Chomper
-Plant <|-- FumeShroom
-Plant <|-- Torchwood
-Plant <|-- LilyPad
+Wave --> Spawner
 
-Plant --> PlantType
-PlantFactory --> Plant
-PlantFactory --> PlantType
+Plant --> PlantFactory
+PlantFactory --> PlantLoader
+PlantLoader --> plantsJson
+Plant --> ShootBehavior
+Plant --> PlantTag
 
-Zombie --> ZombieType
+Zombie --> ZombieFactory
+ZombieFactory --> ZombieLoader
+ZombieLoader --> zombiesJson
 Zombie *-- Armor
-Zombie --> ZombieEffect
-ZombieFactory --> Zombie
-ZombieFactory --> ZombieType
 Armor --> ArmorType
+Zombie --> ZombieEffect
 
 Season <|-- AncientEgypt
 Season <|-- FrostbiteCaves
 Season <|-- BigWaveBeach
 Season <|-- DarkAges
+
+MiniGame <|-- Vasebreaker
+MiniGame <|-- WallnutBowling
+MiniGame <|-- IZombie
+MiniGame <|-- Beghoul
+MiniGame <|-- Zombotany
+
+Greenhouse *-- Pot
+
+Shop *-- Item
+
+Quest <|-- DailyQuest
+Quest <|-- StoryQuest
+Quest <|-- EpicQuest
 
 Menu <|-- RegisterMenu
 Menu <|-- LoginMenu
@@ -192,12 +254,15 @@ Menu <|-- ProfileMenu
 Menu <|-- SettingsMenu
 Menu <|-- CollectionMenu
 Menu <|-- NewsMenu
+Menu <|-- NetworkMenu
 
-TerminalView --> GameView
+View <|-- TerminalView
+View <|-- GameView
+View <|-- GreenhouseView
 TerminalView --> Menu
 
-Quest <|-- DailyQuest
-Quest <|-- StoryQuest
-Quest <|-- EpicQuest
+FileManager ..> User : save/load
+HashUtil ..> User : hash password
+TimeManager ..> Game : tick management
 
 @enduml
