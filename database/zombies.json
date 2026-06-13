@@ -1,0 +1,33 @@
+
+{
+  "zombies": [
+    {
+      "name": "NormalZombie",
+      "health": 100,
+      "speed": 1,
+      "damage": 10,
+      "image": "normal_zombie.png"
+    },
+    {
+      "name": "ConeZombie",
+      "health": 200,
+      "speed": 1,
+      "damage": 10,
+      "image": "cone_zombie.png"
+    },
+    {
+      "name": "BucketZombie",
+      "health": 300,
+      "speed": 1,
+      "damage": 10,
+      "image": "bucket_zombie.png"
+    },
+    {
+      "name": "FastZombie",
+      "health": 80,
+      "speed": 2,
+      "damage": 10,
+      "image": "fast_zombie.png"
+    }
+  ]
+}

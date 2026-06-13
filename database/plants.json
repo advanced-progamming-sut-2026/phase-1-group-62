@@ -1,0 +1,33 @@
+
+{
+  "plants": [
+    {
+      "name": "PeaShooter",
+      "cost": 100,
+      "health": 300,
+      "shootBehavior": "Pea",
+      "cooldown": 1.5
+    },
+    {
+      "name": "Sunflower",
+      "cost": 50,
+      "health": 300,
+      "shootBehavior": "None",
+      "sunProduce": 25,
+      "produceInterval": 10
+    },
+    {
+      "name": "WallNut",
+      "cost": 50,
+      "health": 4000,
+      "shootBehavior": "None"
+    },
+    {
+      "name": "ExplodePea",
+      "cost": 200,
+      "health": 300,
+      "shootBehavior": "Explode",
+      "cooldown": 2
+    }
+  ]
+}
