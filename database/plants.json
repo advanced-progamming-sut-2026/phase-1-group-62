@@ -3,7 +3,7 @@
   "plants": [
     {
       "name": "PeaShooter",
-      "cost": 100,
+      "cost": 101,
       "health": 300,
       "shootBehavior": "Pea",
       "cooldown": 1.5
