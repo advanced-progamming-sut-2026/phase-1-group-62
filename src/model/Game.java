@@ -57,3 +57,4 @@ public class Game {
     }
 }
 
+// UPDATED ALL MODELS TO BE COMPATIBLE, WILL BE PASTED HERE LATEER
