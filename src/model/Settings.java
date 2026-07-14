@@ -4,6 +4,7 @@ public class Settings {
     private String autoLoginUsername;
     private int musicVolume = 50;
     private int sfxVolume = 50;
+    private int difficulty = 3;
 
     public String getAutoLoginUsername() {
         return autoLoginUsername;
@@ -27,5 +28,13 @@ public class Settings {
 
     public void setSfxVolume(int sfxVolume) {
         this.sfxVolume = sfxVolume;
+    }
+
+    public int getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(int difficulty) {
+        this.difficulty = difficulty;
     }
 }

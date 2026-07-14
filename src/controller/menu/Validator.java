@@ -1,4 +1,4 @@
-package controller;
+package controller.menu;
 
 public class Validator {
     public enum ValidationResult {

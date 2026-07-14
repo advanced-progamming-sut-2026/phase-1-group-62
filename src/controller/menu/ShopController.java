@@ -1,4 +1,4 @@
-package controller;
+package controller.menu;
 
 import model.shop.Shop;
 import view.View;

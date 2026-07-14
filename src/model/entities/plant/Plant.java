@@ -8,13 +8,21 @@ public class Plant {
     private int health;
     private int damage;
     private PlantTag tag;
+    private String shootBehavior;
+    private double cooldown;
+    private int sunProduce;
+    private int produceInterval;
 
-    public Plant(String name, int cost, int health, int damage, PlantTag tag) {
+    public Plant(String name, int cost, int health, int damage, PlantTag tag, String shootBehavior, double cooldown, int sunProduce, int produceInterval) {
         this.name = name;
         this.cost = cost;
         this.health = health;
         this.damage = damage;
         this.tag = tag;
+        this.shootBehavior = shootBehavior;
+        this.cooldown = cooldown;
+        this.sunProduce = sunProduce;
+        this.produceInterval = produceInterval;
     }
 
     public void takeDamage(int amount) {
@@ -44,5 +52,20 @@ public class Plant {
     public PlantTag getTag() {
         return tag;
     }
-}
 
+    public String getShootBehavior() {
+        return shootBehavior;
+    }
+
+    public double getCooldown() {
+        return cooldown;
+    }
+
+    public int getSunProduce() {
+        return sunProduce;
+    }
+
+    public int getProduceInterval() {
+        return produceInterval;
+    }
+}

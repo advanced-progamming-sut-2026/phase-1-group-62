@@ -1,4 +1,4 @@
-package controller;
+package controller.menu;
 
 import model.greenhouse.Greenhouse;
 import view.greenhouse.GreenhouseView;

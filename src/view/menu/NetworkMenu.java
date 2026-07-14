@@ -1,6 +1,6 @@
 package view.menu;
 
-import controller.MenuController;
+import controller.menu.MenuController;
 
 public class NetworkMenu extends Menu {
 
@@ -9,7 +9,7 @@ public class NetworkMenu extends Menu {
     }
 
     @Override
-    public void run() {
+    public void runMenu() {
         // این متد برای رفع خطای کامپایل اضافه شده است
         view.showMessage("Network Menu is under construction.");
     }

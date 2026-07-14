@@ -1,7 +1,7 @@
 package view.menu;
 
-import controller.MenuController;
-import controller.CommandParser;
+import controller.menu.MenuController;
+import controller.menu.CommandParser;
 import util.ParsedCommand;
 
 public class RegisterMenu extends Menu {
@@ -11,7 +11,7 @@ public class RegisterMenu extends Menu {
     }
 
     @Override
-    public void run() {
+    public void runMenu() {
         MenuController ctrl = (MenuController) this.controller;
         CommandParser parser = new CommandParser();
         ParsedCommand currentCmd = null;

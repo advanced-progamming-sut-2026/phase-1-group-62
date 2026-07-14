@@ -1,4 +1,4 @@
-package controller;
+package controller.menu;
 
 import util.ParsedCommand;
 import java.util.Arrays;
@@ -9,11 +9,16 @@ public class CommandParser {
     private final List<String> KNOWN_ACTIONS = Arrays.asList(
             // منوهای پایه
             "menu enter chapter", "menu enter", "menu show current", "menu exit", "menu logout",
-            "register", "pick question", "login", "forget password", "answer","new password",
+            "register", "pick question", "login", "forget password", "answer","new password","menu settings","menu profile" , "menu news"
+            ,"menu play","menu play","menu enter chapter",
             // ورود به منوهای مختلف
             "menu collection", "menu greenhouse", "menu travel-log", "menu leaderboard",
             "menu coin-wallet", "menu gem-wallet", "menu settings change-difficulty",
             "menu news show-unread", "menu news show-all",
+            // کالکشن
+            "menu collection show-plants","menu collection show-all-plants","menu collection show-zombies"
+            ,"menu collection show-all-zombies","menu collection show-plant","menu collection show-zombie"
+            ,"menu collection upgrade-plant","menu collection purchase-plant",
             // پروفایل
             "menu profile change-username", "menu profile change-nickname", "menu profile change-email",
             "menu profile change-password", "menu profile show-info",
@@ -25,7 +30,7 @@ public class CommandParser {
             // گلخانه و فروشگاه
             "show greenhouse", "collect", "grow", "enter shop", "shop list", "shop daily", "shop buy",
             // لاگ و چیت‌ها
-            "travel log page", "cheat add-plant-food", "cheat remove-cooldown", "cheat add", "cheat spawn-zombie"
+            "travel log page", "cheat add-plant-food", "cheat remove-cooldown", "cheat add", "cheat spawn-zombie","menu cheat add"
     );
 
     public CommandParser() {

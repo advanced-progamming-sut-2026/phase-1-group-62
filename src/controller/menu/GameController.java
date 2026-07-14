@@ -1,4 +1,4 @@
-package controller;
+package controller.menu;
 
 import model.Game;
 import view.GameView;

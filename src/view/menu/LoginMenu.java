@@ -1,7 +1,7 @@
 package view.menu;
 
-import controller.MenuController;
-import controller.CommandParser;
+import controller.menu.MenuController;
+import controller.menu.CommandParser;
 import util.ParsedCommand;
 
 public class LoginMenu extends Menu {
@@ -11,7 +11,7 @@ public class LoginMenu extends Menu {
     }
 
     @Override
-    public void run() {
+    public void runMenu() {
         CommandParser parser = new CommandParser();
         MenuController ctrl = (MenuController) this.controller;
         String prompt = "Login";

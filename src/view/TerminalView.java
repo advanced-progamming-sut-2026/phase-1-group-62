@@ -1,6 +1,6 @@
 package view;
 
-import controller.Validator;
+import controller.menu.Validator;
 
 import java.util.List;
 
@@ -102,10 +102,6 @@ public class TerminalView extends View {
         }
     }
     public void showLogoutResult(String result){showMessage(result);}
-
-
-
-
 
 }
 

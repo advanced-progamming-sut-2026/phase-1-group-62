@@ -1,4 +1,4 @@
-import controller.MenuController;
+import controller.menu.MenuController;
 import model.Settings;
 import model.User;
 import model.UserSession;

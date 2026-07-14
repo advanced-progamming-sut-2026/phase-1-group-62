@@ -122,4 +122,13 @@ public class FileManager {
         }
         return null;
     }
+    public void changeDifficulty(int newDifficulty) {
+
+        Settings settings = FileManager.loadSettings();
+
+        settings.setDifficulty(newDifficulty);
+
+        FileManager.saveSettings(settings);
+
+    }
 }
