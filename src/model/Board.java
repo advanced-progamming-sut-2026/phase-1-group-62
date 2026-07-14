@@ -1,5 +1,7 @@
 package model;
 
+import model.enums.TileType;
+
 public class Board {
     private final int rows;
     private final int columns;
@@ -27,12 +29,37 @@ public class Board {
         return tiles[row][column];
     }
 
-    public int getRows() {
-        return rows;
+    public void setTileType(int row, int column, TileType type) {
+        Tile tile = getTile(row, column);
+        if (tile != null) {
+            tile.setType(type);
+        }
     }
 
-    public int getColumns() {
-        return columns;
+    public boolean isTileWater(int row, int column) {
+        Tile tile = getTile(row, column);
+        return tile != null && tile.getType() == TileType.WATER;
+    }
+
+    public boolean isTileIce(int row, int column) {
+        Tile tile = getTile(row, column);
+        return tile != null && tile.getType() == TileType.ICE;
+    }
+
+    public boolean isTileGrave(int row, int column) {
+        Tile tile = getTile(row, column);
+        return tile != null && tile.getType() == TileType.GRAVE;
+    }
+
+    public boolean isTileGrass(int row, int column) {
+        Tile tile = getTile(row, column);
+        return tile != null && tile.getType() == TileType.GRASS;
+    }
+
+    public int getRows() { return rows; }
+    public int getColumns() { return columns; }
+
+    public boolean isInBounds(int row, int column) {
+        return row >= 0 && row < rows && column >= 0 && column < columns;
     }
 }
-
