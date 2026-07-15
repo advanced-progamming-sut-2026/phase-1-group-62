@@ -1,1382 +1,2406 @@
 [
   {
-    "id": 1,
-    "name": "Sunflower",
-    "category": "SUN_PRODUCER",
-    "tags": ["DAY"],
-    "cost": 50,
-    "baseHp": 300,
-    "damage": 0,
-    "actionInterval": 24.0,
-    "recharge": 5.0,
-    "abilityType": "PRODUCE_SUN",
-    "abilityValue": 50.0,
-    "plantFoodType": "SPAWN_SUN_ITEMS",
-    "plantFoodValue": 150.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_ACTION_INTERVAL", "value": -2.0, "specialTag": "" },
-      { "level": 3, "type": "BUFF_HP", "value": 150.0, "specialTag": "" },
-      { "level": 4, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "DOUBLE_SUN_CHANCE" }
-    ]
-  },
-  {
-    "id": 2,
-    "name": "Twin Sunflower",
-    "category": "SUN_PRODUCER",
-    "tags": ["DAY"],
-    "cost": 125,
-    "baseHp": 300,
-    "damage": 0,
-    "actionInterval": 24.0,
-    "recharge": 15.0,
-    "abilityType": "PRODUCE_SUN",
-    "abilityValue": 100.0,
-    "plantFoodType": "SPAWN_SUN_ITEMS",
-    "plantFoodValue": 250.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_ACTION_INTERVAL", "value": -2.0, "specialTag": "" },
-      { "level": 3, "type": "BUFF_HP", "value": 150.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_COST", "value": -25.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 3,
-    "name": "Sun-shroom",
-    "category": "SUN_PRODUCER",
-    "tags": ["SHROOM", "WARM_UP", "NIGHT"],
-    "cost": 25,
-    "baseHp": 300,
-    "damage": 0,
-    "actionInterval": 24.0,
-    "recharge": 5.0,
-    "abilityType": "PRODUCE_SUN",
-    "abilityValue": 25.0,
-    "plantFoodType": "SPAWN_SUN_ITEMS",
-    "plantFoodValue": 225.0,
-    "upgrades": [
-      { "level": 2, "type": "SPECIAL_MECHANIC", "value": -5.0, "specialTag": "GROW_TIME_REDUCTION" },
-      { "level": 3, "type": "BUFF_HP", "value": 150.0, "specialTag": "" },
-      { "level": 4, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "DOUBLE_SUN_CHANCE" }
-    ]
-  },
-  {
-    "id": 4,
-    "name": "Primal Sunflower",
-    "category": "SUN_PRODUCER",
-    "tags": [],
-    "cost": 75,
-    "baseHp": 300,
-    "damage": 0,
-    "actionInterval": 24.0,
-    "recharge": 5.0,
-    "abilityType": "PRODUCE_SUN",
-    "abilityValue": 75.0,
-    "plantFoodType": "SPAWN_SUN_ITEMS",
-    "plantFoodValue": 225.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_ACTION_INTERVAL", "value": -2.0, "specialTag": "" },
-      { "level": 3, "type": "BUFF_HP", "value": 150.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_COST", "value": -25.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 5,
-    "name": "Gold Bloom",
-    "category": "SUN_PRODUCER",
-    "tags": [],
-    "cost": 0,
-    "baseHp": 0,
-    "damage": 0,
-    "actionInterval": 0.0,
-    "recharge": 75.0,
-    "abilityType": "INSTANT_SUN_BURST",
-    "abilityValue": 375.0,
-    "plantFoodType": "NONE",
-    "plantFoodValue": 0.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_RECHARGE", "value": -5.0, "specialTag": "" },
-      { "level": 3, "type": "SPECIAL_MECHANIC", "value": 50.0, "specialTag": "SUN_AMOUNT_BUFF" },
-      { "level": 4, "type": "BUFF_COST", "value": -25.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 6,
-    "name": "Peashooter",
-    "category": "SHOOTER",
-    "tags": ["PEA"],
-    "cost": 100,
-    "baseHp": 300,
-    "damage": 20,
-    "actionInterval": 1.5,
-    "recharge": 5.0,
-    "abilityType": "SHOOT_PROJECTILE",
-    "abilityValue": 1.0,
-    "plantFoodType": "PROJECTILE_BURST",
-    "plantFoodValue": 60.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_DAMAGE", "value": 10.0, "specialTag": "" },
-      { "level": 3, "type": "BUFF_HP", "value": 150.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_COST", "value": -25.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 7,
-    "name": "Repeater",
-    "category": "SHOOTER",
-    "tags": ["PEA"],
-    "cost": 200,
-    "baseHp": 300,
-    "damage": 20,
-    "actionInterval": 1.5,
-    "recharge": 5.0,
-    "abilityType": "SHOOT_PROJECTILE",
-    "abilityValue": 2.0,
-    "plantFoodType": "PROJECTILE_BURST",
-    "plantFoodValue": 120.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_DAMAGE", "value": 10.0, "specialTag": "" },
-      { "level": 3, "type": "BUFF_HP", "value": 200.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_COST", "value": -25.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 8,
-    "name": "Threepeater",
-    "category": "SHOOTER",
-    "tags": ["PEA"],
-    "cost": 300,
-    "baseHp": 300,
-    "damage": 20,
-    "actionInterval": 1.5,
-    "recharge": 5.0,
-    "abilityType": "SHOOT_PROJECTILE",
-    "abilityValue": 3.0,
-    "plantFoodType": "PROJECTILE_BURST",
-    "plantFoodValue": 180.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_COST", "value": -25.0, "specialTag": "" },
-      { "level": 3, "type": "BUFF_DAMAGE", "value": 10.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_HP", "value": 200.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 9,
-    "name": "Snow Pea",
-    "category": "SHOOTER",
-    "tags": ["ICE", "PEA"],
-    "cost": 150,
-    "baseHp": 300,
-    "damage": 20,
-    "actionInterval": 1.5,
-    "recharge": 5.0,
-    "abilityType": "SHOOT_PROJECTILE",
-    "abilityValue": 1.0,
-    "plantFoodType": "PROJECTILE_BURST",
-    "plantFoodValue": 60.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_DAMAGE", "value": 10.0, "specialTag": "" },
-      { "level": 3, "type": "SPECIAL_MECHANIC", "value": 2.0, "specialTag": "CHILL_DURATION_EXT" },
-      { "level": 4, "type": "BUFF_COST", "value": -25.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 10,
-    "name": "Rotobaga",
-    "category": "SHOOTER",
-    "tags": [],
-    "cost": 150,
-    "baseHp": 300,
-    "damage": 10,
-    "actionInterval": 1.5,
-    "recharge": 5.0,
-    "abilityType": "SHOOT_PROJECTILE",
-    "abilityValue": 4.0,
-    "plantFoodType": "PROJECTILE_BURST",
-    "plantFoodValue": 40.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_DAMAGE", "value": 10.0, "specialTag": "" },
-      { "level": 3, "type": "BUFF_HP", "value": 150.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_COST", "value": -25.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 11,
-    "name": "Pea Pod",
-    "category": "SHOOTER",
-    "tags": ["PEA", "STACK"],
-    "cost": 125,
-    "baseHp": 300,
-    "damage": 20,
-    "actionInterval": 1.5,
-    "recharge": 5.0,
-    "abilityType": "SHOOT_PROJECTILE",
-    "abilityValue": 5.0,
-    "plantFoodType": "PROJECTILE_BURST",
-    "plantFoodValue": 100.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_DAMAGE", "value": 10.0, "specialTag": "" },
-      { "level": 3, "type": "BUFF_HP", "value": 200.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_COST", "value": -25.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 12,
-    "name": "Split Pea",
-    "category": "SHOOTER",
-    "tags": ["PEA"],
-    "cost": 125,
-    "baseHp": 300,
-    "damage": 20,
-    "actionInterval": 1.5,
-    "recharge": 5.0,
-    "abilityType": "SHOOT_PROJECTILE",
-    "abilityValue": 3.0,
-    "plantFoodType": "PROJECTILE_BURST",
-    "plantFoodValue": 90.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_DAMAGE", "value": 10.0, "specialTag": "" },
-      { "level": 3, "type": "BUFF_HP", "value": 200.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_COST", "value": -25.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 13,
-    "name": "Citron",
-    "category": "SHOOTER",
-    "tags": ["CHARGE"],
-    "cost": 350,
-    "baseHp": 300,
-    "damage": 800,
-    "actionInterval": 9.0,
-    "recharge": 5.0,
-    "abilityType": "SHOOT_PROJECTILE",
-    "abilityValue": 1.0,
-    "plantFoodType": "PROJECTILE_BURST",
-    "plantFoodValue": 2000.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_ACTION_INTERVAL", "value": -1.0, "specialTag": "CHARGE_REDUCTION" },
-      { "level": 3, "type": "BUFF_DAMAGE", "value": 150.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_COST", "value": -50.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 14,
-    "name": "Caulipower",
-    "category": "HOMING",
-    "tags": ["MAGIC", "CHARGE"],
-    "cost": 250,
-    "baseHp": 300,
-    "damage": 99999,
-    "actionInterval": 12.0,
-    "recharge": 15.0,
-    "abilityType": "SHOOT_PROJECTILE",
-    "abilityValue": 1.0,
-    "plantFoodType": "RANDOM_HYPNOTIZE",
-    "plantFoodValue": 3.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_ACTION_INTERVAL", "value": -2.0, "specialTag": "" },
-      { "level": 3, "type": "BUFF_HP", "value": 150.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_COST", "value": -50.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 15,
-    "name": "Electric Blueberry",
-    "category": "HOMING",
-    "tags": ["CHARGE"],
-    "cost": 150,
-    "baseHp": 300,
-    "damage": 5000,
-    "actionInterval": 12.0,
-    "recharge": 15.0,
-    "abilityType": "SHOOT_PROJECTILE",
-    "abilityValue": 1.0,
-    "plantFoodType": "RANDOM_HYPNOTIZE",
-    "plantFoodValue": 3.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_ACTION_INTERVAL", "value": -2.0, "specialTag": "" },
-      { "level": 3, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "PRIORITIZE_GARGANTUARS" },
-      { "level": 4, "type": "BUFF_COST", "value": -25.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 16,
-    "name": "Bowling Bulb",
-    "category": "SHOOTER",
-    "tags": ["CHARGE"],
-    "cost": 200,
-    "baseHp": 300,
-    "damage": 40,
-    "actionInterval": 2.0,
-    "recharge": 5.0,
-    "abilityType": "SHOOT_PROJECTILE",
-    "abilityValue": 3.0,
-    "plantFoodType": "PROJECTILE_BURST",
-    "plantFoodValue": 300.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_ACTION_INTERVAL", "value": -1.0, "specialTag": "REGEN_SPEEDUP" },
-      { "level": 3, "type": "BUFF_DAMAGE", "value": 15.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_COST", "value": -25.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 17,
-    "name": "Cactus",
-    "category": "STRIKE_THROUGH",
-    "tags": [],
-    "cost": 175,
-    "baseHp": 300,
-    "damage": 30,
-    "actionInterval": 1.5,
-    "recharge": 5.0,
-    "abilityType": "SHOOT_PROJECTILE",
-    "abilityValue": 3.0,
-    "plantFoodType": "PROJECTILE_BURST",
-    "plantFoodValue": 100.0,
-    "upgrades": [
-      { "level": 2, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "ADDITIONAL_PIERCE" },
-      { "level": 3, "type": "BUFF_DAMAGE", "value": 10.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_COST", "value": -25.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 18,
-    "name": "Fire Peashooter",
-    "category": "SHOOTER",
-    "tags": ["FIRE", "PEA"],
-    "cost": 175,
-    "baseHp": 300,
-    "damage": 40,
-    "actionInterval": 1.5,
-    "recharge": 5.0,
-    "abilityType": "SHOOT_PROJECTILE",
-    "abilityValue": 1.0,
-    "plantFoodType": "PROJECTILE_BURST",
-    "plantFoodValue": 120.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_DAMAGE", "value": 10.0, "specialTag": "" },
-      { "level": 3, "type": "BUFF_HP", "value": 200.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_COST", "value": -25.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 19,
-    "name": "Starfruit",
-    "category": "SHOOTER",
-    "tags": [],
-    "cost": 150,
-    "baseHp": 300,
-    "damage": 20,
-    "actionInterval": 1.5,
-    "recharge": 5.0,
-    "abilityType": "SHOOT_PROJECTILE",
-    "abilityValue": 5.0,
-    "plantFoodType": "PROJECTILE_BURST",
-    "plantFoodValue": 100.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_ACTION_INTERVAL", "value": -0.15, "specialTag": "" },
-      { "level": 3, "type": "BUFF_DAMAGE", "value": 10.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_COST", "value": -25.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 20,
-    "name": "Goo Peashooter",
-    "category": "SHOOTER",
-    "tags": ["POISON"],
-    "cost": 125,
-    "baseHp": 300,
-    "damage": 20,
-    "actionInterval": 1.5,
-    "recharge": 5.0,
-    "abilityType": "SHOOT_PROJECTILE",
-    "abilityValue": 1.0,
-    "plantFoodType": "PROJECTILE_BURST",
-    "plantFoodValue": 80.0,
-    "upgrades": [
-      { "level": 2, "type": "SPECIAL_MECHANIC", "value": 5.0, "specialTag": "POISON_TICK_BUFF" },
-      { "level": 3, "type": "BUFF_HP", "value": 150.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_COST", "value": -25.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 21,
-    "name": "Mega Gatling Pea",
-    "category": "SHOOTER",
-    "tags": ["PEA"],
-    "cost": 400,
-    "baseHp": 300,
-    "damage": 20,
-    "actionInterval": 1.5,
-    "recharge": 5.0,
-    "abilityType": "SHOOT_PROJECTILE",
-    "abilityValue": 4.0,
-    "plantFoodType": "PROJECTILE_BURST",
-    "plantFoodValue": 350.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_DAMAGE", "value": 10.0, "specialTag": "" },
-      { "level": 3, "type": "SPECIAL_MECHANIC", "value": 0.05, "specialTag": "AUTO_PLANT_FOOD_CHANCE" },
-      { "level": 4, "type": "BUFF_COST", "value": -50.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 22,
-    "name": "Sea-shroom",
-    "category": "SHOOTER",
-    "tags": ["SHROOM", "WATER"],
-    "cost": 0,
-    "baseHp": 300,
-    "damage": 20,
-    "actionInterval": 1.5,
-    "recharge": 15.0,
-    "abilityType": "SHOOT_PROJECTILE",
-    "abilityValue": 1.0,
-    "plantFoodType": "PROJECTILE_BURST",
-    "plantFoodValue": 60.0,
-    "upgrades": [
-      { "level": 2, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "TILE_RANGE_EXT" },
-      { "level": 3, "type": "BUFF_DAMAGE", "value": 5.0, "specialTag": "" },
-      { "level": 4, "type": "SPECIAL_MECHANIC", "value": 10.0, "specialTag": "LIFESPAN_EXT" }
-    ]
-  },
-  {
-    "id": 23,
-    "name": "Puff-shroom",
-    "category": "SHOOTER",
-    "tags": ["SHROOM"],
-    "cost": 0,
-    "baseHp": 300,
-    "damage": 20,
-    "actionInterval": 1.5,
-    "recharge": 5.0,
-    "abilityType": "SHOOT_PROJECTILE",
-    "abilityValue": 1.0,
-    "plantFoodType": "PROJECTILE_BURST",
-    "plantFoodValue": 60.0,
-    "upgrades": [
-      { "level": 2, "type": "SPECIAL_MECHANIC", "value": 10.0, "specialTag": "LIFESPAN_EXT" },
-      { "level": 3, "type": "BUFF_DAMAGE", "value": 10.0, "specialTag": "" },
-      { "level": 4, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "TILE_RANGE_EXT" }
-    ]
-  },
-  {
-    "id": 24,
-    "name": "Fume-shroom",
-    "category": "STRIKE_THROUGH",
-    "tags": ["SHROOM"],
-    "cost": 125,
-    "baseHp": 300,
-    "damage": 20,
-    "actionInterval": 1.5,
-    "recharge": 5.0,
-    "abilityType": "SHOOT_PROJECTILE",
-    "abilityValue": 3.0,
-    "plantFoodType": "KNOCKBACK_BLAST",
-    "plantFoodValue": 100.0,
-    "upgrades": [
-      { "level": 2, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "TILE_RANGE_EXT" },
-      { "level": 3, "type": "BUFF_DAMAGE", "value": 10.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_COST", "value": -25.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 25,
-    "name": "Cabbage-pult",
-    "category": "LOBBER",
-    "tags": [],
-    "cost": 100,
-    "baseHp": 300,
-    "damage": 40,
-    "actionInterval": 2.9,
-    "recharge": 5.0,
-    "abilityType": "SHOOT_PROJECTILE",
-    "abilityValue": 1.0,
-    "plantFoodType": "PROJECTILE_BURST",
-    "plantFoodValue": 200.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_DAMAGE", "value": 10.0, "specialTag": "" },
-      { "level": 3, "type": "BUFF_ACTION_INTERVAL", "value": -0.4, "specialTag": "" },
-      { "level": 4, "type": "BUFF_HP", "value": 150.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 26,
-    "name": "Kernel-pult",
-    "category": "LOBBER",
-    "tags": [],
-    "cost": 100,
-    "baseHp": 300,
-    "damage": 20,
-    "actionInterval": 2.9,
-    "recharge": 5.0,
-    "abilityType": "SHOOT_PROJECTILE",
-    "abilityValue": 1.0,
-    "plantFoodType": "MAP_WIDE_FREEZE",
-    "plantFoodValue": 4.0,
-    "upgrades": [
-      { "level": 2, "type": "SPECIAL_MECHANIC", "value": 0.05, "specialTag": "BUTTER_CHANCE_BUFF" },
-      { "level": 3, "type": "BUFF_DAMAGE", "value": 10.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_HP", "value": 150.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 27,
-    "name": "Melon-pult",
-    "category": "LOBBER",
-    "tags": ["AOE"],
-    "cost": 325,
-    "baseHp": 300,
-    "damage": 80,
-    "actionInterval": 2.9,
-    "recharge": 5.0,
-    "abilityType": "SHOOT_PROJECTILE",
-    "abilityValue": 1.0,
-    "plantFoodType": "PROJECTILE_BURST",
-    "plantFoodValue": 400.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_COST", "value": -25.0, "specialTag": "" },
-      { "level": 3, "type": "SPECIAL_MECHANIC", "value": 15.0, "specialTag": "SPLASH_DAMAGE_BUFF" },
-      { "level": 4, "type": "BUFF_DAMAGE", "value": 30.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 28,
-    "name": "Winter Melon",
-    "category": "LOBBER",
-    "tags": ["ICE", "AOE"],
-    "cost": 500,
-    "baseHp": 300,
-    "damage": 80,
-    "actionInterval": 2.9,
-    "recharge": 5.0,
-    "abilityType": "SHOOT_PROJECTILE",
-    "abilityValue": 1.0,
-    "plantFoodType": "PROJECTILE_BURST",
-    "plantFoodValue": 400.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_COST", "value": -50.0, "specialTag": "" },
-      { "level": 3, "type": "SPECIAL_MECHANIC", "value": 15.0, "specialTag": "SPLASH_DAMAGE_BUFF" },
-      { "level": 4, "type": "BUFF_COST", "value": -25.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 29,
-    "name": "Pepper-pult",
-    "category": "LOBBER",
-    "tags": ["FIRE", "AOE"],
-    "cost": 200,
-    "baseHp": 300,
-    "damage": 50,
-    "actionInterval": 2.9,
-    "recharge": 5.0,
-    "abilityType": "SHOOT_PROJECTILE",
-    "abilityValue": 1.0,
-    "plantFoodType": "PROJECTILE_BURST",
-    "plantFoodValue": 250.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_DAMAGE", "value": 15.0, "specialTag": "" },
-      { "level": 3, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "WARM_RADIUS_EXT" },
-      { "level": 4, "type": "BUFF_COST", "value": -25.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 30,
-    "name": "Potato Mine",
-    "category": "EXPLOSIVE",
-    "tags": ["TRAP", "CHARGE"],
-    "cost": 25,
-    "baseHp": 300,
-    "damage": 1800,
-    "actionInterval": 15.0,
-    "recharge": 25.0,
-    "abilityType": "DELAYED_EXPLOSIVE",
-    "abilityValue": 1.0,
-    "plantFoodType": "SPAWN_CLONES",
-    "plantFoodValue": 2.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_ACTION_INTERVAL", "value": -3.0, "specialTag": "ARM_TIME_REDUCTION" },
-      { "level": 3, "type": "BUFF_RECHARGE", "value": -5.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_DAMAGE", "value": 600.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 31,
-    "name": "Primal Potato Mine",
-    "category": "EXPLOSIVE",
-    "tags": ["TRAP", "CHARGE"],
-    "cost": 50,
-    "baseHp": 300,
-    "damage": 2400,
-    "actionInterval": 5.0,
-    "recharge": 5.0,
-    "abilityType": "DELAYED_EXPLOSIVE",
-    "abilityValue": 9.0,
-    "plantFoodType": "SPAWN_CLONES",
-    "plantFoodValue": 2.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_ACTION_INTERVAL", "value": -1.0, "specialTag": "ARM_TIME_REDUCTION" },
-      { "level": 3, "type": "BUFF_RECHARGE", "value": -3.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_DAMAGE", "value": 400.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 32,
-    "name": "Cherry Bomb",
-    "category": "EXPLOSIVE",
-    "tags": [],
-    "cost": 150,
-    "baseHp": 0,
-    "damage": 1800,
-    "actionInterval": 0.0,
-    "recharge": 35.0,
-    "abilityType": "INSTANT_EXPLOSIVE",
-    "abilityValue": 9.0,
-    "plantFoodType": "NONE",
-    "plantFoodValue": 0.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_RECHARGE", "value": -5.0, "specialTag": "" },
-      { "level": 3, "type": "BUFF_DAMAGE", "value": 600.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_COST", "value": -25.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 33,
-    "name": "Squash",
-    "category": "EXPLOSIVE",
-    "tags": ["TRAP"],
-    "cost": 50,
-    "baseHp": 300,
-    "damage": 1800,
-    "actionInterval": 0.0,
-    "recharge": 20.0,
-    "abilityType": "DELAYED_EXPLOSIVE",
-    "abilityValue": 1.0,
-    "plantFoodType": "LOCAL_AOE_ATTACK",
-    "plantFoodValue": 2.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_RECHARGE", "value": -3.0, "specialTag": "" },
-      { "level": 3, "type": "BUFF_DAMAGE", "value": 600.0, "specialTag": "" },
-      { "level": 4, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "BONUS_SMASH_CHARGES" }
-    ]
-  },
-  {
-    "id": 34,
-    "name": "Grapeshot",
-    "category": "EXPLOSIVE",
-    "tags": [],
-    "cost": 150,
-    "baseHp": 0,
-    "damage": 1800,
-    "actionInterval": 0.0,
-    "recharge": 35.0,
-    "abilityType": "INSTANT_EXPLOSIVE",
-    "abilityValue": 9.0,
-    "plantFoodType": "NONE",
-    "plantFoodValue": 0.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_DAMAGE", "value": 600.0, "specialTag": "" },
-      { "level": 3, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "GRAPE_BOUNCE_EXT" },
-      { "level": 4, "type": "BUFF_COST", "value": -25.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 35,
-    "name": "Jalapeno",
-    "category": "EXPLOSIVE",
-    "tags": ["FIRE"],
-    "cost": 125,
-    "baseHp": 0,
-    "damage": 1800,
-    "actionInterval": 0.0,
-    "recharge": 35.0,
-    "abilityType": "INSTANT_EXPLOSIVE",
-    "abilityValue": 9.0,
-    "plantFoodType": "NONE",
-    "plantFoodValue": 0.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_RECHARGE", "value": -5.0, "specialTag": "" },
-      { "level": 3, "type": "BUFF_DAMAGE", "value": 600.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_COST", "value": -25.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 36,
-    "name": "Doom-shroom",
-    "category": "EXPLOSIVE",
-    "tags": ["SHROOM"],
-    "cost": 125,
-    "baseHp": 0,
-    "damage": 1800,
-    "actionInterval": 0.0,
-    "recharge": 15.0,
-    "abilityType": "INSTANT_EXPLOSIVE",
-    "abilityValue": 45.0,
-    "plantFoodType": "NONE",
-    "plantFoodValue": 0.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_RECHARGE", "value": -5.0, "specialTag": "" },
-      { "level": 3, "type": "BUFF_DAMAGE", "value": 800.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_COST", "value": -50.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 37,
-    "name": "Tangle Kelp",
-    "category": "EXPLOSIVE",
-    "tags": ["TRAP", "WATER"],
-    "cost": 25,
-    "baseHp": 300,
-    "damage": 99999,
-    "actionInterval": 0.0,
-    "recharge": 15.0,
-    "abilityType": "DELAYED_EXPLOSIVE",
-    "abilityValue": 1.0,
-    "plantFoodType": "PULL_UNDERWATER",
-    "plantFoodValue": 4.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_RECHARGE", "value": -5.0, "specialTag": "" },
-      { "level": 3, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "BONUS_GRAB_TARGETS" },
-      { "level": 4, "type": "BUFF_COST", "value": -25.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 38,
-    "name": "Iceberg Lettuce",
-    "category": "EXPLOSIVE",
-    "tags": ["TRAP", "ICE"],
-    "cost": 0,
-    "baseHp": 300,
-    "damage": 0,
-    "actionInterval": 0.0,
-    "recharge": 20.0,
-    "abilityType": "DELAYED_EXPLOSIVE",
-    "abilityValue": 1.0,
-    "plantFoodType": "MAP_WIDE_FREEZE",
-    "plantFoodValue": 10.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_RECHARGE", "value": -2.0, "specialTag": "" },
-      { "level": 3, "type": "SPECIAL_MECHANIC", "value": 2.0, "specialTag": "FREEZE_DURATION_EXT" },
-      { "level": 4, "type": "BUFF_COST", "value": 0.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 39,
-    "name": "Bonk Choy",
-    "category": "MELEE",
-    "tags": [],
-    "cost": 150,
-    "baseHp": 300,
-    "damage": 15,
-    "actionInterval": 0.25,
-    "recharge": 5.0,
-    "abilityType": "MELEE_ATTACK",
-    "abilityValue": 1.0,
-    "plantFoodType": "LOCAL_AOE_ATTACK",
-    "plantFoodValue": 9.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_DAMAGE", "value": 5.0, "specialTag": "" },
-      { "level": 3, "type": "BUFF_ACTION_INTERVAL", "value": -0.03, "specialTag": "" },
-      { "level": 4, "type": "BUFF_HP", "value": 200.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 40,
-    "name": "Phat Beet",
-    "category": "MELEE",
-    "tags": ["AOE"],
-    "cost": 150,
-    "baseHp": 300,
-    "damage": 15,
-    "actionInterval": 2.0,
-    "recharge": 5.0,
-    "abilityType": "MELEE_ATTACK",
-    "abilityValue": 9.0,
-    "plantFoodType": "LOCAL_AOE_ATTACK",
-    "plantFoodValue": 9.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_DAMAGE", "value": 10.0, "specialTag": "" },
-      { "level": 3, "type": "BUFF_ACTION_INTERVAL", "value": -0.2, "specialTag": "" },
-      { "level": 4, "type": "BUFF_HP", "value": 200.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 41,
-    "name": "Chomper",
-    "category": "MELEE",
-    "tags": [],
-    "cost": 150,
-    "baseHp": 300,
-    "damage": 99999,
-    "actionInterval": 40.0,
-    "recharge": 5.0,
-    "abilityType": "DELAYED_EXPLOSIVE",
-    "abilityValue": 1.0,
-    "plantFoodType": "PULL_UNDERWATER",
-    "plantFoodValue": 3.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_ACTION_INTERVAL", "value": -2.0, "specialTag": "DIGEST_REDUCTION" },
-      { "level": 3, "type": "BUFF_HP", "value": 200.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_ACTION_INTERVAL", "value": -3.0, "specialTag": "DIGEST_REDUCTION" }
-    ]
-  },
-  {
-    "id": 42,
-    "name": "Wasabi Whip",
-    "category": "MELEE",
-    "tags": ["FIRE"],
-    "cost": 150,
-    "baseHp": 300,
-    "damage": 40,
-    "actionInterval": 2.0,
-    "recharge": 5.0,
-    "abilityType": "MELEE_ATTACK",
-    "abilityValue": 2.0,
-    "plantFoodType": "LOCAL_AOE_ATTACK",
-    "plantFoodValue": 9.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_DAMAGE", "value": 10.0, "specialTag": "" },
-      { "level": 3, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "TILE_RANGE_EXT" },
-      { "level": 4, "type": "BUFF_HP", "value": 200.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 43,
-    "name": "Kiwibeast",
-    "category": "MELEE",
-    "tags": ["AOE", "WARM_UP"],
-    "cost": 175,
-    "baseHp": 300,
-    "damage": 15,
-    "actionInterval": 2.0,
-    "recharge": 5.0,
-    "abilityType": "MELEE_ATTACK",
-    "abilityValue": 9.0,
-    "plantFoodType": "LOCAL_AOE_ATTACK",
-    "plantFoodValue": 25.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_HP", "value": 200.0, "specialTag": "" },
-      { "level": 3, "type": "BUFF_DAMAGE", "value": 15.0, "specialTag": "" },
-      { "level": 4, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "GROWTH_STAGE_MAX_UP" }
-    ]
-  },
-  {
-    "id": 44,
-    "name": "Wall-nut",
-    "category": "WALL_NUT",
-    "tags": [],
-    "cost": 50,
-    "baseHp": 4000,
-    "damage": 0,
-    "actionInterval": 0.0,
-    "recharge": 20.0,
-    "abilityType": "PASSIVE_SHIELD",
-    "abilityValue": 0.0,
-    "plantFoodType": "GRANT_PERMANENT_ARMOR",
-    "plantFoodValue": 4000.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_HP", "value": 1000.0, "specialTag": "" },
-      { "level": 3, "type": "BUFF_RECHARGE", "value": -5.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_HP", "value": 1500.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 45,
-    "name": "Tall-nut",
-    "category": "WALL_NUT",
-    "tags": [],
-    "cost": 125,
-    "baseHp": 8000,
-    "damage": 0,
-    "actionInterval": 0.0,
-    "recharge": 20.0,
-    "abilityType": "PASSIVE_SHIELD",
-    "abilityValue": 0.0,
-    "plantFoodType": "GRANT_PERMANENT_ARMOR",
-    "plantFoodValue": 8000.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_HP", "value": 2000.0, "specialTag": "" },
-      { "level": 3, "type": "BUFF_RECHARGE", "value": -5.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_HP", "value": 3000.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 46,
-    "name": "Endurian",
-    "category": "WALL_NUT",
-    "tags": [],
-    "cost": 100,
-    "baseHp": 3000,
-    "damage": 20,
-    "actionInterval": 0.0,
-    "recharge": 15.0,
-    "abilityType": "PASSIVE_SHIELD",
-    "abilityValue": 20.0,
-    "plantFoodType": "GRANT_PERMANENT_ARMOR",
-    "plantFoodValue": 3000.0,
-    "upgrades": [
-      { "level": 2, "type": "SPECIAL_MECHANIC", "value": 5.0, "specialTag": "REFLECT_DAMAGE_BUFF" },
-      { "level": 3, "type": "BUFF_HP", "value": 1000.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_COST", "value": -25.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 47,
-    "name": "Garlic",
-    "category": "WALL_NUT",
-    "tags": ["MOVE_ZOMBIE"],
-    "cost": 50,
-    "baseHp": 300,
-    "damage": 0,
-    "actionInterval": 0.0,
-    "recharge": 20.0,
-    "abilityType": "PASSIVE_SHIELD",
-    "abilityValue": 0.0,
-    "plantFoodType": "KNOCKBACK_BLAST",
-    "plantFoodValue": 0.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_HP", "value": 150.0, "specialTag": "" },
-      { "level": 3, "type": "BUFF_RECHARGE", "value": -3.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_HP", "value": 250.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 48,
-    "name": "Sweet Potato",
-    "category": "WALL_NUT",
-    "tags": ["MOVE_ZOMBIE"],
-    "cost": 150,
-    "baseHp": 3000,
-    "damage": 0,
-    "actionInterval": 0.0,
-    "recharge": 20.0,
-    "abilityType": "PASSIVE_SHIELD",
-    "abilityValue": 0.0,
-    "plantFoodType": "GRANT_PERMANENT_ARMOR",
-    "plantFoodValue": 3000.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_HP", "value": 1000.0, "specialTag": "" },
-      { "level": 3, "type": "BUFF_RECHARGE", "value": -5.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_HP", "value": 1500.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 49,
-    "name": "Explode-o-nut",
-    "category": "WALL_NUT",
-    "tags": ["EXPLOSIVE"],
-    "cost": 50,
-    "baseHp": 4000,
-    "damage": 1800,
-    "actionInterval": 0.0,
-    "recharge": 20.0,
-    "abilityType": "PASSIVE_SHIELD",
-    "abilityValue": 1800.0,
-    "plantFoodType": "GRANT_PERMANENT_ARMOR",
-    "plantFoodValue": 4000.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_HP", "value": 1000.0, "specialTag": "" },
-      { "level": 3, "type": "BUFF_DAMAGE", "value": 200.0, "specialTag": "EXPLODE_DAMAGE_BUFF" },
-      { "level": 4, "type": "BUFF_COST", "value": -25.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 50,
-    "name": "Pumpkin",
-    "category": "WALL_NUT",
-    "tags": ["STACK"],
-    "cost": 150,
-    "baseHp": 4000,
-    "damage": 0,
-    "actionInterval": 0.0,
-    "recharge": 20.0,
-    "abilityType": "PASSIVE_SHIELD",
-    "abilityValue": 0.0,
-    "plantFoodType": "GRANT_PERMANENT_ARMOR",
-    "plantFoodValue": 4000.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_HP", "value": 1000.0, "specialTag": "" },
-      { "level": 3, "type": "BUFF_RECHARGE", "value": -5.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_HP", "value": 1500.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 51,
-    "name": "Sun Bean",
-    "category": "WALL_NUT",
-    "tags": ["SUN"],
-    "cost": 50,
-    "baseHp": 1000,
-    "damage": 0,
-    "actionInterval": 0.0,
-    "recharge": 20.0,
-    "abilityType": "PASSIVE_SHIELD",
-    "abilityValue": 5.0,
-    "plantFoodType": "GRANT_PERMANENT_ARMOR",
-    "plantFoodValue": 1000.0,
-    "upgrades": [
-      { "level": 2, "type": "SPECIAL_MECHANIC", "value": 5.0, "specialTag": "SUN_DROP_INCREMENT" },
-      { "level": 3, "type": "BUFF_HP", "value": 150.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_COST", "value": -25.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 52,
-    "name": "Torchwood",
-    "category": "MODIFIER",
-    "tags": ["FIRE"],
-    "cost": 175,
-    "baseHp": 300,
-    "damage": 0,
-    "actionInterval": 0.0,
-    "recharge": 5.0,
-    "abilityType": "MODIFIER_UTILITY",
-    "abilityValue": 2.0,
-    "plantFoodType": "PROJECTILE_BURST",
-    "plantFoodValue": 3.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_HP", "value": 300.0, "specialTag": "" },
-      { "level": 3, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "DEATH_EXPLOSION_AOE" },
-      { "level": 4, "type": "BUFF_COST", "value": -25.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 53,
-    "name": "Magnet-shroom",
-    "category": "HOMING",
-    "tags": ["SHROOM", "MAGIC"],
-    "cost": 100,
-    "baseHp": 300,
-    "damage": 0,
-    "actionInterval": 10.0,
-    "recharge": 15.0,
-    "abilityType": "MODIFIER_UTILITY",
-    "abilityValue": 1.0,
-    "plantFoodType": "KNOCKBACK_BLAST",
-    "plantFoodValue": 5.0,
-    "upgrades": [
-      { "level": 2, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "TILE_RANGE_EXT" },
-      { "level": 3, "type": "BUFF_RECHARGE", "value": -5.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_HP", "value": 200.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 54,
-    "name": "Hypno-shroom",
-    "category": "MODIFIER",
-    "tags": ["SHROOM", "MAGIC"],
-    "cost": 125,
-    "baseHp": 300,
-    "damage": 0,
-    "actionInterval": 0.0,
-    "recharge": 20.0,
-    "abilityType": "MODIFIER_UTILITY",
-    "abilityValue": 1.0,
-    "plantFoodType": "RANDOM_HYPNOTIZE",
-    "plantFoodValue": 1.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_COST", "value": -25.0, "specialTag": "" },
-      { "level": 3, "type": "SPECIAL_MECHANIC", "value": 1.2, "specialTag": "ZOMBIE_HEALTH_MULTIPLIER" },
-      { "level": 4, "type": "SPECIAL_MECHANIC", "value": 1.2, "specialTag": "ZOMBIE_DAMAGE_MULTIPLIER" }
-    ]
-  },
-  {
-    "id": 55,
-    "name": "Cat-tail",
-    "category": "HOMING",
-    "tags": [],
-    "cost": 175,
-    "baseHp": 300,
-    "damage": 15,
-    "actionInterval": 1.5,
-    "recharge": 20.0,
-    "abilityType": "SHOOT_PROJECTILE",
-    "abilityValue": 1.0,
-    "plantFoodType": "PROJECTILE_BURST",
-    "plantFoodValue": 40.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_DAMAGE", "value": 10.0, "specialTag": "" },
-      { "level": 3, "type": "BUFF_HP", "value": 200.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_COST", "value": -25.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 56,
-    "name": "Imitater",
-    "category": "MODIFIER",
-    "tags": [],
-    "cost": 0,
-    "baseHp": 0,
-    "damage": 0,
-    "actionInterval": 0.0,
-    "recharge": 0.0,
-    "abilityType": "MODIFIER_UTILITY",
-    "abilityValue": 0.0,
-    "plantFoodType": "NONE",
-    "plantFoodValue": 0.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_RECHARGE", "value": -2.0, "specialTag": "" },
-      { "level": 3, "type": "BUFF_COST", "value": -25.0, "specialTag": "" },
-      { "level": 4, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "AUTO_PLANTFOOD_ON_ENTER" }
-    ]
-  },
-  {
-    "id": 57,
-    "name": "Ice-shroom",
-    "category": "EXPLOSIVE",
-    "tags": ["SHROOM", "ICE"],
-    "cost": 75,
-    "baseHp": 0,
-    "damage": 0,
-    "actionInterval": 0.0,
-    "recharge": 50.0,
-    "abilityType": "INSTANT_EXPLOSIVE",
-    "abilityValue": 45.0,
-    "plantFoodType": "NONE",
-    "plantFoodValue": 0.0,
-    "upgrades": [
-      { "level": 2, "type": "SPECIAL_MECHANIC", "value": 2.0, "specialTag": "FREEZE_DURATION_EXT" },
-      { "level": 3, "type": "BUFF_RECHARGE", "value": -5.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_DAMAGE", "value": 50.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 58,
-    "name": "Lily Pad",
-    "category": "MODIFIER",
-    "tags": ["WATER", "STACK"],
-    "cost": 25,
-    "baseHp": 300,
-    "damage": 0,
-    "actionInterval": 0.0,
-    "recharge": 5.0,
-    "abilityType": "MODIFIER_UTILITY",
-    "abilityValue": 0.0,
-    "plantFoodType": "SPAWN_CLONES",
-    "plantFoodValue": 4.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_COST", "value": -25.0, "specialTag": "" },
-      { "level": 3, "type": "BUFF_HP", "value": 200.0, "specialTag": "" },
-      { "level": 4, "type": "BUFF_RECHARGE", "value": -2.0, "specialTag": "" }
-    ]
-  },
-  {
-    "id": 59,
-    "name": "Hot Potato",
-    "category": "EXPLOSIVE",
-    "tags": ["FIRE"],
-    "cost": 0,
-    "baseHp": 0,
-    "damage": 0,
-    "actionInterval": 0.0,
-    "recharge": 5.0,
-    "abilityType": "INSTANT_EXPLOSIVE",
-    "abilityValue": 1.0,
-    "plantFoodType": "NONE",
-    "plantFoodValue": 0.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_RECHARGE", "value": -2.0, "specialTag": "" },
-      { "level": 3, "type": "SPECIAL_MECHANIC", "value": 9.0, "specialTag": "MELT_AREA_3X3" },
-      { "level": 4, "type": "SPECIAL_MECHANIC", "value": 100.0, "specialTag": "EXPLODE_ON_FINISH" }
-    ]
-  },
-  {
-    "id": 60,
-    "name": "Grave Buster",
-    "category": "EXPLOSIVE",
-    "tags": [],
-    "cost": 0,
-    "baseHp": 0,
-    "damage": 99999,
-    "actionInterval": 0.0,
-    "recharge": 10.0,
-    "abilityType": "INSTANT_EXPLOSIVE",
-    "abilityValue": 1.0,
-    "plantFoodType": "NONE",
-    "plantFoodValue": 0.0,
-    "upgrades": [
-      { "level": 2, "type": "BUFF_ACTION_INTERVAL", "value": -1.0, "specialTag": "EAT_TIME_REDUCTION" },
-      { "level": 3, "type": "BUFF_RECHARGE", "value": -2.0, "specialTag": "" },
-      { "level": 4, "type": "SPECIAL_MECHANIC", "value": 100.0, "specialTag": "EXPLODE_ON_FINISH" }
-    ]
-  },
-  {
-    "id": 61,
-    "name": "Enlighten-mint",
-    "category": "SUN_PRODUCER",
-    "tags": [],
-    "cost": 0,
-    "baseHp": 0,
-    "damage": 0,
-    "actionInterval": 0.0,
-    "recharge": 85.0,
-    "abilityType": "MINT_FAMILY_BOOST",
-    "abilityValue": 10.0,
-    "plantFoodType": "NONE",
-    "plantFoodValue": 0.0,
-    "upgrades": [
-      { "level": 2, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "DURATION_EXT" },
-      { "level": 3, "type": "BUFF_RECHARGE", "value": -5.0, "specialTag": "" },
-      { "level": 4, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "RESET_FAMILY_COOLDOWNS" }
-    ]
-  },
-  {
-    "id": 62,
-    "name": "Appease-mint",
-    "category": "SHOOTER",
-    "tags": [],
-    "cost": 0,
-    "baseHp": 0,
-    "damage": 0,
-    "actionInterval": 0.0,
-    "recharge": 85.0,
-    "abilityType": "MINT_FAMILY_BOOST",
-    "abilityValue": 10.0,
-    "plantFoodType": "NONE",
-    "plantFoodValue": 0.0,
-    "upgrades": [
-      { "level": 2, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "DURATION_EXT" },
-      { "level": 3, "type": "BUFF_RECHARGE", "value": -5.0, "specialTag": "" },
-      { "level": 4, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "RESET_FAMILY_COOLDOWNS" }
-    ]
-  },
-  {
-    "id": 63,
-    "name": "Arma-mint",
-    "category": "LOBBER",
-    "tags": [],
-    "cost": 0,
-    "baseHp": 0,
-    "damage": 0,
-    "actionInterval": 0.0,
-    "recharge": 85.0,
-    "abilityType": "MINT_FAMILY_BOOST",
-    "abilityValue": 10.0,
-    "plantFoodType": "NONE",
-    "plantFoodValue": 0.0,
-    "upgrades": [
-      { "level": 2, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "DURATION_EXT" },
-      { "level": 3, "type": "BUFF_RECHARGE", "value": -5.0, "specialTag": "" },
-      { "level": 4, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "RESET_FAMILY_COOLDOWNS" }
-    ]
-  },
-  {
-    "id": 64,
-    "name": "Bombard-mint",
-    "category": "EXPLOSIVE",
-    "tags": [],
-    "cost": 0,
-    "baseHp": 0,
-    "damage": 0,
-    "actionInterval": 0.0,
-    "recharge": 85.0,
-    "abilityType": "MINT_FAMILY_BOOST",
-    "abilityValue": 10.0,
-    "plantFoodType": "NONE",
-    "plantFoodValue": 0.0,
-    "upgrades": [
-      { "level": 2, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "DURATION_EXT" },
-      { "level": 3, "type": "BUFF_RECHARGE", "value": -5.0, "specialTag": "" },
-      { "level": 4, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "RESET_FAMILY_COOLDOWNS" }
-    ]
-  },
-  {
-    "id": 65,
-    "name": "Enforce-mint",
-    "category": "MELEE",
-    "tags": [],
-    "cost": 0,
-    "baseHp": 0,
-    "damage": 0,
-    "actionInterval": 0.0,
-    "recharge": 85.0,
-    "abilityType": "MINT_FAMILY_BOOST",
-    "abilityValue": 10.0,
-    "plantFoodType": "NONE",
-    "plantFoodValue": 0.0,
-    "upgrades": [
-      { "level": 2, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "DURATION_EXT" },
-      { "level": 3, "type": "BUFF_RECHARGE", "value": -5.0, "specialTag": "" },
-      { "level": 4, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "RESET_FAMILY_COOLDOWNS" }
-    ]
-  },
-  {
-    "id": 66,
-    "name": "Reinforce-mint",
-    "category": "WALL_NUT",
-    "tags": [],
-    "cost": 0,
-    "baseHp": 0,
-    "damage": 0,
-    "actionInterval": 0.0,
-    "recharge": 85.0,
-    "abilityType": "MINT_FAMILY_BOOST",
-    "abilityValue": 10.0,
-    "plantFoodType": "NONE",
-    "plantFoodValue": 0.0,
-    "upgrades": [
-      { "level": 2, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "DURATION_EXT" },
-      { "level": 3, "type": "BUFF_RECHARGE", "value": -5.0, "specialTag": "" },
-      { "level": 4, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "RESET_FAMILY_COOLDOWNS" }
-    ]
-  },
-  {
-    "id": 67,
-    "name": "Enchant-mint",
-    "category": "MODIFIER",
-    "tags": [],
-    "cost": 0,
-    "baseHp": 0,
-    "damage": 0,
-    "actionInterval": 0.0,
-    "recharge": 85.0,
-    "abilityType": "MINT_FAMILY_BOOST",
-    "abilityValue": 10.0,
-    "plantFoodType": "NONE",
-    "plantFoodValue": 0.0,
-    "upgrades": [
-      { "level": 2, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "DURATION_EXT" },
-      { "level": 3, "type": "BUFF_RECHARGE", "value": -5.0, "specialTag": "" },
-      { "level": 4, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "RESET_FAMILY_COOLDOWNS" }
-    ]
-  },
-  {
-    "id": 68,
-    "name": "Pierce-mint",
-    "category": "STRIKE_THROUGH",
-    "tags": [],
-    "cost": 0,
-    "baseHp": 0,
-    "damage": 0,
-    "actionInterval": 0.0,
-    "recharge": 85.0,
-    "abilityType": "MINT_FAMILY_BOOST",
-    "abilityValue": 10.0,
-    "plantFoodType": "NONE",
-    "plantFoodValue": 0.0,
-    "upgrades": [
-      { "level": 2, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "DURATION_EXT" },
-      { "level": 3, "type": "BUFF_RECHARGE", "value": -5.0, "specialTag": "" },
-      { "level": 4, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "RESET_FAMILY_COOLDOWNS" }
-    ]
-  },
-  {
-    "id": 69,
-    "name": "catTail-mint",
-    "category": "HOMING",
-    "tags": [],
-    "cost": 0,
-    "baseHp": 0,
-    "damage": 0,
-    "actionInterval": 0.0,
-    "recharge": 85.0,
-    "abilityType": "MINT_FAMILY_BOOST",
-    "abilityValue": 10.0,
-    "plantFoodType": "NONE",
-    "plantFoodValue": 0.0,
-    "upgrades": [
-      { "level": 2, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "DURATION_EXT" },
-      { "level": 3, "type": "BUFF_RECHARGE", "value": -5.0, "specialTag": "" },
-      { "level": 4, "type": "SPECIAL_MECHANIC", "value": 1.0, "specialTag": "RESET_FAMILY_COOLDOWNS" }
-    ]
+    "aliases": [
+      "ZombieDefault"
+    ],
+    "objclass": "ZombiePropertySheet",
+    "objdata": {
+      "ArtCenter": {
+        "x": 90,
+        "y": 125
+      },
+      "AttackRect": {
+        "mHeight": 95,
+        "mWidth": 20,
+        "mX": 15,
+        "mY": 0
+      },
+      "CanSpawnPlantFood": true,
+      "Cost": 150,
+      "EatDPS": 100,
+      "GroundTrackName": "ground_swatch",
+      "HitRect": {
+        "mHeight": 95,
+        "mWidth": 32,
+        "mX": 10,
+        "mY": 10
+      },
+      "Hitpoints": 190,
+      "ScaledProps": [
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "Hitpoints"
+        },
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "EatDPS"
+        },
+        {
+          "Formula": "constant",
+          "Key": "Speed"
+        },
+        {
+          "Formula": "constant",
+          "Key": "WavePointCost"
+        }
+      ],
+      "ShadowOffset": {
+        "x": 5,
+        "y": 0,
+        "z": 1.4
+      },
+      "Speed": 0.185,
+      "WavePointCost": 100,
+      "Weight": 1000,
+      "ZombieStats": [
+        {
+          "Type": "toughness",
+          "Value": "toughness1"
+        },
+        {
+          "Type": "speed",
+          "Value": "speed2"
+        }
+      ]
+    }
+  },
+  {
+    "aliases": [
+      "ZombieArmor1"
+    ],
+    "objclass": "ZombiePropertySheet",
+    "objdata": {
+      "ArtCenter": {
+        "x": 90,
+        "y": 125
+      },
+      "AttackRect": {
+        "mHeight": 95,
+        "mWidth": 20,
+        "mX": 15,
+        "mY": 0
+      },
+      "CanSpawnPlantFood": true,
+      "Cost": 150,
+      "EatDPS": 100,
+      "GroundTrackName": "ground_swatch",
+      "HitRect": {
+        "mHeight": 95,
+        "mWidth": 32,
+        "mX": 10,
+        "mY": 10
+      },
+      "Hitpoints": 190,
+      "ScaledProps": [
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "Hitpoints"
+        },
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "EatDPS"
+        },
+        {
+          "Formula": "constant",
+          "Key": "Speed"
+        },
+        {
+          "Formula": "constant",
+          "Key": "WavePointCost"
+        }
+      ],
+      "ShadowOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 1.2
+      },
+      "Speed": 0.185,
+      "WavePointCost": 200,
+      "Weight": 3000,
+      "ZombieArmorProps": [
+        "RTID(ConeDefault@ArmorTypes)"
+      ],
+      "ZombieStats": [
+        {
+          "Type": "toughness",
+          "Value": "toughness3"
+        },
+        {
+          "Type": "speed",
+          "Value": "speed2"
+        }
+      ]
+    }
+  },
+  {
+    "aliases": [
+      "ZombieArmor2"
+    ],
+    "objclass": "ZombiePropertySheet",
+    "objdata": {
+      "ArtCenter": {
+        "x": 90,
+        "y": 125
+      },
+      "AttackRect": {
+        "mHeight": 95,
+        "mWidth": 20,
+        "mX": 15,
+        "mY": 0
+      },
+      "CanSpawnPlantFood": true,
+      "Cost": 150,
+      "EatDPS": 100,
+      "GroundTrackName": "ground_swatch",
+      "HitRect": {
+        "mHeight": 95,
+        "mWidth": 32,
+        "mX": 10,
+        "mY": 10
+      },
+      "Hitpoints": 190,
+      "ScaledProps": [
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "Hitpoints"
+        },
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "EatDPS"
+        },
+        {
+          "Formula": "constant",
+          "Key": "Speed"
+        },
+        {
+          "Formula": "constant",
+          "Key": "WavePointCost"
+        }
+      ],
+      "ShadowOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 1.2
+      },
+      "Speed": 0.185,
+      "WavePointCost": 400,
+      "Weight": 4000,
+      "ZombieArmorProps": [
+        "RTID(BucketDefault@ArmorTypes)"
+      ],
+      "ZombieStats": [
+        {
+          "Type": "toughness",
+          "Value": "toughness5"
+        },
+        {
+          "Type": "speed",
+          "Value": "speed2"
+        }
+      ]
+    }
+  },
+  {
+    "aliases": [
+      "ZombieArmor4"
+    ],
+    "objclass": "ZombiePropertySheet",
+    "objdata": {
+      "ArtCenter": {
+        "x": 90,
+        "y": 125
+      },
+      "AttackRect": {
+        "mHeight": 95,
+        "mWidth": 20,
+        "mX": 15,
+        "mY": 0
+      },
+      "CanSpawnPlantFood": true,
+      "Cost": 150,
+      "EatDPS": 100,
+      "GroundTrackName": "ground_swatch",
+      "HitRect": {
+        "mHeight": 95,
+        "mWidth": 32,
+        "mX": 10,
+        "mY": 10
+      },
+      "Hitpoints": 190,
+      "ScaledProps": [
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "Hitpoints"
+        },
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "EatDPS"
+        },
+        {
+          "Formula": "constant",
+          "Key": "Speed"
+        },
+        {
+          "Formula": "constant",
+          "Key": "WavePointCost"
+        }
+      ],
+      "ShadowOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 1.2
+      },
+      "Speed": 0.185,
+      "WavePointCost": 700,
+      "Weight": 3000,
+      "ZombieArmorProps": [
+        "RTID(BrickDefault@ArmorTypes)"
+      ],
+      "ZombieStats": [
+        {
+          "Type": "toughness",
+          "Value": "toughness6"
+        },
+        {
+          "Type": "speed",
+          "Value": "speed2"
+        }
+      ]
+    }
+  },
+  {
+    "aliases": [
+      "ZombieDarkArmor3"
+    ],
+    "objclass": "ZombiePropertySheet",
+    "objdata": {
+      "ArtCenter": {
+        "x": 100,
+        "y": 130
+      },
+      "AttackRect": {
+        "mHeight": 95,
+        "mWidth": 20,
+        "mX": 15,
+        "mY": 0
+      },
+      "CanSpawnPlantFood": true,
+      "Cost": 150,
+      "EatDPS": 100,
+      "GroundTrackName": "ground_swatch",
+      "HitRect": {
+        "mHeight": 95,
+        "mWidth": 32,
+        "mX": 10,
+        "mY": 10
+      },
+      "Hitpoints": 190,
+      "ScaledProps": [
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "Hitpoints"
+        },
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "EatDPS"
+        },
+        {
+          "Formula": "constant",
+          "Key": "Speed"
+        },
+        {
+          "Formula": "constant",
+          "Key": "WavePointCost"
+        }
+      ],
+      "ShadowOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 1.2
+      },
+      "Speed": 0.185,
+      "WavePointCost": 550,
+      "Weight": 4500,
+      "ZombieArmorProps": [
+        "RTID(ShoulderArmorDefault@ArmorTypes)",
+        "RTID(CrownDefault@ArmorTypes)"
+      ],
+      "ZombieStats": [
+        {
+          "Type": "toughness",
+          "Value": "toughness6"
+        },
+        {
+          "Type": "speed",
+          "Value": "speed2"
+        }
+      ]
+    }
+  },
+  {
+    "aliases": [
+      "ZombieGargantuar"
+    ],
+    "objclass": "ZombieGargantuarProps",
+    "objdata": {
+      "AlmanacOffset": {
+        "x": -10,
+        "y": 40
+      },
+      "AlmanacScale": 1,
+      "ArmDropFraction": -1,
+      "ArtCenter": {
+        "x": 90,
+        "y": 125
+      },
+      "AttackRect": {
+        "mHeight": 95,
+        "mWidth": 30,
+        "mX": 0,
+        "mY": 10
+      },
+      "CanBeFlickedOff": false,
+      "CanSpawnPlantFood": false,
+      "Cost": 150,
+      "EatDPS": 0,
+      "ExplodesWhenMowed": true,
+      "FlickIsLaneRestricted": true,
+      "GroundTrackName": "ground_swatch",
+      "HealthThresholdToImpAmmoLayers": [
+        {
+          "HealthPercentThrowImp": 0.5,
+          "ProjectileLayersToHide": [
+            "zombie_imp_skull",
+            "zombie_imp_jaw",
+            "Zombie_gargantuar_whiterope",
+            "zombie_imp_arm_inner_lower",
+            "zombie_imp_arm_inner_upper",
+            "zombie_imp_arm_outer_lower",
+            "zombie_imp_arm_outer_upper_01",
+            "zombie_imp_arm_outer_upper_02",
+            "zombie_imp_arms_outer_upper",
+            "zombie_imp_eye",
+            "zombie_imp_eye_sm",
+            "zombie_imp_hand_inner",
+            "zombie_imp_hand_outer",
+            "zombie_imp_leg_inner_lower",
+            "zombie_imp_leg_inner_upper",
+            "zombie_imp_leg_outer_lower",
+            "zombie_imp_leg_outer_upper",
+            "zombie_imp_pupil",
+            "zombie_imp_torso",
+            "zombie_imp_waist",
+            "zombie_imp_toe_outer",
+            "zombie_imp_toe_inner"
+          ]
+        }
+      ],
+      "HitRect": {
+        "mHeight": 95,
+        "mWidth": 62,
+        "mX": 10,
+        "mY": 10
+      },
+      "Hitpoints": 3600,
+      "HypnoshroomEffectOffset": {
+        "x": 0,
+        "y": 120
+      },
+      "ImpApex": 250,
+      "ImpFlightTime": 1.5,
+      "ImpSpawnOffset": {
+        "x": -100,
+        "y": 2,
+        "z": 115
+      },
+      "ImpTargetColumn": 2,
+      "ImpType": "egypt_imp",
+      "IsValidPinchTarget": false,
+      "MinPosXThrowImp": 400,
+      "ScaledProps": [
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "Hitpoints"
+        },
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "EatDPS"
+        },
+        {
+          "Formula": "constant",
+          "Key": "Speed"
+        },
+        {
+          "Formula": "constant",
+          "Key": "WavePointCost"
+        },
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "SmashDamage"
+        }
+      ],
+      "ShadowOffset": {
+        "x": 5,
+        "y": 0,
+        "z": 1.4
+      },
+      "Size": "large",
+      "SkipHeadDropState": true,
+      "SmashDamage": 1500,
+      "SmashDuration": 2,
+      "SoundOnAsh": "Play_Zomb_Global_Gargantuar_Mvmt_Death_Ash",
+      "SoundOnElectrocute": "Play_Zomb_Global_Gargantuar_Mvmt_Shock",
+      "SoundOnIdle": "Play_Zomb_Egypt_Gargantuar_Mvmt_Idle",
+      "Speed": 0.24,
+      "StaticArtImageAsset": "IMAGE_GARGANTUAR",
+      "ThrowImpDuration": 1,
+      "WavePointCost": 1500,
+      "Weight": 3000,
+      "ZombieStats": [
+        {
+          "Type": "toughness",
+          "Value": "toughness7"
+        },
+        {
+          "Type": "speed",
+          "Value": "speed3"
+        }
+      ]
+    }
+  },
+  {
+    "aliases": [
+      "ZombieImp"
+    ],
+    "objclass": "ZombiePropertySheet",
+    "objdata": {
+      "ArtCenter": {
+        "x": 102,
+        "y": 124
+      },
+      "AttackRect": {
+        "mHeight": 80,
+        "mWidth": 20,
+        "mX": 15,
+        "mY": 0
+      },
+      "CanSpawnPlantFood": false,
+      "Cost": 150,
+      "EatDPS": 100,
+      "GroundTrackName": "ground_swatch",
+      "HitRect": {
+        "mHeight": 80,
+        "mWidth": 32,
+        "mX": 10,
+        "mY": 10
+      },
+      "Hitpoints": 190,
+      "HypnoshroomEffectOffset": {
+        "x": -6,
+        "y": 36
+      },
+      "ScaledProps": [
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "Hitpoints"
+        },
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "EatDPS"
+        },
+        {
+          "Formula": "constant",
+          "Key": "Speed"
+        },
+        {
+          "Formula": "constant",
+          "Key": "WavePointCost"
+        }
+      ],
+      "ShadowOffset": {
+        "x": 5,
+        "y": 0,
+        "z": 0.8
+      },
+      "Size": "imp",
+      "Speed": 0.22,
+      "WavePointCost": 100,
+      "Weight": 1000,
+      "ZombieStats": [
+        {
+          "Type": "toughness",
+          "Value": "toughness1"
+        },
+        {
+          "Type": "speed",
+          "Value": "speed3"
+        }
+      ]
+    }
+  },
+  {
+    "aliases": [
+      "ZombieRa"
+    ],
+    "objclass": "ZombieRaProps",
+    "objdata": {
+      "ArtCenter": {
+        "x": 90,
+        "y": 125
+      },
+      "AttackRect": {
+        "mHeight": 95,
+        "mWidth": 20,
+        "mX": 15,
+        "mY": 0
+      },
+      "CanSpawnPlantFood": true,
+      "Cost": 150,
+      "EatDPS": 100,
+      "GroundTrackName": "ground_swatch",
+      "HitRect": {
+        "mHeight": 95,
+        "mWidth": 32,
+        "mX": 10,
+        "mY": 10
+      },
+      "Hitpoints": 190,
+      "MaxClaimedSunCurrency": 250,
+      "ScaledProps": [
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "Hitpoints"
+        },
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "EatDPS"
+        },
+        {
+          "Formula": "constant",
+          "Key": "Speed"
+        },
+        {
+          "Formula": "constant",
+          "Key": "WavePointCost"
+        }
+      ],
+      "ShadowOffset": {
+        "x": 10,
+        "y": 0,
+        "z": 1.2
+      },
+      "Speed": 0.2,
+      "WavePointCost": 100,
+      "Weight": 700,
+      "ZombieStats": [
+        {
+          "Type": "toughness",
+          "Value": "toughness1"
+        },
+        {
+          "Type": "speed",
+          "Value": "speed2"
+        }
+      ]
+    }
+  },
+  {
+    "aliases": [
+      "ZombieExplorer"
+    ],
+    "objclass": "ZombieExplorerProps",
+    "objdata": {
+      "ArtCenter": {
+        "x": 90,
+        "y": 125
+      },
+      "AttackRect": {
+        "mHeight": 95,
+        "mWidth": 20,
+        "mX": 0,
+        "mY": 10
+      },
+      "CanSpawnPlantFood": true,
+      "Cost": 150,
+      "EatDPS": 100,
+      "GroundTrackName": "ground_swatch",
+      "HitRect": {
+        "mHeight": 95,
+        "mWidth": 32,
+        "mX": 5,
+        "mY": 10
+      },
+      "Hitpoints": 250,
+      "MaxTorchReach": 37,
+      "PlantsToEat": {
+        "List": [
+          "frostbonnet",
+          "blazingknight"
+        ],
+        "ListType": "includelist"
+      },
+      "ScaledProps": [
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "Hitpoints"
+        },
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "EatDPS"
+        },
+        {
+          "Formula": "constant",
+          "Key": "Speed"
+        },
+        {
+          "Formula": "constant",
+          "Key": "WavePointCost"
+        }
+      ],
+      "ShadowOffset": {
+        "x": 5,
+        "y": 0,
+        "z": 1.4
+      },
+      "Speed": 0.25,
+      "WavePointCost": 250,
+      "Weight": 3000,
+      "ZombieStats": [
+        {
+          "Type": "toughness",
+          "Value": "toughness2"
+        },
+        {
+          "Type": "speed",
+          "Value": "speed3"
+        }
+      ]
+    }
+  },
+  {
+    "aliases": [
+      "ZombieTombRaiser"
+    ],
+    "objclass": "ZombieTombRaiserProps",
+    "objdata": {
+      "# TombRaiser specific properties ": 0,
+      "Ammo": 5,
+      "ArtCenter": {
+        "x": 90,
+        "y": 125
+      },
+      "AttackRect": {
+        "mHeight": 95,
+        "mWidth": 20,
+        "mX": 15,
+        "mY": 0
+      },
+      "CanSpawnPlantFood": true,
+      "Cost": 150,
+      "EatDPS": 100,
+      "GroundTrackName": "ground_swatch",
+      "HitRect": {
+        "mHeight": 95,
+        "mWidth": 32,
+        "mX": 10,
+        "mY": 10
+      },
+      "Hitpoints": 380,
+      "NumberOfTombsToSpawn": 2,
+      "Projectile": "RTID(ZombieBoneDefault@ProjectileTypes)",
+      "ScaledProps": [
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "Hitpoints"
+        },
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "EatDPS"
+        },
+        {
+          "Formula": "constant",
+          "Key": "Speed"
+        },
+        {
+          "Formula": "constant",
+          "Key": "WavePointCost"
+        }
+      ],
+      "ShadowOffset": {
+        "x": 10,
+        "y": 0,
+        "z": 1.2
+      },
+      "Speed": 0.185,
+      "TimeBetweenCasts": 0,
+      "TimeBetweenRaisings": 6,
+      "WavePointCost": 300,
+      "Weight": 2000,
+      "ZombieStats": [
+        {
+          "Type": "toughness",
+          "Value": "toughness4"
+        },
+        {
+          "Type": "speed",
+          "Value": "speed2"
+        }
+      ]
+    }
+  },
+  {
+    "aliases": [
+      "ZombieIceAgeDodo"
+    ],
+    "objclass": "ZombieIceAgeDodoProps",
+    "objdata": {
+      "AddRandomChanceForJumpPerGridWalked": 0.1,
+      "ArmDropFraction": -1,
+      "ArtCenter": {
+        "x": 90,
+        "y": 125
+      },
+      "AttackRect": {
+        "mHeight": 95,
+        "mWidth": 35,
+        "mX": 5,
+        "mY": 0
+      },
+      "CanSpawnPlantFood": true,
+      "ChillInsteadOfFreeze": true,
+      "CooldownSecondsUntilNextJumpAvailable": 0,
+      "Cost": 150,
+      "EatDPS": 100,
+      "ElectrocutePAMName": "POPANIM_EFFECTS_ZOMBIE_DODO_SHOCK",
+      "GridItemsToFlyOver": {
+        "List": [
+          "slider_down",
+          "slider_up",
+          "slider_down_modern",
+          "slider_up_modern",
+          "lava",
+          "shallowpuddle",
+          "potholepuddle"
+        ],
+        "ListType": "includelist"
+      },
+      "GroundTrackName": "ground_swatch",
+      "HitRect": {
+        "mHeight": 95,
+        "mWidth": 46,
+        "mX": 7,
+        "mY": 10
+      },
+      "Hitpoints": 490,
+      "InitialSetRandomChanceForJump": 0,
+      "LandedResetRandomChanceForJump": 0.35,
+      "MaxRandomGridSquaresToFlyOver": 2,
+      "MaximumGridSquaresToFlyOver": 2,
+      "MinRandomGridSquaresToFlyOver": 1,
+      "PlantsToFlyOver": {
+        "List": [
+          "spikeweed",
+          "spikerock",
+          "iceburg",
+          "wallnut",
+          "potatomine",
+          "lavaguava",
+          "endurian",
+          "cactus",
+          "primalwallnut",
+          "primalpotatomine",
+          "escaperoot",
+          "murkadamia",
+          "tombtangler",
+          "vamporcini"
+        ],
+        "ListType": "includelist"
+      },
+      "ScaledProps": [
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "Hitpoints"
+        },
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "EatDPS"
+        },
+        {
+          "Formula": "constant",
+          "Key": "Speed"
+        },
+        {
+          "Formula": "constant",
+          "Key": "WavePointCost"
+        }
+      ],
+      "ShadowOffset": {
+        "x": 10,
+        "y": 0,
+        "z": 1.2
+      },
+      "SkipHeadDropState": true,
+      "Speed": 0.3,
+      "WavePointCost": 600,
+      "Weight": 3500,
+      "ZombieStats": [
+        {
+          "Type": "toughness",
+          "Value": "toughness3"
+        },
+        {
+          "Type": "speed",
+          "Value": "speed4"
+        }
+      ]
+    }
+  },
+  {
+    "aliases": [
+      "ZombieIceAgeHunter"
+    ],
+    "objclass": "ZombieIceAgeHunterProps",
+    "objdata": {
+      "Actions": [
+        "RTID(ZombieIceAgeProjectileAction@ZombieActions)"
+      ],
+      "ArtCenter": {
+        "x": 90,
+        "y": 125
+      },
+      "AttackRect": {
+        "mHeight": 95,
+        "mWidth": 20,
+        "mX": 15,
+        "mY": 0
+      },
+      "CanSpawnPlantFood": true,
+      "ChillInsteadOfFreeze": true,
+      "Cost": 150,
+      "EatDPS": 100,
+      "FarAttackRange": 4,
+      "GroundTrackName": "ground_swatch",
+      "HitRect": {
+        "mHeight": 95,
+        "mWidth": 32,
+        "mX": 10,
+        "mY": 10
+      },
+      "Hitpoints": 700,
+      "NearAttackRange": 1,
+      "ScaledProps": [
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "Hitpoints"
+        },
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "EatDPS"
+        },
+        {
+          "Formula": "constant",
+          "Key": "Speed"
+        },
+        {
+          "Formula": "constant",
+          "Key": "WavePointCost"
+        }
+      ],
+      "ShadowOffset": {
+        "x": 10,
+        "y": 0,
+        "z": 1.2
+      },
+      "SnowballsPerBarrage": 3,
+      "Speed": 0.12,
+      "WavePointCost": 500,
+      "Weight": 3500,
+      "ZombieStats": [
+        {
+          "Type": "toughness",
+          "Value": "toughness4"
+        },
+        {
+          "Type": "speed",
+          "Value": "speed0"
+        }
+      ]
+    }
+  },
+  {
+    "aliases": [
+      "ZombieIceAgeTroglobite"
+    ],
+    "objclass": "ZombieIceAgeTroglobiteProps",
+    "objdata": {
+      "Actions": [
+        "RTID(ZombiePushGridItemAction@ZombieActions)"
+      ],
+      "ArtCenter": {
+        "x": 90,
+        "y": 125
+      },
+      "AttackRect": {
+        "mHeight": 95,
+        "mWidth": 20,
+        "mX": 15,
+        "mY": 0
+      },
+      "CanSpawnPlantFood": true,
+      "ChillInsteadOfFreeze": true,
+      "Cost": 150,
+      "EatDPS": 100,
+      "GroundTrackName": "ground_swatch",
+      "HitRect": {
+        "mHeight": 95,
+        "mWidth": 32,
+        "mX": 10,
+        "mY": 10
+      },
+      "Hitpoints": 470,
+      "ImpType": "iceage_imp",
+      "NumberOfIceblocksToSpawnWith": 3,
+      "ScaledProps": [
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "Hitpoints"
+        },
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "EatDPS"
+        },
+        {
+          "Formula": "constant",
+          "Key": "Speed"
+        },
+        {
+          "Formula": "constant",
+          "Key": "WavePointCost"
+        }
+      ],
+      "ShadowOffset": {
+        "x": 10,
+        "y": 0,
+        "z": 1.2
+      },
+      "Speed": 0.185,
+      "WavePointCost": 600,
+      "Weight": 3500,
+      "ZombieStats": [
+        {
+          "Type": "toughness",
+          "Value": "toughness4"
+        },
+        {
+          "Type": "speed",
+          "Value": "speed2"
+        }
+      ]
+    }
+  },
+  {
+    "aliases": [
+      "ZombieBeachFisherman"
+    ],
+    "objclass": "ZombieBeachFishermanProps",
+    "objdata": {
+      "AllowedLowPlants": [],
+      "ArtCenter": {
+        "x": 110,
+        "y": 130
+      },
+      "AttackRect": {
+        "mHeight": 95,
+        "mWidth": 20,
+        "mX": 5,
+        "mY": 0
+      },
+      "CanBeFlicked": false,
+      "CanBePlantTossedStrong": false,
+      "CanBePlantTossedWeak": false,
+      "CanSpawnPlantFood": true,
+      "CanSurrender": true,
+      "DiesOutOfWater": true,
+      "CastTimePerGridSquare": 0.08,
+      "CastingAreaHeight": 1,
+      "CastingAreaMaxRange": 8,
+      "CastingAreaMinRange": 2,
+      "Cost": 150,
+      "DelayBeforeReeling": 0.3,
+      "DelayBetweenCasting": 2.5,
+      "EatDPS": 100,
+      "GroundTrackName": "ground_swatch",
+      "HitRect": {
+        "mHeight": 95,
+        "mWidth": 32,
+        "mX": -10,
+        "mY": 10
+      },
+      "Hitpoints": 1000,
+      "MaxTideLoweredPercent": 0.001,
+      "PlantablePlants": [
+        "tanglekelp",
+        "ghostpepper",
+        "guacodile"
+      ],
+      "ReelTimePerGridSquare": 0.05,
+      "ScaledProps": [
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "Hitpoints"
+        },
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "EatDPS"
+        },
+        {
+          "Formula": "constant",
+          "Key": "Speed"
+        },
+        {
+          "Formula": "constant",
+          "Key": "WavePointCost"
+        }
+      ],
+      "ShadowOffset": {
+        "x": 10,
+        "y": 0,
+        "z": 1.2
+      },
+      "SkipHeadDropState": true,
+      "Speed": 0.185,
+      "WavePointCost": 700,
+      "Weight": 2500,
+      "ZombieStats": [
+        {
+          "Type": "toughness",
+          "Value": "toughness5"
+        }
+      ]
+    }
+  },
+  {
+    "aliases": [
+      "ZombieBeachOctopus"
+    ],
+    "objclass": "ZombieBeachOctopusProps",
+    "objdata": {
+      "Actions": [
+        "RTID(ZombieOctopusProjectileAction@ZombieActions)"
+      ],
+      "ArtCenter": {
+        "x": 90,
+        "y": 125
+      },
+      "AttackRect": {
+        "mHeight": 95,
+        "mWidth": 20,
+        "mX": 15,
+        "mY": 0
+      },
+      "CanSpawnPlantFood": true,
+      "Cost": 150,
+      "EatDPS": 100,
+      "GroundTrackName": "ground_swatch",
+      "HitRect": {
+        "mHeight": 95,
+        "mWidth": 32,
+        "mX": 10,
+        "mY": 10
+      },
+      "Hitpoints": 910,
+      "ScaledProps": [
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "Hitpoints"
+        },
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "EatDPS"
+        },
+        {
+          "Formula": "constant",
+          "Key": "Speed"
+        },
+        {
+          "Formula": "constant",
+          "Key": "WavePointCost"
+        }
+      ],
+      "ShadowOffset": {
+        "x": 10,
+        "y": 0,
+        "z": 1.2
+      },
+      "Speed": 0.12,
+      "WavePointCost": 900,
+      "Weight": 3500,
+      "ZombieStats": [
+        {
+          "Type": "toughness",
+          "Value": "toughness5"
+        },
+        {
+          "Type": "speed",
+          "Value": "speed0"
+        }
+      ]
+    }
+  },
+  {
+    "aliases": [
+      "ZombieBeachSnorkel"
+    ],
+    "objclass": "ZombieBeachSnorkelProps",
+    "objdata": {
+      "ArtCenter": {
+        "x": 90,
+        "y": 125
+      },
+      "AttackRect": {
+        "mHeight": 105,
+        "mWidth": 20,
+        "mX": 15,
+        "mY": 0
+      },
+      "CanSpawnPlantFood": true,
+      "Cost": 150,
+      "DamageWhileSubmerged": {
+        "List": [
+          "banana",
+          "ghostpepper",
+          "homingthistle",
+          "chomper",
+          "jalapeno",
+          "cherry_bomb",
+          "squash",
+          "iceburg",
+          "lavaguava",
+          "toadstool",
+          "strawburst",
+          "electricblueberry",
+          "grapeshot",
+          "jackolantern",
+          "cabbagepult",
+          "akee",
+          "melonpult",
+          "kernelpult",
+          "wintermelon",
+          "banana",
+          "phatbeet",
+          "kiwibeast",
+          "homingthistle",
+          "sapfling",
+          "pepperpult",
+          "sporeshroom",
+          "shrinkingviolet",
+          "bloominghearts",
+          "dusklobber",
+          "applemortar",
+          "witchhazel",
+          "missiletoe",
+          "hotdate",
+          "tanglekelp",
+          "blastberry",
+          "solarsage",
+          "guardshroom",
+          "blastspinner",
+          "hammeruit"
+        ],
+        "ListType": "includelist"
+      },
+      "DamageWhileSubmergedPlantfoodOnly": {
+        "List": [
+          "bowlingbulb",
+          "ghostpepper",
+          "homingthistle",
+          "chomper",
+          "fumeshroom",
+          "snapdragon",
+          "coconutcannon",
+          "bloomerang",
+          "spikeweed",
+          "spikerock",
+          "guacodile",
+          "laser_bean",
+          "firepeashooter",
+          "lavaguava",
+          "toadstool",
+          "cabbagepult",
+          "akee",
+          "melonpult",
+          "kernelpult",
+          "wintermelon",
+          "banana",
+          "phatbeet",
+          "kiwibeast",
+          "homingthistle",
+          "coldsnapdragon",
+          "sapfling",
+          "pepperpult",
+          "sporeshroom",
+          "shrinkingviolet",
+          "dandelion",
+          "applemortar",
+          "witchhazel",
+          "parsnip",
+          "missiletoe",
+          "shadowpeashooter",
+          "tanglekelp",
+          "ultomato",
+          "solarsage",
+          "frostbonnet",
+          "devourbloom",
+          "brainstem"
+        ],
+        "ListType": "includelist"
+      },
+      "EatDPS": 100,
+      "GroundTrackName": "ground_swatch",
+      "HitRect": {
+        "mHeight": 105,
+        "mWidth": 32,
+        "mX": 10,
+        "mY": 10
+      },
+      "Hitpoints": 350,
+      "ScaledProps": [
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "Hitpoints"
+        },
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "EatDPS"
+        },
+        {
+          "Formula": "constant",
+          "Key": "Speed"
+        },
+        {
+          "Formula": "constant",
+          "Key": "WavePointCost"
+        }
+      ],
+      "ShadowOffset": {
+        "x": 5,
+        "y": 0,
+        "z": 1.4
+      },
+      "Speed": 0.185,
+      "TargetByIncludelist": {
+        "List": [
+          "ghostpepper",
+          "homingthistle",
+          "jalapeno",
+          "cherry_bomb",
+          "squash",
+          "iceburg",
+          "lavaguava",
+          "strawburst",
+          "electricblueberry",
+          "grapeshot",
+          "cabbagepult",
+          "akee",
+          "melonpult",
+          "kernelpult",
+          "wintermelon",
+          "banana",
+          "phatbeet",
+          "kiwibeast",
+          "homingthistle",
+          "sapfling",
+          "pepperpult",
+          "sporeshroom",
+          "shrinkingviolet",
+          "bloominghearts",
+          "dusklobber",
+          "applemortar",
+          "witchhazel",
+          "missiletoe",
+          "hotdate",
+          "tanglekelp",
+          "blastberry",
+          "blastspinner",
+          "frostbonnet",
+          "hammeruit",
+          "devourbloom"
+        ],
+        "ListType": "includelist"
+      },
+      "WavePointCost": 200,
+      "Weight": 3000,
+      "ZombieStats": [
+        {
+          "Type": "toughness",
+          "Value": "toughness3"
+        },
+        {
+          "Type": "speed",
+          "Value": "speed2"
+        }
+      ]
+    }
+  },
+  {
+    "aliases": [
+      "ZombieDarkJuggler"
+    ],
+    "objclass": "ZombieDarkJugglerProps",
+    "objdata": {
+      "AngleAgnosticProjectiles": [
+        "HomingThistleDefault",
+        "HomingThistlePlantfood",
+        "BuduhBoomDefaultProjectile",
+        "ButterDefault"
+      ],
+      "ArtCenter": {
+        "x": 90,
+        "y": 125
+      },
+      "AttackRect": {
+        "mHeight": 95,
+        "mWidth": 20,
+        "mX": 15,
+        "mY": 0
+      },
+      "CanSpawnPlantFood": true,
+      "CatchArcDegrees": 120,
+      "Cost": 150,
+      "EatDPS": 100,
+      "GroundTrackName": "ground_swatch",
+      "HitRect": {
+        "mHeight": 95,
+        "mWidth": 32,
+        "mX": 10,
+        "mY": 10
+      },
+      "Hitpoints": 420,
+      "JuggleLaunchDelay": 2,
+      "JuggleableProjectiles": [
+        "PeaDefault",
+        "ThreepeaterPeaDefault",
+        "PlantfoodPeaDefault",
+        "FirePeaDefault",
+        "UltraFirePeaDefault",
+        "SnowPeaDefault",
+        "GiantPeaDefault",
+        "GiantFirePeaDefault",
+        "GiantUltraFirePeaDefault",
+        "CannonballDefault",
+        "CabbageDefault",
+        "MelonDefault",
+        "WinterMelonDefault",
+        "KernelDefault",
+        "ButterDefault",
+        "StarFruitShot",
+        "BloomerangDefault",
+        "PlasmaBall",
+        "PuffSporeDefault",
+        "ThrownZombieParticle",
+        "GuacodileDefault",
+        "HomingThistleDefault",
+        "HomingThistlePlantfood",
+        "BowlingBulbDefault",
+        "BowlingBulbDefault2",
+        "BowlingBulbDefault3",
+        "PepperpultDefault",
+        "PepperpultPlantfoodDefault",
+        "XShotShot",
+        "XShotGiantShot",
+        "StingerDefault",
+        "AkeeDefault",
+        "MegaAkeeDefault",
+        "StrawburstProjectileSmall",
+        "StrawburstProjectileMedium",
+        "StrawburstProjectileLarge",
+        "CactusDefault",
+        "CactusPlantfood",
+        "SporeshroomDefault",
+        "GrapeshotDefaultProjectile",
+        "PrimalPeashooterPea",
+        "PrimalPeashooterFirePea",
+        "PrimalPeashooterUltraFirePea",
+        "PrimalPeashooterPlantfoodPea",
+        "PrimalPeashooterPlantfoodFirePea",
+        "PrimalPeashooterPlantfoodUltraFirePea",
+        "NightshadeProjectile",
+        "NightshadeUpgradedProjectile",
+        "NightshadePFProjectile",
+        "BloomingHeartsDefault",
+        "BloomingHeartsPlantfoodDefault",
+        "DusklobberDefault",
+        "AppleMortarDefault",
+        "AppleMortarPlantfoodDefault",
+        "ShadowPeashooterDefault",
+        "PoisonPeaDefault",
+        "SlingPeaDefault",
+        "SlingPeaPlantfoodDefault",
+        "ReincarnationRedPetal",
+        "ReincarnationPinkPetal",
+        "ReincarnationWhitePetal",
+        "AppeasemintProjectileDefault",
+        "BlastberrySecondaryProjectile",
+        "PokraDefault",
+        "PokraPlantfood",
+        "DartichokeLeafDefault",
+        "DartichokeLeafPerfect",
+        "PVineDefault",
+        "ScaredyShroomDefault",
+        "ScaredyShroomPlantfood",
+        "DragonBruitDefault",
+        "DragonBruitPlantfoodDefault",
+        "DragonBabyBruitDefault",
+        "BlazeLeafBlazeWave",
+        "SeashooterProjectileDefault",
+        "CornfettiPopperPlantfood",
+        "CornfettiPopperNormal",
+        "SourshotProjectile",
+        "SourshotPlantfoodProjectile"
+      ],
+      "BounceableProjectiles": [
+        "RTID(BuduhBoomDefaultProjectile@ProjectileTypes)",
+        "RTID(ButterDefault@ProjectileTypes)"
+      ],
+      "ProjectileBounceDistance": 160,
+      "ProjectileBounceHeight": 80,
+      "ProjectileBounceTime": 0.9,
+      "LaunchAcceleration": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "LaunchHeight": {
+        "Max": 50,
+        "Min": 50
+      },
+      "LaunchVelocity": {
+        "x": 500,
+        "y": 0,
+        "z": 0
+      },
+      "MaxProjectilesToJuggle": 1000,
+      "MoveSpeedMultiplierWhileJuggling": 1.1,
+      "ScaledProps": [
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "Hitpoints"
+        },
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "EatDPS"
+        },
+        {
+          "Formula": "constant",
+          "Key": "Speed"
+        },
+        {
+          "Formula": "constant",
+          "Key": "WavePointCost"
+        }
+      ],
+      "ShadowOffset": {
+        "x": 10,
+        "y": 0,
+        "z": 1.2
+      },
+      "Speed": 0.2,
+      "UnthrowableProjectiles": [],
+      "WavePointCost": 450,
+      "Weight": 3500,
+      "ZombieStats": [
+        {
+          "Type": "toughness",
+          "Value": "toughness3"
+        },
+        {
+          "Type": "speed",
+          "Value": "speed2"
+        }
+      ]
+    }
+  },
+  {
+    "aliases": [
+      "ZombieWizard"
+    ],
+    "objclass": "ZombieDarkWizardProps",
+    "objdata": {
+      "Actions": [
+        "RTID(ZombieDarkWizardZap@ZombieActions)"
+      ],
+      "ArtCenter": {
+        "x": 90,
+        "y": 125
+      },
+      "AttackRect": {
+        "mHeight": 95,
+        "mWidth": 20,
+        "mX": 15,
+        "mY": 0
+      },
+      "CanSpawnPlantFood": true,
+      "Cost": 150,
+      "EatDPS": 100,
+      "GroundTrackName": "ground_swatch",
+      "HitRect": {
+        "mHeight": 95,
+        "mWidth": 32,
+        "mX": 10,
+        "mY": 10
+      },
+      "Hitpoints": 490,
+      "ScaledProps": [
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "Hitpoints"
+        },
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "EatDPS"
+        },
+        {
+          "Formula": "constant",
+          "Key": "Speed"
+        },
+        {
+          "Formula": "constant",
+          "Key": "WavePointCost"
+        }
+      ],
+      "ShadowOffset": {
+        "x": 10,
+        "y": 0,
+        "z": 1.2
+      },
+      "Speed": 0.12,
+      "WavePointCost": 800,
+      "Weight": 3500,
+      "ZombieStats": [
+        {
+          "Type": "toughness",
+          "Value": "toughness4"
+        },
+        {
+          "Type": "speed",
+          "Value": "speed0"
+        }
+      ]
+    }
+  },
+  {
+    "aliases": [
+      "ZombieDarkKing"
+    ],
+    "objclass": "ZombieDarkKingProps",
+    "objdata": {
+      "ArtCenter": {
+        "x": 90,
+        "y": 125
+      },
+      "AttackRect": {
+        "mHeight": 95,
+        "mWidth": 20,
+        "mX": 15,
+        "mY": 0
+      },
+      "CanBeFlicked": false,
+      "CanBeFlickedOff": false,
+      "CanBePlantTossedStrong": false,
+      "CanBePlantTossedWeak": false,
+      "CanSpawnPlantFood": true,
+      "CanSurrender": true,
+      "Cost": 150,
+      "DelayBetweenKnightings": 2.5,
+      "EatDPS": 100,
+      "GroundTrackName": "ground_swatch",
+      "HitRect": {
+        "mHeight": 95,
+        "mWidth": 32,
+        "mX": 10,
+        "mY": 10
+      },
+      "Hitpoints": 1000,
+      "KnightHelm": "none",
+      "KnightingAreaX": 4,
+      "KnightingAreaY": 3,
+      "PlantablePlants": [
+        "cherry_bomb",
+        "jalapeno",
+        "powerlily",
+        "iceburg",
+        "empea",
+        "powerplant",
+        "goldleaf",
+        "grapeshot"
+      ],
+      "ScaledProps": [
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "Hitpoints"
+        },
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "EatDPS"
+        },
+        {
+          "Formula": "constant",
+          "Key": "Speed"
+        },
+        {
+          "Formula": "constant",
+          "Key": "WavePointCost"
+        }
+      ],
+      "ShadowOffset": {
+        "x": 10,
+        "y": 0,
+        "z": 1.2
+      },
+      "SkipHeadDropState": true,
+      "Speed": 0.185,
+      "ValidKnightTargets": [
+        "dark",
+        "dark_armor1",
+        "dark_armor2",
+        "dark_armor3"
+      ],
+      "WavePointCost": 750,
+      "Weight": 2000,
+      "ZombieStats": [
+        {
+          "Type": "toughness",
+          "Value": "toughness5"
+        }
+      ]
+    }
+  },
+  {
+    "aliases": [
+      "ZombieDarkImpDragon"
+    ],
+    "objclass": "ZombiePropertySheet",
+    "objdata": {
+      "ArtCenter": {
+        "x": 96,
+        "y": 130
+      },
+      "AttackRect": {
+        "mHeight": 80,
+        "mWidth": 20,
+        "mX": 15,
+        "mY": 0
+      },
+      "CanSpawnPlantFood": false,
+      "Cost": 150,
+      "EatDPS": 100,
+      "FireDamageMultiplier": 0,
+      "GroundTrackName": "ground_swatch",
+      "HitRect": {
+        "mHeight": 80,
+        "mWidth": 32,
+        "mX": 10,
+        "mY": 10
+      },
+      "Hitpoints": 190,
+      "HypnoshroomEffectOffset": {
+        "x": -6,
+        "y": 36
+      },
+      "ScaledProps": [
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "Hitpoints"
+        },
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "EatDPS"
+        },
+        {
+          "Formula": "constant",
+          "Key": "Speed"
+        },
+        {
+          "Formula": "constant",
+          "Key": "WavePointCost"
+        }
+      ],
+      "ShadowOffset": {
+        "x": 5,
+        "y": 0,
+        "z": 0.8
+      },
+      "Size": "imp",
+      "Speed": 0.185,
+      "WavePointCost": 150,
+      "Weight": 2000,
+      "ZombieStats": [
+        {
+          "Type": "toughness",
+          "Value": "toughness1"
+        },
+        {
+          "Type": "speed",
+          "Value": "speed2"
+        }
+      ]
+    }
+  },
+  {
+    "aliases": [
+      "ZombieModernAllStar"
+    ],
+    "objclass": "ZombieModernAllStarProps",
+    "objdata": {
+      "ArtCenter": {
+        "x": 100,
+        "y": 123
+      },
+      "AttackRect": {
+        "mHeight": 95,
+        "mWidth": 30,
+        "mX": 10,
+        "mY": 0
+      },
+      "CanSpawnPlantFood": true,
+      "Cost": 150,
+      "EatDPS": 100,
+      "GroundTrackName": "ground_swatch",
+      "HitRect": {
+        "mHeight": 95,
+        "mWidth": 42,
+        "mX": 5,
+        "mY": 10
+      },
+      "Hitpoints": 1100,
+      "RunningSpeedScale": 0.5,
+      "ScaledProps": [
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "Hitpoints"
+        },
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "EatDPS"
+        },
+        {
+          "Formula": "constant",
+          "Key": "Speed"
+        },
+        {
+          "Formula": "constant",
+          "Key": "WavePointCost"
+        },
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "SmashDamage"
+        }
+      ],
+      "ShadowOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 1.2
+      },
+      "SmashDamage": 1500,
+      "Speed": 0.16,
+      "WavePointCost": 1000,
+      "Weight": 3500,
+      "ZombieStats": [
+        {
+          "Type": "toughness",
+          "Value": "toughness5"
+        },
+        {
+          "Type": "speed",
+          "Value": "speed5"
+        }
+      ]
+    }
+  },
+  {
+    "aliases": [
+      "ZombieLostCityJane"
+    ],
+    "objclass": "ZombieLostCityJaneProps",
+    "objdata": {
+      "ArtCenter": {
+        "x": 90,
+        "y": 125
+      },
+      "AttackRect": {
+        "mHeight": 95,
+        "mWidth": 20,
+        "mX": 15,
+        "mY": 0
+      },
+      "BounceableProjectiles": [
+        "RTID(CabbageDefault@ProjectileTypes)",
+        "RTID(MegaCabbageDefault@ProjectileTypes)",
+        "RTID(KernelDefault@ProjectileTypes)",
+        "RTID(ButterDefault@ProjectileTypes)",
+        "RTID(MelonDefault@ProjectileTypes)",
+        "RTID(MegaMelonDefault@ProjectileTypes)",
+        "RTID(WinterMelonDefault@ProjectileTypes)",
+        "RTID(WinterMegaMelonDefault@ProjectileTypes)",
+        "RTID(PepperpultDefault@ProjectileTypes)",
+        "RTID(PepperpultPlantfoodDefault@ProjectileTypes)",
+        "RTID(AkeeDefault@ProjectileTypes)",
+        "RTID(MegaAkeeDefault@ProjectileTypes)",
+        "RTID(SporeshroomDefault@ProjectileTypes)",
+        "RTID(MegaSporeshroomDefault@ProjectileTypes)",
+        "RTID(BloomingHeartsDefault@ProjectileTypes)",
+        "RTID(BloomingHeartsPlantfoodDefault@ProjectileTypes)",
+        "RTID(DusklobberDefault@ProjectileTypes)",
+        "RTID(AppleMortarDefault@ProjectileTypes)",
+        "RTID(AppleMortarPlantfoodDefault@ProjectileTypes)",
+        "RTID(SlingPeaDefault@ProjectileTypes)",
+        "RTID(SlingPeaPlantfoodDefault@ProjectileTypes)",
+        "RTID(BlastberrySecondaryProjectile@ProjectileTypes)",
+        "RTID(BoomberryMainProjectile@ProjectileTypes)",
+        "RTID(BoomberrySecondaryProjectile@ProjectileTypes)",
+        "RTID(BuduhBoomDefaultProjectile@ProjectileTypes)",
+        "RTID(DragonBruitDefault@ProjectileTypes)",
+        "RTID(DragonBruitPlantfoodDefault@ProjectileTypes)",
+        "RTID(DragonBabyBruitDefault@ProjectileTypes)"
+      ],
+      "CanSpawnPlantFood": true,
+      "Cost": 150,
+      "EatDPS": 100,
+      "GroundTrackName": "ground_swatch",
+      "HitRect": {
+        "mHeight": 115,
+        "mWidth": 32,
+        "mX": 10,
+        "mY": 10
+      },
+      "Hitpoints": 350,
+      "ProjectileBounceDistance": 160,
+      "ProjectileBounceHeight": 120,
+      "ProjectileBounceTime": 0.9,
+      "ScaledProps": [
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "Hitpoints"
+        },
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "EatDPS"
+        },
+        {
+          "Formula": "constant",
+          "Key": "Speed"
+        },
+        {
+          "Formula": "constant",
+          "Key": "WavePointCost"
+        }
+      ],
+      "ShadowOffset": {
+        "x": 20,
+        "y": 0,
+        "z": 1.2
+      },
+      "ShadowScaling": {
+        "x": 1.4,
+        "y": 1
+      },
+      "Speed": 0.25,
+      "WavePointCost": 200,
+      "Weight": 3000,
+      "ZombieStats": [
+        {
+          "Type": "toughness",
+          "Value": "toughness3"
+        },
+        {
+          "Type": "speed",
+          "Value": "speed3"
+        }
+      ]
+    }
+  },
+  {
+    "aliases": [
+      "ZombieCrystalSkull"
+    ],
+    "objclass": "ZombieCrystalSkullProps",
+    "objdata": {
+      "ArtCenter": {
+        "x": 90,
+        "y": 125
+      },
+      "AttackRect": {
+        "mHeight": 95,
+        "mWidth": 20,
+        "mX": 15,
+        "mY": 0
+      },
+      "CanSpawnPlantFood": true,
+      "ChargingTime": 5,
+      "ChargingTimeDecrementPerFiveSun": 0.2,
+      "Cost": 150,
+      "EatDPS": 100,
+      "GroundTrackName": "ground_swatch",
+      "HitRect": {
+        "mHeight": 95,
+        "mWidth": 32,
+        "mX": 10,
+        "mY": 10
+      },
+      "Hitpoints": 250,
+      "LaserBeamDamage": 4001,
+      "LaserBeamLength": 220,
+      "LaserCooldownTime": 5,
+      "ScaledProps": [
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "Hitpoints"
+        },
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "EatDPS"
+        },
+        {
+          "Formula": "constant",
+          "Key": "Speed"
+        },
+        {
+          "Formula": "constant",
+          "Key": "WavePointCost"
+        },
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "LaserBeamDamage"
+        }
+      ],
+      "ShadowOffset": {
+        "x": 10,
+        "y": 0,
+        "z": 1.2
+      },
+      "Speed": 0.185,
+      "WavePointCost": 500,
+      "Weight": 3000,
+      "ZombieStats": [
+        {
+          "Type": "toughness",
+          "Value": "toughness3"
+        },
+        {
+          "Type": "speed",
+          "Value": "speed2"
+        }
+      ]
+    }
+  },
+  {
+    "aliases": [
+      "ZombieProspector"
+    ],
+    "objclass": "ZombieProspectorProps",
+    "objdata": {
+      "Apex": 250,
+      "ArtCenter": {
+        "x": 100,
+        "y": 130
+      },
+      "AttackRect": {
+        "mHeight": 95,
+        "mWidth": 20,
+        "mX": 15,
+        "mY": 0
+      },
+      "CanSpawnPlantFood": true,
+      "Cost": 150,
+      "EatDPS": 100,
+      "GroundTrackName": "ground_swatch",
+      "HitRect": {
+        "mHeight": 95,
+        "mWidth": 32,
+        "mX": 10,
+        "mY": 10
+      },
+      "Hitpoints": 190,
+      "LaunchCountdown": 10,
+      "ScaledProps": [
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "Hitpoints"
+        },
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "EatDPS"
+        },
+        {
+          "Formula": "constant",
+          "Key": "Speed"
+        },
+        {
+          "Formula": "constant",
+          "Key": "WavePointCost"
+        }
+      ],
+      "ShadowOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 1.2
+      },
+      "Speed": 0.16,
+      "StunTime": 2.5,
+      "TimeToTravel": 1.5,
+      "WavePointCost": 200,
+      "Weight": 3000,
+      "ZombieStats": [
+        {
+          "Type": "toughness",
+          "Value": "toughness1"
+        },
+        {
+          "Type": "speed",
+          "Value": "speed1"
+        }
+      ]
+    }
+  },
+  {
+    "aliases": [
+      "ZombiePiano"
+    ],
+    "objclass": "ZombiePianoProps",
+    "objdata": {
+      "ArtCenter": {
+        "x": 100,
+        "y": 130
+      },
+      "AttackRect": {
+        "mHeight": 110,
+        "mWidth": 75,
+        "mX": -20,
+        "mY": 10
+      },
+      "CanSpawnPlantFood": true,
+      "Cost": 150,
+      "EatDPS": 4000,
+      "FastMoveSpeed": 0.4,
+      "GroundTrackName": "none",
+      "HitRect": {
+        "mHeight": 110,
+        "mWidth": 75,
+        "mX": -31,
+        "mY": 10
+      },
+      "Hitpoints": 840,
+      "NormalDeathWhenMowed": true,
+      "PlantsWhichBreakPianoOnCollision": {
+        "List": [
+          "spikeweed",
+          "spikerock",
+          "cactus",
+          "iceweed"
+        ],
+        "ListType": "includelist"
+      },
+      "ScaledProps": [
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "Hitpoints"
+        },
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "EatDPS"
+        },
+        {
+          "Formula": "constant",
+          "Key": "Speed"
+        },
+        {
+          "Formula": "constant",
+          "Key": "WavePointCost"
+        }
+      ],
+      "ShadowOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 1.2
+      },
+      "Speed": 0.12,
+      "StreetCriticalSize": {
+        "x": 3,
+        "y": 1
+      },
+      "StreetOffset": {
+        "x": -2,
+        "y": -1
+      },
+      "StreetSize": {
+        "x": 3,
+        "y": 2
+      },
+      "WavePointCost": 450,
+      "Weight": 2000,
+      "ZombieStats": [
+        {
+          "Type": "toughness",
+          "Value": "toughness5"
+        },
+        {
+          "Type": "speed",
+          "Value": "speed0"
+        }
+      ]
+    }
+  },
+  {
+    "aliases": [
+      "ZombieNewspaper"
+    ],
+    "objclass": "ZombieNewspaperProps",
+    "objdata": {
+      "ArtCenter": {
+        "x": 100,
+        "y": 130
+      },
+      "AttackRect": {
+        "mHeight": 95,
+        "mWidth": 20,
+        "mX": 15,
+        "mY": 0
+      },
+      "CanSpawnPlantFood": true,
+      "Cost": 150,
+      "EatDPS": 200,
+      "EnragedDamageScale": 4,
+      "EnragedSpeedScale": 4,
+      "GroundTrackName": "ground_swatch",
+      "HitRect": {
+        "mHeight": 95,
+        "mWidth": 32,
+        "mX": 10,
+        "mY": 10
+      },
+      "Hitpoints": 460,
+      "ScaledProps": [
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "Hitpoints"
+        },
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "EatDPS"
+        },
+        {
+          "Formula": "constant",
+          "Key": "Speed"
+        },
+        {
+          "Formula": "constant",
+          "Key": "WavePointCost"
+        }
+      ],
+      "ShadowOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 1.2
+      },
+      "Speed": 0.22,
+      "WavePointCost": 700,
+      "Weight": 4000,
+      "ZombieArmorProps": [
+        "RTID(NewspaperDefault@ArmorTypes)"
+      ],
+      "ZombieStats": [
+        {
+          "Type": "toughness",
+          "Value": "toughness5"
+        },
+        {
+          "Type": "speed",
+          "Value": "speed3"
+        }
+      ]
+    }
+  },
+  {
+    "aliases": [
+      "ZombieArcade"
+    ],
+    "objclass": "ZombieArcadeProps",
+    "objdata": {
+      "Actions": [
+        "RTID(ZombieArcadePushAction@ZombieActions)"
+      ],
+      "ArtCenter": {
+        "x": 90,
+        "y": 125
+      },
+      "AttackRect": {
+        "mHeight": 95,
+        "mWidth": 20,
+        "mX": 15,
+        "mY": 0
+      },
+      "CanSpawnPlantFood": true,
+      "Cost": 150,
+      "EatDPS": 100,
+      "GroundTrackName": "ground_swatch",
+      "HitRect": {
+        "mHeight": 95,
+        "mWidth": 32,
+        "mX": 10,
+        "mY": 10
+      },
+      "Hitpoints": 490,
+      "JamStyle": "jam_8bit",
+      "ScaledProps": [
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "Hitpoints"
+        },
+        {
+          "Arg1": 1.3,
+          "Arg2": 0.05,
+          "Formula": "standard",
+          "Key": "EatDPS"
+        },
+        {
+          "Formula": "constant",
+          "Key": "Speed"
+        },
+        {
+          "Formula": "constant",
+          "Key": "WavePointCost"
+        }
+      ],
+      "ShadowOffset": {
+        "x": 5,
+        "y": 0,
+        "z": 1.4
+      },
+      "Speed": 0.19,
+      "WavePointCost": 600,
+      "Weight": 1000,
+      "ZombieStats": [
+        {
+          "Type": "toughness",
+          "Value": "toughness4"
+        },
+        {
+          "Type": "speed",
+          "Value": "speed3"
+        }
+      ]
+    }
   }
 ]
