@@ -116,48 +116,49 @@ public class Vasebreaker extends MiniGame {
     }
 
     public void breakVase(int r, int c, Game game) {
-        if (r < 0 || r >= vaseBroken.length || c < 0 || c >= vaseBroken[0].length) return;
-        if (vaseBroken[r][c]) return;
+    if (r < 0 || r >= vaseBroken.length || c < 0 || c >= vaseBroken[0].length) return;
+    if (vaseBroken[r][c]) return;
 
-        vaseBroken[r][c] = true;
-        brokenVasesCount++;
+    vaseBroken[r][c] = true;
+    brokenVasesCount++;
 
-        String content = vaseContents[r][c];
-        Tile tile = game.getBoard().getTile(r, c);
+    String content = vaseContents[r][c];
+    Tile tile = game.getBoard().getTile(r, c);
 
-        if (content == null || content.equals(VASE_EMPTY)) {
-            System.out.println("Vasebreaker: Smashed empty vase at (" + c + ", " + r + ").");
-        } else if (content.equals(VASE_ZOMBIE)) {
-            Zombie z = model.entities.zombie.factory.ZombieFactory.createZombieAtColumn("NormalZombie", r, c);
-            if (z == null) {
-                z = new Zombie("NormalZombie", 200, 0.5, 20);
-                z.setX(c);
-                z.setY(r);
-            }
-            game.addZombie(z);
-            tile.setZombie(z);
-            System.out.println("Vasebreaker: A Zombie appeared from the vase at (" + c + ", " + r + ")!");
-        } else if (content.equals(VASE_GARGANTUAR)) {
-            Zombie z = model.entities.zombie.factory.ZombieFactory.createZombieAtColumn("Gargantuar", r, c);
-            if (z == null) {
-                z = new Zombie("Gargantuar", 1800, 0.3, 100);
-                z.setX(c);
-                z.setY(r);
-                z.setBoss(true);
-            }
-            game.addZombie(z);
-            tile.setZombie(z);
-            System.out.println("Vasebreaker: A GARGANTUAR appeared from the special vase at (" + c + ", " + r + ")!");
-        } else if (content.equals(VASE_PLANT) || content.equals(VASE_SPECIAL_PLANT)) {
-            String plantType = PLANT_TYPES[new Random().nextInt(PLANT_TYPES.length)];
-            tile.setTemporarySeedPacket(plantType);
-            tile.setSeedPacketTimer(80); // 80 ticks to pick up
-            System.out.println("Vasebreaker: Dropped " + plantType + " Seed Packet at (" + c + ", " + r + ")! Pick it up quickly!");
-        } else if (content.equals(VASE_SUN)) {
-            game.addSun(50);
-            System.out.println("Vasebreaker: Found 50 suns in the vase at (" + c + ", " + r + ")!");
+    if (content == null || content.equals(VASE_EMPTY)) {
+        System.out.println("Vasebreaker: Smashed empty vase at (" + c + ", " + r + ").");
+    } else if (content.equals(VASE_ZOMBIE)) {
+        Zombie z = model.entities.zombie.factory.ZombieFactory.createZombieAtColumn("NormalZombie", r, c);
+        if (z == null) {
+            z = new Zombie("NormalZombie", 200, 0.5, 20);
+            z.setX(c);
+            z.setY(r);
         }
+        game.addZombie(z);
+        tile.setZombie(z);
+        System.out.println("Vasebreaker: A Zombie appeared from the vase at (" + c + ", " + r + ")!");
+    } else if (content.equals(VASE_GARGANTUAR)) {
+        Zombie z = model.entities.zombie.factory.ZombieFactory.createZombieAtColumn("Gargantuar", r, c);
+        if (z == null) {
+            z = new Zombie("Gargantuar", 1800, 0.3, 100);
+            z.setX(c);
+            z.setY(r);
+            // setBoss removed - use a different approach
+            // Gargantuars are identified by name
+        }
+        game.addZombie(z);
+        tile.setZombie(z);
+        System.out.println("Vasebreaker: A GARGANTUAR appeared from the special vase at (" + c + ", " + r + ")!");
+    } else if (content.equals(VASE_PLANT) || content.equals(VASE_SPECIAL_PLANT)) {
+        String plantType = PLANT_TYPES[new Random().nextInt(PLANT_TYPES.length)];
+        tile.setTemporarySeedPacket(plantType);
+        tile.setSeedPacketTimer(80);
+        System.out.println("Vasebreaker: Dropped " + plantType + " Seed Packet at (" + c + ", " + r + ")! Pick it up quickly!");
+    } else if (content.equals(VASE_SUN)) {
+        game.addSun(50);
+        System.out.println("Vasebreaker: Found 50 suns in the vase at (" + c + ", " + r + ")!");
     }
+}
 
     public void pickupPacket(int r, int c, Game game) {
         Tile tile = game.getBoard().getTile(r, c);
