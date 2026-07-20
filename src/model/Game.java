@@ -169,14 +169,13 @@ public class Game {
     }
 
     private void notifyQuestLevelLost() {
-        if (currentUser == null) return;
-        // Reset win streak on loss
-        for (Quest q : currentUser.getUserQuests()) {
-            if (q.getTitle().equalsIgnoreCase("Win Streak") && q.getStatus() != Quest.QuestStatus.COMPLETED) {
-                q.setProgress(0);
-            }
+    if (currentUser == null) return;
+    for (Quest q : currentUser.getUserQuests()) {
+        if (q.getTitle().equalsIgnoreCase("Win Streak") && q.getStatus() != Quest.QuestStatus.COMPLETED) {
+            q.resetProgress();
         }
     }
+}
 
     private void checkSpecialQuestConditions() {
         if (currentUser == null || !won) return;
