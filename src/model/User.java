@@ -400,6 +400,83 @@ public class User {
         score += amount;
     }
 
+    /**
+     * Updates progress for all quests of a specific type
+     */
+    public void updateQuestProgress(Quest.QuestType type, int amount) {
+        for (Quest q : getUserQuests()) {
+            if (q.getType() == type && q.getStatus() != Quest.QuestStatus.COMPLETED && q.getStatus() != Quest.QuestStatus.CLAIMED) {
+                q.updateProgress(amount);
+            }
+        }
+    }
+
+    /**
+     * Updates progress for quests that match a specific title pattern
+     */
+    public void updateQuestProgressByTitle(String titlePattern, int amount) {
+        for (Quest q : getUserQuests()) {
+            if (q.getTitle().toLowerCase().contains(titlePattern.toLowerCase()) && 
+                q.getStatus() != Quest.QuestStatus.COMPLETED && q.getStatus() != Quest.QuestStatus.CLAIMED) {
+                q.updateProgress(amount);
+            }
+        }
+    }
+
+    /**
+     * Updates progress for a specific quest by exact title
+     */
+    public void updateQuestProgressByExactTitle(String exactTitle, int amount) {
+        for (Quest q : getUserQuests()) {
+            if (q.getTitle().equalsIgnoreCase(exactTitle) && 
+                q.getStatus() != Quest.QuestStatus.COMPLETED && q.getStatus() != Quest.QuestStatus.CLAIMED) {
+                q.updateProgress(amount);
+            }
+        }
+    }
+
+    /**
+     * Checks and claims all completed quests
+     */
+    public String claimAllCompletedQuests() {
+        StringBuilder result = new StringBuilder();
+        int totalCoins = 0;
+        int totalGems = 0;
+        int claimedCount = 0;
+        
+        for (Quest q : getUserQuests()) {
+            if (q.getStatus() == Quest.QuestStatus.COMPLETED) {
+                q.applyReward(this);
+                claimedCount++;
+                totalCoins += q.getRewardCoins();
+                totalGems += q.getRewardDiamonds();
+                result.append("✓ Claimed: ").append(q.getTitle()).append("\n");
+            }
+        }
+        
+        if (claimedCount == 0) {
+            return "No quests ready to claim.";
+        }
+        
+        result.insert(0, "Claimed " + claimedCount + " quests!\n");
+        result.append("Total: ").append(totalCoins).append(" coins, ")
+              .append(totalGems).append(" gems received.\n");
+        return result.toString();
+    }
+
+    /**
+     * Gets the number of completed quests by type
+     */
+    public int getCompletedQuestCount(Quest.QuestType type) {
+        int count = 0;
+        for (Quest q : getUserQuests()) {
+            if (q.getType() == type && q.getStatus() == Quest.QuestStatus.COMPLETED) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     public void addNews(String content) {
         if (this.news == null) {
             this.news = new ArrayList<>();
