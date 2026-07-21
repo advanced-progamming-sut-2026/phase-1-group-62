@@ -24,6 +24,14 @@ public class CommandParser {
             "menu profile change-password", "menu profile show-info",
             // کالکشن و قبل از بازی
             "show all plants", "show available plants", "add plant", "remove plant", "boost plant", "start game",
+            // IZombie command
+            "place zombie",
+            // Beghoul commands
+            "swap plants",
+            "upgrade plants",   // <-- ADD THIS
+            // Vasebreaker commands
+            "smash vase",
+            "pickup packet",
             // داخل بازی
             "advance time", "collect sun", "show sun amount", "plant plant", "pluck plant", "feed plant",
             "show map", "show plants status", "show tile status", "zombies info",
@@ -34,24 +42,19 @@ public class CommandParser {
     );
 
     public CommandParser() {
-        // مرتب‌سازی بر اساس طول (نزولی) تا دستورات چند کلمه‌ای زودتر مچ شوند
-        // مثلاً "menu enter chapter" قبل از "menu enter" چک می‌شود
         KNOWN_ACTIONS.sort((a, b) -> Integer.compare(b.length(), a.length()));
     }
 
     public ParsedCommand parse(String input) {
-        // تمیز کردن ورودی و حذف فاصله‌های اضافی
         String normalizedInput = input.trim().replaceAll("\\s+", " ");
         String lowerInput = normalizedInput.toLowerCase();
 
         String matchedAction = "unknown";
         String remainingPart = "";
 
-        // ۱. پیدا کردن عملیات اصلی (Action)
         for (String action : KNOWN_ACTIONS) {
             if (lowerInput.startsWith(action)) {
                 matchedAction = action;
-                // جدا کردن بقیه رشته (که شامل آرگومان‌هاست)
                 if (normalizedInput.length() > action.length()) {
                     remainingPart = normalizedInput.substring(action.length()).trim();
                 }
@@ -61,16 +64,13 @@ public class CommandParser {
 
         ParsedCommand command = new ParsedCommand(matchedAction);
 
-        // اگر دستور ناشناخته بود، سریعاً برگرد
         if (matchedAction.equals("unknown")) {
             return command;
         }
 
-        // ۲. استخراج آرگومان‌ها (Flags)
         if (!remainingPart.isEmpty()) {
             if (remainingPart.startsWith("-")) {
-                // حالتی که فلگ داریم (مثل: -u ali -p pass1 pass2)
-                String[] parts = remainingPart.split("(?=\\s-)"); // اسپلیت کردن بر اساس اسپیسِ قبل از دش
+                String[] parts = remainingPart.split("(?=\\s-)");
                 for (String part : parts) {
                     part = part.trim();
                     int spaceIndex = part.indexOf(" ");
@@ -79,12 +79,10 @@ public class CommandParser {
                         String value = part.substring(spaceIndex + 1).trim();
                         command.addArg(flag, value);
                     } else {
-                        // فلگ‌های بدون مقدار (مثل -stay-logged-in)
                         command.addArg(part, "true");
                     }
                 }
             } else {
-                // حالتی که فلگ نداریم اما مقدار داریم (مثل: menu enter Greenhouse یا collect (2, 3))
                 command.addArg("VALUE", remainingPart);
             }
         }
