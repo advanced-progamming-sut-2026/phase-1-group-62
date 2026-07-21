@@ -4,7 +4,7 @@ import model.Game;
 import model.Tile;
 import model.entities.plant.factory.PlantFactory;
 import model.entities.plant.Plant;
-import model.entities.plant.loader.PlantLoader;  // <-- ADD THIS
+import model.entities.plant.loader.PlantLoader;
 import model.entities.zombie.Zombie;
 import model.entities.zombie.factory.ZombieFactory;
 import model.Sun;
@@ -352,33 +352,30 @@ public class GameController extends Controller {
     }
 
     public String smashVase(int x, int y) {
-    if (game == null || !(game.getActiveMiniGame() instanceof Vasebreaker)) {
-        return "Error: Not currently in a Vasebreaker mini-game.";
-    }
-    Vasebreaker vb = (Vasebreaker) game.getActiveMiniGame();
-    if (vb.isVaseBroken(y, x)) {
-        return "Error: Vase at (" + x + ", " + y + ") is already smashed.";
-    }
+        if (game == null || !(game.getActiveMiniGame() instanceof Vasebreaker)) {
+            return "Error: Not currently in a Vasebreaker mini-game.";
+        }
+        Vasebreaker vb = (Vasebreaker) game.getActiveMiniGame();
+        if (vb.isVaseBroken(y, x)) {
+            return "Error: Vase at (" + x + ", " + y + ") is already smashed.";
+        }
 
-    // Call the updated breakVase method with Game parameter
-    vb.breakVase(y, x, game);
-    
-    // Get the content for the return message
-    String content = vb.getVaseContent(y, x);
-    Tile tile = game.getBoard().getTile(y, x);
+        vb.breakVase(y, x, game);
 
-    if (content == null || content.equals(Vasebreaker.VASE_EMPTY)) {
-        return "Smashed vase at (" + x + ", " + y + "): It was empty.";
-    } else if (content.equals(Vasebreaker.VASE_ZOMBIE) || content.equals(Vasebreaker.VASE_GARGANTUAR)) {
-        return "Smashed vase at (" + x + ", " + y + "): A " + (content.equals(Vasebreaker.VASE_GARGANTUAR) ? "GARGANTUAR" : "Zombie") + " appeared!";
-    } else if (content.equals(Vasebreaker.VASE_PLANT) || content.equals(Vasebreaker.VASE_SPECIAL_PLANT)) {
-        return "Smashed vase at (" + x + ", " + y + "): Dropped a Seed Packet! Pick it up quickly.";
-    } else if (content.equals(Vasebreaker.VASE_SUN)) {
-        return "Smashed vase at (" + x + ", " + y + "): Found 50 suns!";
-    } else {
-        return "Smashed vase at (" + x + ", " + y + ")";
+        String content = vb.getVaseContent(y, x);
+
+        if (content == null) {
+            return "Smashed vase at (" + x + ", " + y + "): It was empty.";
+        } else if (content.equals(Vasebreaker.VASE_ZOMBIE)) {
+            return "Smashed vase at (" + x + ", " + y + "): A Zombie appeared!";
+        } else if (content.equals(Vasebreaker.VASE_GARGANTUAR)) {
+            return "Smashed vase at (" + x + ", " + y + "): A GARGANTUAR appeared!";
+        } else if (content.equals(Vasebreaker.VASE_PLANT)) {
+            return "Smashed vase at (" + x + ", " + y + "): Dropped a Seed Packet! Pick it up quickly.";
+        } else {
+            return "Smashed vase at (" + x + ", " + y + ")";
+        }
     }
-}
 
     public String pickupPacket(int x, int y) {
         if (game == null || !(game.getActiveMiniGame() instanceof Vasebreaker)) {
