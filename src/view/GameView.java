@@ -103,21 +103,37 @@ public class GameView extends View {
     }
 
     private String getCellContent(Game game, Tile tile, int r, int c) {
+        // Vasebreaker display - FIXED
         if (game.getActiveMiniGame() instanceof Vasebreaker) {
             Vasebreaker vb = (Vasebreaker) game.getActiveMiniGame();
+
+            // Check if vase exists at this position
+            String content = vb.getVaseContent(r, c);
+
+            // If content is null, there is NO vase here - show empty
+            if (content == null) {
+                return ".";
+            }
+
+            // Vase exists - show correct type if not broken
             if (!vb.isVaseBroken(r, c)) {
-                String content = vb.getVaseContent(r, c);
-                if ("zombie".equalsIgnoreCase(content) || "gargantuar".equalsIgnoreCase(content)) {
-                    return "V-Z?";
-                } else if ("empty".equalsIgnoreCase(content)) {
-                    return "V-E?";
+                if (content.equals(Vasebreaker.VASE_ZOMBIE)) {
+                    return "V-Z";
+                } else if (content.equals(Vasebreaker.VASE_GARGANTUAR)) {
+                    return "V-G";
+                } else if (content.equals(Vasebreaker.VASE_PLANT)) {
+                    return "V-P";
                 } else {
-                    return "V-P?";
+                    return "V-?";
                 }
             }
-            if (tile.getTemporarySeedPacket() != null) {
+
+            // Vase is broken - check for seed packet
+            if (tile != null && tile.getTemporarySeedPacket() != null) {
                 return "PK-" + tile.getTemporarySeedPacket().substring(0, 1).toUpperCase();
             }
+
+            return ".";
         }
 
         if (game.getActiveMiniGame() instanceof Beghoul) {
@@ -193,7 +209,13 @@ public class GameView extends View {
 
     private Zombie getZombieAtTile(Game game, int x, int y) {
         for (Zombie z : game.getActiveZombies()) {
-            if ((int) Math.round(z.getX()) == x && z.getY() == y) {
+            // Check if zombie is at this tile (allow small floating point tolerance)
+            int zx = (int) Math.floor(z.getX());
+            if (zx == x && z.getY() == y) {
+                return z;
+            }
+            // Also check if zombie is exactly at this position
+            if (Math.abs(z.getX() - x) < 0.01 && z.getY() == y) {
                 return z;
             }
         }
