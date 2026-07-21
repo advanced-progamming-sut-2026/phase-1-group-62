@@ -4,6 +4,7 @@ import model.Game;
 import model.Tile;
 import model.entities.plant.factory.PlantFactory;
 import model.entities.plant.Plant;
+import model.entities.plant.loader.PlantLoader;  // <-- ADD THIS
 import model.entities.zombie.Zombie;
 import model.entities.zombie.factory.ZombieFactory;
 import model.Sun;
@@ -52,20 +53,39 @@ public class GameController extends Controller {
             if (x > wb.getRedLineX()) {
                 return "Error: Cannot plant past the red line! Max column allowed: " + wb.getRedLineX();
             }
+
+            // Check if the walnut is on the conveyor belt (case-insensitive)
             boolean onBelt = false;
+            String beltType = null;
             for (String pName : game.getConveyorBeltPlants()) {
                 if (pName.equalsIgnoreCase(type)) {
                     onBelt = true;
-                    type = pName;
+                    beltType = pName;
                     break;
                 }
             }
-            if (!onBelt) return "Error: This walnut is not available on the conveyor belt!";
+
+            // Also check if the user typed a partial match
+            if (!onBelt) {
+                for (String pName : game.getConveyorBeltPlants()) {
+                    String lowerName = pName.toLowerCase();
+                    String lowerType = type.toLowerCase();
+                    if (lowerName.contains(lowerType) || lowerType.contains(lowerName)) {
+                        onBelt = true;
+                        beltType = pName;
+                        break;
+                    }
+                }
+            }
+
+            if (!onBelt) {
+                return "Error: This walnut is not available on the conveyor belt! Available: " + String.join(", ", game.getConveyorBeltPlants());
+            }
 
             Plant ball = PlantFactory.createPlant("WallNut");
-            if (ball == null) ball = new Plant(88, type, "BOWLING", null, 0, 300, 50, 0, 0, null, 0, null, 0);
+            if (ball == null) ball = new Plant(88, beltType, "BOWLING", null, 0, 300, 50, 0, 0, null, 0, null, 0);
 
-            game.getConveyorBeltPlants().remove(type);
+            game.getConveyorBeltPlants().remove(beltType);
             ball.setX(x);
             ball.setY(y);
             ball.setDx(1);
@@ -73,7 +93,7 @@ public class GameController extends Controller {
             ball.setBowlingBall(true);
             game.addPlant(ball);
             game.getBoard().getTile(y, x).setPlant(ball);
-            return "Successfully launched " + type + " bowling ball down row " + y;
+            return "Successfully launched " + beltType + " bowling ball down row " + y;
         }
 
         Tile tile = game.getBoard().getTile(y, x);
@@ -105,7 +125,29 @@ public class GameController extends Controller {
         }
 
         Plant newPlant = PlantFactory.createPlant(type);
-        if (newPlant == null) return "Error: Plant type not found!";
+        if (newPlant == null) {
+            // Try case-insensitive matching by checking all loaded plants
+            List<Plant> allPlants = PlantLoader.loadPlants();
+            for (Plant p : allPlants) {
+                if (p.getName().equalsIgnoreCase(type)) {
+                    newPlant = PlantFactory.createPlant(p.getName());
+                    break;
+                }
+            }
+            // If still null, try common variations
+            if (newPlant == null) {
+                // Try with common name variations
+                String[] variations = {type, type.toLowerCase(), type.toUpperCase(),
+                        type.replace(" ", ""), type.replace(" ", "_")};
+                for (String var : variations) {
+                    newPlant = PlantFactory.createPlant(var);
+                    if (newPlant != null) break;
+                }
+            }
+            if (newPlant == null) {
+                return "Error: Plant type not found! Try: PeaShooter, Sunflower, WallNut, etc.";
+            }
+        }
         if (game.getSunCount() < newPlant.getCost()) {
             return "Error: Not enough suns! Required: " + newPlant.getCost();
         }
