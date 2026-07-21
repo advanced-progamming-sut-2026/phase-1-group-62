@@ -237,18 +237,26 @@ public class GameMenuController extends Controller {
         if (action.equalsIgnoreCase("smash vase")) {
             String loc = cmd.getArg("-l");
             if (loc == null) {
-                return "Usage: smash vase -l (<x>, <y>)";
+                return "Usage: smash vase -l (<x>,<y>)";
             }
             try {
-                loc = loc.replace("(", "").replace(")", "");
+                loc = loc.replaceAll("[^0-9,]", "");
+                loc = loc.replaceAll(",{2,}", ",");
+                if (loc.startsWith(",")) loc = loc.substring(1);
+                if (loc.endsWith(",")) loc = loc.substring(0, loc.length() - 1);
+
                 String[] coords = loc.split(",");
+                if (coords.length < 2) {
+                    return "Invalid format! Use: smash vase -l (<x>,<y>)";
+                }
                 int x = Integer.parseInt(coords[0].trim());
                 int y = Integer.parseInt(coords[1].trim());
                 return gameController.smashVase(x, y);
             } catch (Exception e) {
-                return "Invalid format! Use: smash vase -l (<x>, <y>)";
+                return "Invalid format! Use: smash vase -l (<x>,<y>)";
             }
         }
+
 
         if (action.equalsIgnoreCase("place zombie")) {
             String type = cmd.getArg("-t");
@@ -267,16 +275,26 @@ public class GameMenuController extends Controller {
         if (action.equalsIgnoreCase("pickup packet")) {
             String loc = cmd.getArg("-l");
             if (loc == null) {
-                return "Usage: pickup packet -l (<x>, <y>)";
+                return "Usage: pickup packet -l (<x>,<y>)";
             }
             try {
-                loc = loc.replace("(", "").replace(")", "");
+                // Remove ALL non-digit characters EXCEPT comma
+                loc = loc.replaceAll("[^0-9,]", "");
+                // Remove duplicate commas
+                loc = loc.replaceAll(",{2,}", ",");
+                // Remove leading/trailing commas
+                if (loc.startsWith(",")) loc = loc.substring(1);
+                if (loc.endsWith(",")) loc = loc.substring(0, loc.length() - 1);
+
                 String[] coords = loc.split(",");
+                if (coords.length < 2) {
+                    return "Invalid format! Use: pickup packet -l (<x>,<y>)";
+                }
                 int x = Integer.parseInt(coords[0].trim());
                 int y = Integer.parseInt(coords[1].trim());
                 return gameController.pickupPacket(x, y);
             } catch (Exception e) {
-                return "Invalid format! Use: pickup packet -l (<x>, <y>)";
+                return "Invalid format! Use: pickup packet -l (<x>,<y>)";
             }
         }
         if (action.equalsIgnoreCase("collect sun")) {
@@ -332,25 +350,28 @@ public class GameMenuController extends Controller {
             }
         }
         if (action.equalsIgnoreCase("swap plants")) {
-    String loc1 = cmd.getArg("-l");
-    String loc2 = cmd.getArg("-m");
-    if (loc1 == null || loc2 == null) {
-        return "Usage: swap plants -l (<x1>,<y1>) -m (<x2>,<y2>)";
-    }
-    try {
-        loc1 = loc1.replace("(", "").replace(")", "");
-        loc2 = loc2.replace("(", "").replace(")", "");
-        String[] coords1 = loc1.split(",");
-        String[] coords2 = loc2.split(",");
-        int x1 = Integer.parseInt(coords1[0].trim());
-        int y1 = Integer.parseInt(coords1[1].trim());
-        int x2 = Integer.parseInt(coords2[0].trim());
-        int y2 = Integer.parseInt(coords2[1].trim());
-        return gameController.swapPlants(x1, y1, x2, y2);
-    } catch (Exception e) {
-        return "Invalid format! Use: swap plants -l (<x1>,<y1>) -m (<x2>,<y2>)";
-    }
-}
+            String loc1 = cmd.getArg("-l");
+            String loc2 = cmd.getArg("-m");
+            if (loc1 == null || loc2 == null) {
+                return "Usage: swap plants -l (<x1>,<y1>) -m (<x2>,<y2>)";
+            }
+            try {
+                loc1 = loc1.replace("(", "").replace(")", "").trim();
+                loc2 = loc2.replace("(", "").replace(")", "").trim();
+                String[] coords1 = loc1.split(",");
+                String[] coords2 = loc2.split(",");
+                if (coords1.length < 2 || coords2.length < 2) {
+                    return "Invalid format! Use: swap plants -l (<x1>,<y1>) -m (<x2>,<y2>)";
+                }
+                int x1 = Integer.parseInt(coords1[0].trim());
+                int y1 = Integer.parseInt(coords1[1].trim());
+                int x2 = Integer.parseInt(coords2[0].trim());
+                int y2 = Integer.parseInt(coords2[1].trim());
+                return gameController.swapPlants(x1, y1, x2, y2);
+            } catch (Exception e) {
+                return "Invalid format! Use: swap plants -l (<x1>,<y1>) -m (<x2>,<y2>)";
+            }
+        }
         if (input.toLowerCase().startsWith("release the nuke")) {
             return gameController.executeNuke();
         }
