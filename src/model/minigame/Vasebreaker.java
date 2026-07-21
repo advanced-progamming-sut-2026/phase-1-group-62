@@ -18,13 +18,10 @@ public class Vasebreaker extends MiniGame {
     private int maxStageLevel;
     private boolean isSetup;
 
-    // Special vase types
-    public static final String VASE_EMPTY = "empty";
+    // Vase types - ONLY 3 TYPES (NO EMPTY!)
     public static final String VASE_ZOMBIE = "zombie";
     public static final String VASE_GARGANTUAR = "gargantuar";
     public static final String VASE_PLANT = "plant";
-    public static final String VASE_SPECIAL_PLANT = "special_plant";
-    public static final String VASE_SUN = "sun";
 
     private static final String[] PLANT_TYPES = {"PeaShooter", "Sunflower", "WallNut", "SnowPea", "Repeater"};
 
@@ -40,58 +37,73 @@ public class Vasebreaker extends MiniGame {
     }
 
     public void setupVaseGrid(int rows, int cols, int level) {
-        this.stageLevel = level;
+        // COMPLETELY RESET EVERYTHING
         this.vaseContents = new String[rows][cols];
         this.vaseBroken = new boolean[rows][cols];
         this.totalVases = 0;
         this.brokenVasesCount = 0;
+        this.stageLevel = level;
         this.isSetup = true;
 
         Random rand = new Random();
 
-        // Determine number of vases based on stage level
-        int numVases = 8 + (level - 1) * 4; // Level 1: 8, Level 2: 12, Level 3: 16
+        // Columns 0,1,2 are EMPTY (no vases)
+        // Columns 3-8 are FULLY FILLED with vases (5 rows x 6 columns = 30 vases)
+        int minCol = 3;
+        int maxCol = cols - 1;
 
-        // Determine special vase count
-        int numSpecial = Math.max(1, level); // Level 1: 1 special, Level 2: 2, Level 3: 3
-        int numGargantuar = level > 1 ? 1 : 0; // Gargantuars only from level 2+
+        // Calculate how many of each type
+        int totalPositions = rows * (maxCol - minCol + 1); // 5 * 6 = 30
 
-        // Place vases randomly
-        for (int i = 0; i < numVases; i++) {
-            int r, c;
-            int attempts = 0;
-            do {
-                r = rand.nextInt(rows);
-                c = rand.nextInt(cols);
-                attempts++;
-            } while ((vaseContents[r][c] != null || attempts < 50) && vaseContents[r][c] == null);
+        // Gargantuars: Level 1: 0, Level 2: 1, Level 3: 2
+        int numGargantuar = level > 1 ? level - 1 : 0;
+        // Plant vases: Level 1: 8, Level 2: 10, Level 3: 12
+        int numPlantVases = 6 + level * 2;
+        // Zombie vases: everything else
+        int numZombieVases = totalPositions - numPlantVases - numGargantuar;
 
-            // Determine content
-            String content;
-            int roll = rand.nextInt(100);
+        // Create a list of all vase types
+        List<String> vaseTypes = new ArrayList<>();
 
-            // Special vases (Plant Vase with guaranteed seed)
-            if (i < numSpecial) {
-                content = VASE_SPECIAL_PLANT;
-            }
-            // Gargantuar vase
-            else if (i < numSpecial + numGargantuar) {
-                content = VASE_GARGANTUAR;
-            }
-            // Normal distribution
-            else if (roll < 20) {
-                content = VASE_EMPTY;
-            } else if (roll < 60) {
-                content = VASE_ZOMBIE;
-            } else if (roll < 85) {
-                content = VASE_PLANT;
-            } else {
-                content = VASE_SUN;
-            }
-
-            vaseContents[r][c] = content;
-            totalVases++;
+        // Add plant vases
+        for (int i = 0; i < numPlantVases; i++) {
+            vaseTypes.add(VASE_PLANT);
         }
+        // Add zombie vases
+        for (int i = 0; i < numZombieVases; i++) {
+            vaseTypes.add(VASE_ZOMBIE);
+        }
+        // Add gargantuar vases
+        for (int i = 0; i < numGargantuar; i++) {
+            vaseTypes.add(VASE_GARGANTUAR);
+        }
+
+        // Shuffle the list randomly
+        for (int i = vaseTypes.size() - 1; i > 0; i--) {
+            int j = rand.nextInt(i + 1);
+            String temp = vaseTypes.get(i);
+            vaseTypes.set(i, vaseTypes.get(j));
+            vaseTypes.set(j, temp);
+        }
+
+        // Place vases in columns 3-8
+        int index = 0;
+        for (int r = 0; r < rows; r++) {
+            for (int c = minCol; c <= maxCol; c++) {
+                String content = vaseTypes.get(index);
+                vaseContents[r][c] = content;
+                totalVases++;
+                index++;
+            }
+        }
+
+        System.out.println("=== VASEBREAKER SETUP ===");
+        System.out.println("Total vases: " + totalVases + " (ALL columns 3-8 filled)");
+        System.out.println("Plant vases: " + numPlantVases);
+        System.out.println("Zombie vases: " + numZombieVases);
+        System.out.println("Gargantuar vases: " + numGargantuar);
+        System.out.println("Columns 0,1,2 are EMPTY (no vases)");
+        System.out.println("Columns 3-8 are FULLY FILLED with vases");
     }
 
     public String getVaseContent(int r, int c) {
@@ -99,13 +111,6 @@ public class Vasebreaker extends MiniGame {
             return vaseContents[r][c];
         }
         return null;
-    }
-
-    public void setVaseContent(int r, int c, String content) {
-        if (r >= 0 && r < vaseContents.length && c >= 0 && c < vaseContents[0].length) {
-            vaseContents[r][c] = content;
-            totalVases++;
-        }
     }
 
     public boolean isVaseBroken(int r, int c) {
@@ -116,61 +121,66 @@ public class Vasebreaker extends MiniGame {
     }
 
     public void breakVase(int r, int c, Game game) {
-    if (r < 0 || r >= vaseBroken.length || c < 0 || c >= vaseBroken[0].length) return;
-    if (vaseBroken[r][c]) return;
-
-    vaseBroken[r][c] = true;
-    brokenVasesCount++;
-
-    String content = vaseContents[r][c];
-    Tile tile = game.getBoard().getTile(r, c);
-
-    if (content == null || content.equals(VASE_EMPTY)) {
-        System.out.println("Vasebreaker: Smashed empty vase at (" + c + ", " + r + ").");
-    } else if (content.equals(VASE_ZOMBIE)) {
-        Zombie z = model.entities.zombie.factory.ZombieFactory.createZombieAtColumn("NormalZombie", r, c);
-        if (z == null) {
-            z = new Zombie("NormalZombie", 200, 0.5, 20);
-            z.setX(c);
-            z.setY(r);
+        if (r < 0 || r >= vaseBroken.length || c < 0 || c >= vaseBroken[0].length) {
+            System.out.println("Vasebreaker: Invalid coordinates (" + c + ", " + r + ")");
+            return;
         }
-        game.addZombie(z);
-        tile.setZombie(z);
-        System.out.println("Vasebreaker: A Zombie appeared from the vase at (" + c + ", " + r + ")!");
-    } else if (content.equals(VASE_GARGANTUAR)) {
-        Zombie z = model.entities.zombie.factory.ZombieFactory.createZombieAtColumn("Gargantuar", r, c);
-        if (z == null) {
-            z = new Zombie("Gargantuar", 1800, 0.3, 100);
-            z.setX(c);
-            z.setY(r);
-            // setBoss removed - use a different approach
-            // Gargantuars are identified by name
+        if (vaseBroken[r][c]) {
+            System.out.println("Vasebreaker: Vase at (" + c + ", " + r + ") already broken");
+            return;
         }
-        game.addZombie(z);
-        tile.setZombie(z);
-        System.out.println("Vasebreaker: A GARGANTUAR appeared from the special vase at (" + c + ", " + r + ")!");
-    } else if (content.equals(VASE_PLANT) || content.equals(VASE_SPECIAL_PLANT)) {
-        String plantType = PLANT_TYPES[new Random().nextInt(PLANT_TYPES.length)];
-        tile.setTemporarySeedPacket(plantType);
-        tile.setSeedPacketTimer(80);
-        System.out.println("Vasebreaker: Dropped " + plantType + " Seed Packet at (" + c + ", " + r + ")! Pick it up quickly!");
-    } else if (content.equals(VASE_SUN)) {
-        game.addSun(50);
-        System.out.println("Vasebreaker: Found 50 suns in the vase at (" + c + ", " + r + ")!");
+
+        vaseBroken[r][c] = true;
+        brokenVasesCount++;
+
+        String content = vaseContents[r][c];
+        Tile tile = game.getBoard().getTile(r, c);
+
+        // This should NEVER happen - every vase has content
+        if (content == null) {
+            System.out.println("Vasebreaker: ERROR - Vase at (" + c + ", " + r + ") has no content! This should not happen.");
+            return;
+        }
+
+        if (content.equals(VASE_ZOMBIE)) {
+            Zombie z = model.entities.zombie.factory.ZombieFactory.createZombieAtColumn("NormalZombie", r, c);
+            if (z == null) {
+                z = new Zombie("NormalZombie", 200, 0.5, 20);
+                z.setX(c);
+                z.setY(r);
+            }
+            game.addZombie(z);
+            tile.setZombie(z);
+            System.out.println("Vasebreaker: ZOMBIE appeared at (" + c + ", " + r + ")!");
+        } else if (content.equals(VASE_GARGANTUAR)) {
+            Zombie z = model.entities.zombie.factory.ZombieFactory.createZombieAtColumn("Gargantuar", r, c);
+            if (z == null) {
+                z = new Zombie("Gargantuar", 1800, 0.3, 100);
+                z.setX(c);
+                z.setY(r);
+            }
+            game.addZombie(z);
+            tile.setZombie(z);
+            System.out.println("Vasebreaker: GARGANTUAR appeared at (" + c + ", " + r + ")!");
+        } else if (content.equals(VASE_PLANT)) {
+            String plantType = PLANT_TYPES[new Random().nextInt(PLANT_TYPES.length)];
+            tile.setTemporarySeedPacket(plantType);
+            tile.setSeedPacketTimer(80);
+            System.out.println("Vasebreaker: " + plantType + " SEED PACKET dropped at (" + c + ", " + r + ")!");
+        }
     }
-}
 
     public void pickupPacket(int r, int c, Game game) {
         Tile tile = game.getBoard().getTile(r, c);
         String packet = tile.getTemporarySeedPacket();
         if (packet == null) {
-            System.out.println("Vasebreaker: No seed packet at (" + c + ", " + r + ").");
+            System.out.println("Vasebreaker: No seed packet at (" + c + ", " + r + ")");
             return;
         }
 
         Plant p = PlantFactory.createPlant(packet);
         if (p == null) {
-            System.out.println("Vasebreaker: Failed to create plant from seed packet.");
+            System.out.println("Vasebreaker: Failed to create plant from seed packet");
             return;
         }
 
@@ -224,6 +234,7 @@ public class Vasebreaker extends MiniGame {
                 game.getBoard().getTile(z.getY(), (int) z.getX()).setZombie(null);
                 game.removeZombie(z);
             }
+            return;
         }
 
         // Update seed packet timers
@@ -242,7 +253,6 @@ public class Vasebreaker extends MiniGame {
 
         // Check win condition
         if (isVictoryConditionMet() && game.getActiveZombies().isEmpty()) {
-            // Complete level
             completeLevel(stageLevel, brokenVasesCount);
             if (stageLevel < maxStageLevel) {
                 System.out.println("Vasebreaker: Level " + stageLevel + " complete! Moving to Level " + (stageLevel + 1));
@@ -275,22 +285,6 @@ public class Vasebreaker extends MiniGame {
             System.out.println("Vasebreaker: Game Over! A zombie reached the house!");
             game.getGameLogMessages().add("The zombie ate your brain; LOSER!!!");
             return;
-        }
-
-        // Spawn occasional zombies from remaining vases if too many are broken
-        if (brokenVasesCount > totalVases / 2 && game.getActiveZombies().size() < 3 && stageLevel > 1) {
-            Random rand = new Random();
-            if (rand.nextInt(100) < 10) {
-                // Find an unbroken vase with zombie content
-                for (int r = 0; r < vaseContents.length; r++) {
-                    for (int c = 0; c < vaseContents[0].length; c++) {
-                        if (!vaseBroken[r][c] && VASE_ZOMBIE.equals(vaseContents[r][c])) {
-                            breakVase(r, c, game);
-                            return;
-                        }
-                    }
-                }
-            }
         }
     }
 }
