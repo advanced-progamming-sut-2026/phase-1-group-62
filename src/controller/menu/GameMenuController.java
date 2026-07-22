@@ -115,7 +115,9 @@ public class GameMenuController extends Controller {
 
         ParsedCommand cmd = parser.parse(input);
         String action = cmd.getAction();
-
+        if (input.equalsIgnoreCase("guide") || input.equalsIgnoreCase("help")) {
+            return util.HelpGuide.getGuideForMenu("game");
+        }
         if (action.equalsIgnoreCase("advance time")) {
             String ticksStr = cmd.getArg("-t");
             int ticks = 1;
@@ -262,13 +264,21 @@ public class GameMenuController extends Controller {
             String type = cmd.getArg("-t");
             String laneStr = cmd.getArg("-l");
             if (type == null || laneStr == null) {
-                return "Usage: place zombie -t <type> -l <lane>";
+                return "Usage: place zombie -t <type> -l <lane> OR -l (<x>, <y>)";
             }
             try {
-                int lane = Integer.parseInt(laneStr.trim());
-                return gameController.placeZombie(type, lane);
+                if (laneStr.contains(",")) {
+                    laneStr = laneStr.replace("(", "").replace(")", "");
+                    String[] parts = laneStr.split(",");
+                    int x = Integer.parseInt(parts[0].trim());
+                    int y = Integer.parseInt(parts[1].trim());
+                    return gameController.placeZombie(type, x, y);
+                } else {
+                    int lane = Integer.parseInt(laneStr.trim());
+                    return gameController.placeZombie(type, lane);
+                }
             } catch (Exception e) {
-                return "Invalid format! Use: place zombie -t <type> -l <lane>";
+                return "Invalid format! Use: place zombie -t <type> -l <lane> or -l (<x>, <y>)";
             }
         }
 

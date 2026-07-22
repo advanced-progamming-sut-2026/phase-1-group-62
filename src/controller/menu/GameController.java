@@ -4,7 +4,7 @@ import model.Game;
 import model.Tile;
 import model.entities.plant.factory.PlantFactory;
 import model.entities.plant.Plant;
-import model.entities.plant.loader.PlantLoader;
+import model.entities.plant.loader.PlantLoader;  // <-- ADD THIS
 import model.entities.zombie.Zombie;
 import model.entities.zombie.factory.ZombieFactory;
 import model.Sun;
@@ -16,6 +16,8 @@ import model.enums.TileType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import static model.minigame.Vasebreaker.*;
 
 public class GameController extends Controller {
     private Game game;
@@ -261,34 +263,24 @@ public class GameController extends Controller {
     }
 
     public String placeZombie(String type, int lane) {
+        return placeZombie(type, 8, lane);
+    }
+
+    public String placeZombie(String type, int x, int y) {
         if (game == null || !(game.getActiveMiniGame() instanceof IZombie)) {
             return "Error: Not currently in an I, Zombie mini-game.";
         }
-        if (lane < 0 || lane >= game.getBoard().getRows()) {
+        if (y < 0 || y >= game.getBoard().getRows()) {
             return "Error: Invalid lane number.";
         }
 
         IZombie iz = (IZombie) game.getActiveMiniGame();
-        int cost = 50;
-        if (type.equalsIgnoreCase("ConeZombie")) cost = 75;
-        else if (type.equalsIgnoreCase("BucketZombie")) cost = 125;
-        else if (type.equalsIgnoreCase("FootballZombie")) cost = 150;
-
-        if (iz.getZombieSunCount() < cost) {
-            return "Error: Not enough zombie suns! Required: " + cost + ", Available: " + iz.getZombieSunCount();
+        boolean placed = iz.placeZombie(type, x, y, game);
+        if (placed) {
+            return "Successfully deployed " + type + " at (" + x + ", " + y + ").";
+        } else {
+            return "Error: Could not place zombie. Check sun cost, available zombies, or coordinates (must be x > 4).";
         }
-
-        Zombie z = ZombieFactory.createZombie(type);
-        if (z == null) {
-            z = new Zombie(type, 200, 0.5, 20);
-        }
-
-        iz.spendSun(cost);
-        z.setX(8.0);
-        z.setY(lane);
-        game.addZombie(z);
-        game.getBoard().getTile(lane, 8).setZombie(z);
-        return "Successfully deployed " + type + " in lane " + lane + " for " + cost + " suns.";
     }
 
     public String pluckPlant(int x, int y) {
@@ -356,27 +348,35 @@ public class GameController extends Controller {
             return "Error: Not currently in a Vasebreaker mini-game.";
         }
         Vasebreaker vb = (Vasebreaker) game.getActiveMiniGame();
+        if (!vb.hasVase(y, x)) {
+            return "Error: No vase exists at tile (" + x + ", " + y + ").";
+        }
         if (vb.isVaseBroken(y, x)) {
             return "Error: Vase at (" + x + ", " + y + ") is already smashed.";
         }
 
+        String content = vb.getVaseContent(y, x);
         vb.breakVase(y, x, game);
 
-        String content = vb.getVaseContent(y, x);
+        Tile tile = game.getBoard().getTile(y, x);
+        if (tile != null && tile.getTemporarySeedPacket() != null) {
+            return "Smashed vase at (" + x + ", " + y + "): Dropped a Seed Packet! Pick it up quickly.";
+        }
 
-        if (content == null) {
-            return "Smashed vase at (" + x + ", " + y + "): It was empty.";
+        if (content == null || content.equals(Vasebreaker.VASE_EMPTY)) {
+            return "Smashed vase at (" + x + ", " + y + "): Found nothing! The vase was empty.";
         } else if (content.equals(Vasebreaker.VASE_ZOMBIE)) {
             return "Smashed vase at (" + x + ", " + y + "): A Zombie appeared!";
         } else if (content.equals(Vasebreaker.VASE_GARGANTUAR)) {
-            return "Smashed vase at (" + x + ", " + y + "): A GARGANTUAR appeared!";
-        } else if (content.equals(Vasebreaker.VASE_PLANT)) {
+            return "Smashed vase at (" + x + ", " + y + "): A Gargantuar appeared!";
+        } else if (content.equals(Vasebreaker.VASE_PLANT) || content.equals(Vasebreaker.VASE_SPECIAL_PLANT)) {
             return "Smashed vase at (" + x + ", " + y + "): Dropped a Seed Packet! Pick it up quickly.";
+        } else if (content.equals(Vasebreaker.VASE_SUN)) {
+            return "Smashed vase at (" + x + ", " + y + "): Found 50 suns!";
         } else {
             return "Smashed vase at (" + x + ", " + y + ")";
         }
     }
-
     public String pickupPacket(int x, int y) {
         if (game == null || !(game.getActiveMiniGame() instanceof Vasebreaker)) {
             return "Error: Not currently in a Vasebreaker mini-game.";

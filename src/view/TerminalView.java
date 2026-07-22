@@ -1,28 +1,65 @@
 package view;
 
 import controller.menu.Validator;
-
+import util.HelpGuide;
 import java.util.List;
+import java.util.Scanner;
 
 public class TerminalView extends View {
+    private final Scanner scanner = new Scanner(System.in);
 
+    @Override
+    public String getInput(String prompt) {
+        while (true) {
+            System.out.print(prompt + "> ");
+            String input = scanner.nextLine().trim();
+
+            if (input.equalsIgnoreCase("guide") || input.equalsIgnoreCase("help")) {
+                String menuKey = extractMenuKey(prompt);
+                showMessage(HelpGuide.getGuideForMenu(menuKey));
+                continue;
+            }
+
+            return input;
+        }
+    }
+
+    private String extractMenuKey(String prompt) {
+        if (prompt == null) return "main";
+        String lower = prompt.toLowerCase();
+        if (lower.contains("register")) return "register";
+        if (lower.contains("login")) return "login";
+        if (lower.contains("game")) return "game";
+        if (lower.contains("play")) return "play";
+        if (lower.contains("profile")) return "profile";
+        if (lower.contains("news")) return "news";
+        if (lower.contains("settings")) return "settings";
+        if (lower.contains("collection")) return "collection";
+        if (lower.contains("travel") || lower.contains("quest")) return "travel-log";
+        if (lower.contains("greenhouse")) return "greenhouse";
+        if (lower.contains("shop")) return "shop";
+        if (lower.contains("leaderboard")) return "leaderboard";
+        return "main";
+    }
 
     public void showEmptyFieldMessage(String elemt){
         showMessage("you should enter" + elemt);
     }
+
     //userneme
     public void showUsernameExistsError() {
         showMessage("Username is already taken.");
     }
+
     public void showUsernameError(Validator.ValidationResult result) {
         String message = switch (result) {
             case INVALID_FORMAT -> "Username can only contain letters, numbers, and hyphens.";
             case INVALID_LENGTH -> "Username must be between 3 and 15 characters.";
             default -> "Invalid username.";
-
         };
         showMessage(message);
     }
+
     //password
     public void showPasswordError(Validator.ValidationResult result) {
         String message = switch (result) {
@@ -37,7 +74,6 @@ public class TerminalView extends View {
         showMessage(message);
     }
 
-
     public void showInvalidDisplayNameError(){
         showMessage("Nickname must be between 3 and 30 characters.");
     }
@@ -45,6 +81,7 @@ public class TerminalView extends View {
     public void showInvalidGenderError(){
         showMessage("Gender must be male or female.");
     }
+
     //email
     public void showEmailError(Validator.ValidationResult result) {
         String message = switch (result) {
@@ -69,6 +106,7 @@ public class TerminalView extends View {
     public void showSecurityQuestion(String question) {
         showMessage("Your security question is: " + question);
     }
+
     public void handleLoginResult(String result) {
         switch (result) {
             case "Username doesn't exist!" -> showMessage("Username doesn't exist!!");
@@ -94,6 +132,7 @@ public class TerminalView extends View {
             default -> showMessage(result);
         }
     }
+
     public void handleSetPasswordResult(String result) {
         switch (result) {
             case "SUCCESS_password changed" -> showMessage("Password changed successfully! You can now login with your new password.");
@@ -101,7 +140,8 @@ public class TerminalView extends View {
             default -> showMessage(result);
         }
     }
-    public void showLogoutResult(String result){showMessage(result);}
 
+    public void showLogoutResult(String result){
+        showMessage(result);
+    }
 }
-

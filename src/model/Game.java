@@ -304,8 +304,8 @@ public class Game {
             }
         }
 
-        if (specialType == SpecialLevelType.DEAD_LINE || activeMiniGame instanceof WallnutBowling) {
-            int lineCol = (activeMiniGame instanceof WallnutBowling) ? ((WallnutBowling) activeMiniGame).getDeadlineColumn() : level.getDeadlineColumn();
+        if (specialType == SpecialLevelType.DEAD_LINE) {
+            int lineCol = level.getDeadlineColumn();
             for (Zombie z : activeZombies) {
                 if (z.getX() <= lineCol) {
                     lost = true;

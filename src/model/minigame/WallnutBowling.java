@@ -1,6 +1,7 @@
 package model.minigame;
 
 import model.Game;
+import model.Tile;
 import model.entities.plant.Plant;
 import model.entities.zombie.Zombie;
 import java.util.ArrayList;
@@ -102,7 +103,6 @@ public class WallnutBowling extends MiniGame {
     }
 
     public void updateMiniGame(Game game) {
-        // Conveyor belt gives walnuts
         if (game.getTickCount() == 1 || game.getTickCount() % 120 == 0) {
             Random rand = new Random();
             int roll = rand.nextInt(100);
@@ -117,44 +117,40 @@ public class WallnutBowling extends MiniGame {
             game.getConveyorBeltPlants().add(walnutType);
         }
 
-        // Spawn zombie waves
         if (game.getTickCount() % 200 == 0 && waveCount < maxWaves && game.getActiveZombies().size() < 5) {
             spawnZombieWave(game);
         }
 
-        // Check if all zombies are defeated and waves are done
         if (game.getActiveZombies().isEmpty() && waveCount >= maxWaves) {
             if (stageLevel < maxStageLevel) {
-                // Complete level, advance to next
                 completeLevel(stageLevel, zombiesDefeated);
-                System.out.println("WallnutBowling: Level " + stageLevel + " complete! Moving to Level " + (stageLevel + 1));
                 stageLevel++;
                 updateLevelParameters();
                 waveCount = 0;
                 zombiesDefeated = 0;
-                // Reset board
                 for (Zombie z : new ArrayList<>(game.getActiveZombies())) {
                     game.getBoard().getTile(z.getY(), (int) z.getX()).setZombie(null);
                     game.removeZombie(z);
                 }
-                game.getGameLogMessages().add("WallnutBowling: New level started! Level " + stageLevel);
-                // Start first wave
+                game.getGameLogMessages().add("WallnutBowling: Stage " + (stageLevel - 1) + " complete! Advanced to Stage " + stageLevel);
                 spawnZombieWave(game);
                 return;
             } else {
                 game.setWon(true);
                 game.stop();
-                System.out.println("WallnutBowling: All levels complete! Victory!");
                 game.getGameLogMessages().add("Dear humanz, zis is not done yet; we will come back to eat your brainz, humanz.");
                 return;
             }
         }
 
-        // Process bowling balls
         for (Plant ball : new ArrayList<>(game.getActivePlants())) {
             if (ball.isBowlingBall()) {
                 if (game.getTickCount() % 5 == 0) {
-                    game.getBoard().getTile(ball.getY(), ball.getX()).setPlant(null);
+                    Tile oldTile = game.getBoard().getTile(ball.getY(), ball.getX());
+                    if (oldTile != null && oldTile.getPlant() == ball) {
+                        oldTile.setPlant(null);
+                    }
+
                     ball.setX(ball.getX() + ball.getDx());
                     ball.setY(ball.getY() + ball.getDy());
 
@@ -171,11 +167,14 @@ public class WallnutBowling extends MiniGame {
                         continue;
                     }
 
-                    game.getBoard().getTile(ball.getY(), ball.getX()).setPlant(ball);
+                    Tile newTile = game.getBoard().getTile(ball.getY(), ball.getX());
+                    if (newTile != null) {
+                        newTile.setPlant(ball);
+                    }
 
                     Zombie target = null;
                     for (Zombie z : game.getActiveZombies()) {
-                        if (z.getY() == ball.getY() && (int) z.getX() == ball.getX()) {
+                        if (z.getY() == ball.getY() && Math.abs(z.getX() - ball.getX()) <= 0.8) {
                             target = z;
                             break;
                         }
@@ -187,25 +186,27 @@ public class WallnutBowling extends MiniGame {
                             if (!target.isAlive()) {
                                 zombiesDefeated++;
                                 game.getScoreGame().onZombieKilled(target, game);
+                                game.getActiveZombies().remove(target);
+                                game.getBoard().getTile(target.getY(), (int) Math.round(target.getX())).setZombie(null);
                             }
-                        } else if (ball.getName().equalsIgnoreCase("Explode O' Nut")) {
+                        } else if (ball.getName().equalsIgnoreCase("Explode O' Nut") || ball.getName().contains("Explode")) {
                             List<Zombie> blastTargets = new ArrayList<>();
                             for (Zombie az : game.getActiveZombies()) {
-                                if (Math.abs(az.getY() - ball.getY()) <= 1 && Math.abs((int) az.getX() - ball.getX()) <= 1) {
+                                if (Math.abs(az.getY() - ball.getY()) <= 1 && Math.abs(az.getX() - ball.getX()) <= 1.5) {
                                     blastTargets.add(az);
                                 }
                             }
                             for (Zombie bt : blastTargets) {
-                                bt.takeDamage(500, false);
+                                bt.takeDamage(1800, false);
                                 if (!bt.isAlive()) {
                                     zombiesDefeated++;
                                     game.getScoreGame().onZombieKilled(bt, game);
                                     game.getActiveZombies().remove(bt);
-                                    game.getBoard().getTile(bt.getY(), (int) bt.getX()).setZombie(null);
+                                    game.getBoard().getTile(bt.getY(), (int) Math.round(bt.getX())).setZombie(null);
                                 }
                             }
                             game.getActivePlants().remove(ball);
-                            game.getBoard().getTile(ball.getY(), ball.getX()).setPlant(null);
+                            if (newTile != null) newTile.setPlant(null);
                         } else {
                             target.takeDamage(200, false);
                             ball.incrementHitCount();
@@ -213,33 +214,20 @@ public class WallnutBowling extends MiniGame {
                                 zombiesDefeated++;
                                 game.getScoreGame().onZombieKilled(target, game);
                                 game.getActiveZombies().remove(target);
-                                game.getBoard().getTile(target.getY(), (int) target.getX()).setZombie(null);
+                                game.getBoard().getTile(target.getY(), (int) Math.round(target.getX())).setZombie(null);
                             }
+
                             if (ball.getHitCount() == 1) {
-                                ball.setDy(new Random().nextBoolean() ? 1 : -1);
+                                int dy = new Random().nextBoolean() ? 1 : -1;
+                                if (ball.getY() == 0) dy = 1;
+                                else if (ball.getY() == game.getBoard().getRows() - 1) dy = -1;
+                                ball.setDy(dy);
                             } else {
                                 ball.setDy(-ball.getDy());
                             }
                         }
-
-                        if (target != null && !target.isAlive()) {
-                            game.getActiveZombies().remove(target);
-                            game.getBoard().getTile(target.getY(), (int) target.getX()).setZombie(null);
-                            game.incrementZombiesKilled();
-                        }
                     }
                 }
-            }
-        }
-
-        // Check loss condition (zombie passed deadline)
-        for (Zombie z : game.getActiveZombies()) {
-            if (z.getX() <= deadlineColumn) {
-                game.setLost(true);
-                game.stop();
-                System.out.println("WallnutBowling: Game Over! A zombie passed the deadline!");
-                game.getGameLogMessages().add("The zombie ate your brain; LOSER!!!");
-                return;
             }
         }
     }

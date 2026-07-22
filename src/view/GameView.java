@@ -9,11 +9,10 @@ import model.entities.zombie.Zombie;
 import model.Sun;
 import model.enums.TileType;
 import model.enums.SpecialLevelType;
-import model.minigame.Vasebreaker;
-import model.minigame.IZombie;
-import model.minigame.Beghoul;
-import model.minigame.WallnutBowling;
+import model.minigame.*;
 import controller.menu.PreGameController;
+
+import static model.minigame.Vasebreaker.*;
 
 public class GameView extends View {
     public void showBoard(Board board) {
@@ -38,7 +37,24 @@ public class GameView extends View {
         String ch = PreGameController.activeChapterName;
         String levelLabel = "Level 1 (Normal Mode)";
 
-        if (ch != null) {
+        if (game.getActiveMiniGame() != null) {
+            MiniGame mg = game.getActiveMiniGame();
+            int stage = 1;
+            if (mg instanceof Vasebreaker) {
+                stage = ((Vasebreaker) mg).getStageLevel();
+            } else if (mg instanceof Beghoul) {
+                stage = ((Beghoul) mg).getStageLevel();
+            } else if (mg instanceof IZombie) {
+                stage = ((IZombie) mg).getStageLevel();
+            } else if (mg instanceof WallnutBowling) {
+                stage = ((WallnutBowling) mg).getStageLevel();
+            } else if (mg instanceof Zombotany) {
+                stage = ((Zombotany) mg).getStageDifficulty();
+            } else {
+                stage = mg.getCurrentLevel();
+            }
+            levelLabel = "MINIGAME: " + mg.getName().toUpperCase() + " (STAGE " + stage + "/3)";
+        } else if (ch != null) {
             if (ch.endsWith("2")) {
                 if (ch.startsWith("AncientEgypt") || ch.startsWith("BigWaveBeach")) {
                     levelLabel = "Level 2 (Night Ops Mode)";
@@ -62,6 +78,12 @@ public class GameView extends View {
         if (game.getActiveMiniGame() instanceof IZombie) {
             IZombie iz = (IZombie) game.getActiveMiniGame();
             showMessage(" TICK: " + game.getTickCount() + " | ZOMBIE SUNS: " + iz.getZombieSunCount() + " | BRAINS EATEN: " + iz.getBrainsEaten() + "/5");
+            StringBuilder poolSb = new StringBuilder(" [AVAILABLE ZOMBIES]: ");
+            for (String zType : iz.getStageZombiePool()) {
+                poolSb.append(zType).append(" (").append(iz.getZombieCost(zType)).append(" Sun) | ");
+            }
+            if (poolSb.length() > 3) poolSb.setLength(poolSb.length() - 3);
+            showMessage(poolSb.toString());
         } else {
             showMessage(" TICK: " + game.getTickCount() + " | SUNS: " + game.getSunCount() + " | COINS: " + game.getCoins() + " | GEMS: " + game.getDiamonds() + " | FOODS: " + game.getPlantFoodCount());
         }
@@ -103,38 +125,23 @@ public class GameView extends View {
     }
 
     private String getCellContent(Game game, Tile tile, int r, int c) {
-        // Vasebreaker display - FIXED
         if (game.getActiveMiniGame() instanceof Vasebreaker) {
             Vasebreaker vb = (Vasebreaker) game.getActiveMiniGame();
-
-            // Check if vase exists at this position
-            String content = vb.getVaseContent(r, c);
-
-            // If content is null, there is NO vase here - show empty
-            if (content == null) {
-                return ".";
-            }
-
-            // Vase exists - show correct type if not broken
-            if (!vb.isVaseBroken(r, c)) {
-                if (content.equals(Vasebreaker.VASE_ZOMBIE)) {
-                    return "V-Z";
-                } else if (content.equals(Vasebreaker.VASE_GARGANTUAR)) {
+            if (vb.hasVase(r, c) && !vb.isVaseBroken(r, c)) {
+                String content = vb.getVaseContent(r, c);
+                if (VASE_GARGANTUAR.equalsIgnoreCase(content)) {
                     return "V-G";
-                } else if (content.equals(Vasebreaker.VASE_PLANT)) {
+                } else if (VASE_PLANT.equalsIgnoreCase(content) || VASE_SPECIAL_PLANT.equalsIgnoreCase(content)) {
                     return "V-P";
                 } else {
                     return "V-?";
                 }
             }
-
-            // Vase is broken - check for seed packet
             if (tile != null && tile.getTemporarySeedPacket() != null) {
                 return "PK-" + tile.getTemporarySeedPacket().substring(0, 1).toUpperCase();
             }
-
-            return ".";
         }
+
 
         if (game.getActiveMiniGame() instanceof Beghoul) {
             Beghoul bg = (Beghoul) game.getActiveMiniGame();
@@ -203,19 +210,16 @@ public class GameView extends View {
         if (game.getLevel().getSpecialLevelType() == SpecialLevelType.DEAD_LINE) {
             if (c == game.getLevel().getDeadlineColumn()) return "|";
         }
+        if (game.getActiveMiniGame() instanceof IZombie) {
+            if (c == 4) return "|";
+        }
 
         return ".";
     }
 
     private Zombie getZombieAtTile(Game game, int x, int y) {
         for (Zombie z : game.getActiveZombies()) {
-            // Check if zombie is at this tile (allow small floating point tolerance)
-            int zx = (int) Math.floor(z.getX());
-            if (zx == x && z.getY() == y) {
-                return z;
-            }
-            // Also check if zombie is exactly at this position
-            if (Math.abs(z.getX() - x) < 0.01 && z.getY() == y) {
+            if ((int) Math.round(z.getX()) == x && z.getY() == y) {
                 return z;
             }
         }
