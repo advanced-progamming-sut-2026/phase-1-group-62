@@ -16,6 +16,9 @@ public class PlantLoader {
     public static List<Plant> loadPlants() {
         File file = new File(FILE_PATH);
         if (!file.exists()) {
+            file = new File("phase-1-group-62-main/database/plants.json");
+        }
+        if (!file.exists()) {
             return new ArrayList<>();
         }
         try (FileReader reader = new FileReader(file)) {

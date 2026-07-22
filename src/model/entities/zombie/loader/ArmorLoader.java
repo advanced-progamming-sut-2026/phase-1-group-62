@@ -21,6 +21,9 @@ public class ArmorLoader {
     public static void loadArmors() {
         File file = new File(FILE_PATH);
         if (!file.exists()) {
+            file = new File("phase-1-group-62-main/database/armors.json");
+        }
+        if (!file.exists()) {
             return;
         }
         try (FileReader reader = new FileReader(file)) {

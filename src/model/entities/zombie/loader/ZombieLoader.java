@@ -17,6 +17,9 @@ public class ZombieLoader {
     public static List<Zombie> loadZombies() {
         File file = new File(FILE_PATH);
         if (!file.exists()) {
+            file = new File("phase-1-group-62-main/database/zombies.json");
+        }
+        if (!file.exists()) {
             return new ArrayList<>();
         }
         try (FileReader reader = new FileReader(file)) {
