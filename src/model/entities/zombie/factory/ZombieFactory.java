@@ -62,6 +62,38 @@ public class ZombieFactory {
                     int baseArmor = ArmorLoader.getBaseHealth("NewspaperDefault", 800);
                     zombie.setArmorHealth((int) Math.round(baseArmor * scaleIncrease));
                     zombie.setArmorType("NEWSPAPER");
+                } else if (template.getName().equalsIgnoreCase("BarrelRollerZombie")) {
+                    int barrelHealth = 500;
+                    zombie.setBarrelHealth((int) Math.round(barrelHealth * scaleIncrease));
+                    zombie.setBarrelRoller(true);
+                    zombie.setBarrelDestroyed(false);
+                } else if (template.getName().equalsIgnoreCase("ZombieIceAgeTroglobite")) {
+                    int iceBlockHealth = 400;
+                    zombie.setIceBlockHealth((int) Math.round(iceBlockHealth * scaleIncrease));
+                    zombie.setTroglobite(true);
+                    zombie.setIceBlockDestroyed(false);
+                } else if (template.getName().equalsIgnoreCase("ZombieBeachSnorkel")) {
+                    zombie.setUnderwater(true);
+                    zombie.setHasSurfaced(false);
+                } else if (template.getName().equalsIgnoreCase("ZombieDarkJuggler")) {
+                    zombie.setInsanityThreshold(100);
+                    zombie.setDamageTakenSinceLastReset(0);
+                    zombie.setInsane(false);
+                    zombie.setReflecting(false);
+                } else if (template.getName().equalsIgnoreCase("ZombieWizard")) {
+                    zombie.setWizard(true);
+                    zombie.setTransformationCooldown(60);
+                } else if (template.getName().equalsIgnoreCase("ZombieDarkKing")) {
+                    zombie.setKing(true);
+                    zombie.setIdle(true);
+                    zombie.setSpawnX(8.0);
+                } else if (template.getName().equalsIgnoreCase("ZombieIceAgeDodo")) {
+                    zombie.setDodoRider(true);
+                    zombie.setJumpCooldown(0);
+                } else if (template.getName().equalsIgnoreCase("ZombieCrystalSkull")) {
+                    zombie.setSunStealCooldown(30);
+                    zombie.setSunStealTimer(0);
+                    zombie.setStolenSunCount(0);
                 }
 
                 if (template.getName().equalsIgnoreCase("ZombieDarkImpDragon")) {
