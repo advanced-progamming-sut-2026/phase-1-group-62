@@ -129,6 +129,16 @@ public class Zombie {
         }
     }
 
+    // متد اضافه شده برای رفع خطای کامپایل
+    public void removeEffect(ZombieEffect effect) {
+        if (effect == ZombieEffect.FROZEN) {
+            this.frozenDuration = 0.0;
+            this.frozenIceHealth = 0;
+        } else if (effect == ZombieEffect.CHILLED) {
+            this.chilledDuration = 0.0;
+        }
+    }
+
     public void updateEffects(double deltaSeconds) {
         if (chilledDuration > 0) {
             chilledDuration -= deltaSeconds;
@@ -198,7 +208,6 @@ public class Zombie {
         }
 
         double speedPerTick = currentSpeed / 10.0;
-
         if (chilledDuration > 0) {
             speedPerTick /= 2.0;
         }
@@ -253,9 +262,9 @@ public class Zombie {
     public boolean isCharging() { return isCharging; }
     public void setCharging(boolean charging) { isCharging = charging; }
     public boolean isSubmerged() { return isSubmerged; }
-    public void setSubmerged(boolean submerged) { isSubmerged = submerged; }
+    public void setSubmerged(boolean submerged) { this.isSubmerged = submerged; }
     public boolean isSpinning() { return isSpinning; }
-    public void setSpinning(boolean spinning) { isSpinning = spinning; }
+    public void setSpinning(boolean spinning) { this.isSpinning = spinning; }
     public int getIceHitsTaken() { return iceHitsTaken; }
     public void incrementIceHitsTaken() { this.iceHitsTaken++; }
     public void resetIceHitsTaken() { this.iceHitsTaken = 0; }
