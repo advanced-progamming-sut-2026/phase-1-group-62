@@ -326,20 +326,17 @@ public class Game {
             }
         }
 
-        // Execution of plants action logic
         updatePlantsAndAbilities();
-
         List<Zombie> zombiesToRemove = new ArrayList<>();
         List<Zombie> zombiesToAdd = new ArrayList<>();
-
         for (Zombie zombie : new ArrayList<>(activeZombies)) {
             zombie.updateEffects();
             zombie.updateCooldown();
-
             if (!zombie.isAlive()) {
                 zombiesToRemove.add(zombie);
                 if (zombie.getStolenSuns() > 0) {
-                    int returnSun = zombie.getName().equalsIgnoreCase("ZombieCrystalSkull") ? zombie.getStolenSuns() / 2 : zombie.getStolenSuns();
+                    int returnSun = zombie.getName().equalsIgnoreCase("ZombieCrystalSkull") ?
+                            zombie.getStolenSuns() / 2 : zombie.getStolenSuns();
                     addSun(returnSun);
                     gameLogMessages.add("Ra/Turquoise Zombie died! Returned " + returnSun + " stolen suns.");
                 }
@@ -361,7 +358,6 @@ public class Game {
             }
 
             processSpecialZombieAbilities(zombie, zombiesToAdd);
-
             if (!zombie.hasEffect(ZombieEffect.FROZEN)) {
                 double zombieX = zombie.getX();
                 int zombieY = zombie.getY();
@@ -372,7 +368,6 @@ public class Game {
                 }
 
                 Plant targetPlant = getPlantAt(targetPlantX, zombieY);
-
                 if (targetPlant != null && !targetPlant.isBowlingBall() && zombieX - targetPlant.getX() <= 1.05) {
                     if (zombie.getName().equalsIgnoreCase("ZombieExplorer") && zombie.isTorchLit()) {
                         activePlants.remove(targetPlant);
@@ -479,7 +474,6 @@ public class Game {
         activeZombies.addAll(zombiesToAdd);
 
         if (lost || won || !running) return;
-
         if (spawner != null) {
             if ((specialType == SpecialLevelType.PLANT_WHAT_YOU_GET && !zombieWavesStarted) || activeMiniGame instanceof Vasebreaker || activeMiniGame instanceof IZombie || activeMiniGame instanceof Beghoul) {
             } else {
@@ -498,11 +492,8 @@ public class Game {
                 }
             }
         }
-
         if (lost || won || !running) return;
-
         handleSunDrop();
-
         if (currentSeason != null) {
             currentSeason.handleTick(this);
             if (currentSeason.getName().equalsIgnoreCase("BigWaveBeach")) {
@@ -520,7 +511,6 @@ public class Game {
                 }
             }
         }
-
         for (int r = 0; r < board.getRows(); r++) {
             for (int c = 0; c < board.getColumns(); c++) {
                 board.getTile(r, c).setZombie(null);
@@ -533,16 +523,12 @@ public class Game {
                 board.getTile(zY, zX).setZombie(zombie);
             }
         }
-
         board.updateProjectilesAndCollisions(this);
-
         if (spawner != null && !(activeMiniGame instanceof Vasebreaker) && !(activeMiniGame instanceof IZombie) && !(activeMiniGame instanceof Beghoul)) {
             if (spawner.isWaveComplete() && activeZombies.isEmpty()) {
                 if (spawner.getCurrentWave() < spawner.getTotalWaves()) {
                     int nextWave = spawner.getCurrentWave() + 1;
-                    if (currentSeason != null) {
-                        currentSeason.handleWaveStart(this);
-                    }
+                    if (currentSeason != null) { currentSeason.handleWaveStart(this); }
                     spawner.startWave(nextWave);
                     if (spawner.isFinalWave()) {
                         gameLogMessages.add("The final wave has come.");
@@ -574,9 +560,7 @@ public class Game {
                 if (totalWaveHealth > 0 && (currentWaveHealth / totalWaveHealth) <= 0.25) {
                     if (spawner.getCurrentWave() < spawner.getTotalWaves()) {
                         int nextWave = spawner.getCurrentWave() + 1;
-                        if (currentSeason != null) {
-                            currentSeason.handleWaveStart(this);
-                        }
+                        if (currentSeason != null) { currentSeason.handleWaveStart(this); }
                         spawner.startWave(nextWave);
                         if (spawner.isFinalWave()) {
                             gameLogMessages.add("The final wave has come.");
@@ -591,20 +575,17 @@ public class Game {
 
     private void updatePlantsAndAbilities() {
         List<Plant> plantsToRemove = new ArrayList<>();
-
         for (Plant plant : new ArrayList<>(activePlants)) {
             if (plant.isFrozen() || plant.isBowlingBall() || plant.isTransformedToSheep()) {
                 continue;
             }
-
             plant.update();
             String name = plant.getName();
-
             if ("SUN_PRODUCER".equalsIgnoreCase(plant.getCategory())) {
                 if (name.equalsIgnoreCase("Gold Bloom")) {
                     addSun((int) plant.getAbilityValue());
                     plantsToRemove.add(plant);
-                    gameLogMessages.add("Gold Bloom burst and produced 375 suns!");
+                    gameLogMessages.add("Gold Bloom burst and produced " + (int) plant.getAbilityValue() + " suns!");
                 } else if (name.equalsIgnoreCase("Enlighten-mint")) {
                     triggerMintBoost("SUN_PRODUCER");
                     plantsToRemove.add(plant);
@@ -619,38 +600,36 @@ public class Game {
                     }
                 }
             }
-
-            boolean isAttacker = "SHOOTER".equalsIgnoreCase(plant.getCategory()) ||
-                    "STRIKE_THROUGH".equalsIgnoreCase(plant.getCategory()) ||
-                    "HOMING".equalsIgnoreCase(plant.getCategory()) ||
-                    "LOBBER".equalsIgnoreCase(plant.getCategory());
-
+            boolean isAttacker = "SHOOTER".equalsIgnoreCase(plant.getCategory()) || "STRIKE_THROUGH".equalsIgnoreCase(plant.getCategory()) || "HOMING".equalsIgnoreCase(plant.getCategory()) || "LOBBER".equalsIgnoreCase(plant.getCategory());
             if (isAttacker && plant.shouldShoot()) {
                 boolean targetInRow = hasZombieInRow(plant.getY()) || board.hasGraveInRow(plant.getY());
-                boolean globalTarget = !activeZombies.isEmpty();
 
-                if (targetInRow || ("HOMING".equalsIgnoreCase(plant.getCategory()) && globalTarget)) {
+                if (name.equalsIgnoreCase("Threepeater")) {
+                    int py = plant.getY();
+                    targetInRow = hasZombieInRow(py) || board.hasGraveInRow(py)
+                            || (py > 0 && (hasZombieInRow(py - 1) || board.hasGraveInRow(py - 1)))
+                            || (py < board.getRows() - 1 && (hasZombieInRow(py + 1) || board.hasGraveInRow(py + 1)));
+                }
+
+                boolean globalTarget = !activeZombies.isEmpty();
+                if (targetInRow || ("HOMING".equalsIgnoreCase(plant.getCategory()) && globalTarget) || name.equalsIgnoreCase("Starfruit") || name.equalsIgnoreCase("Laser Bean")) {
                     spawnBulletsForPlant(plant);
                 }
             }
-
             if ("MELEE".equalsIgnoreCase(plant.getCategory()) && plant.shouldShoot()) {
                 executeMeleeAttack(plant);
             }
-
             if ("EXPLOSIVE".equalsIgnoreCase(plant.getCategory())) {
                 executeExplosiveLogic(plant, plantsToRemove);
             }
 
-            if ("MODIFIER".equalsIgnoreCase(plant.getCategory()) || "HOMING".equalsIgnoreCase(plant.getCategory())) {
+            if (("MODIFIER".equalsIgnoreCase(plant.getCategory()) || "HOMING".equalsIgnoreCase(plant.getCategory())) && plant.shouldShoot()) {
                 executeUtilityLogic(plant, plantsToRemove);
             }
-
             if (name.contains("-mint") && !"Enlighten-mint".equalsIgnoreCase(name)) {
                 executeMintLogic(plant, plantsToRemove);
             }
         }
-
         for (Plant p : plantsToRemove) {
             removePlant(p);
             Tile t = board.getTile(p.getY(), p.getX());
@@ -664,55 +643,237 @@ public class Game {
         String name = plant.getName();
         int px = plant.getX();
         int py = plant.getY();
+        int dmg = plant.getDamage() > 0 ? plant.getDamage() : 20;
 
         if (name.equalsIgnoreCase("Peashooter") || name.equalsIgnoreCase("Pea Pod")) {
             int heads = plant.getPeaPodHeads();
             for (int i = 0; i < heads; i++) {
-                bullets.add(new Bullet(20, py, px + 1, Bullet.BulletType.NORMAL, false, false, 0));
+                bullets.add(new Bullet(dmg, py, px + 1, Bullet.BulletType.NORMAL, false, false, 0));
             }
         } else if (name.equalsIgnoreCase("Repeater")) {
-            bullets.add(new Bullet(20, py, px + 1, Bullet.BulletType.NORMAL, false, false, 0));
-            bullets.add(new Bullet(20, py, px + 1, Bullet.BulletType.NORMAL, false, false, 0));
+            bullets.add(new Bullet(dmg, py, px + 1, Bullet.BulletType.NORMAL, false, false, 0));
+            bullets.add(new Bullet(dmg, py, px + 1, Bullet.BulletType.NORMAL, false, false, 0));
         } else if (name.equalsIgnoreCase("Threepeater")) {
             for (int r = Math.max(0, py - 1); r <= Math.min(board.getRows() - 1, py + 1); r++) {
-                bullets.add(new Bullet(20, r, px + 1, Bullet.BulletType.NORMAL, false, false, 0));
+                bullets.add(new Bullet(dmg, r, px + 1, Bullet.BulletType.NORMAL, false, false, 0));
             }
         } else if (name.equalsIgnoreCase("Snow Pea")) {
-            bullets.add(new Bullet(20, py, px + 1, Bullet.BulletType.ICE, false, false, 0));
-        } else if (name.equalsIgnoreCase("Fire Peashooter")) {
-            bullets.add(new Bullet(40, py, px + 1, Bullet.BulletType.FIRE, false, false, 0));
+            bullets.add(new Bullet(dmg, py, px + 1, Bullet.BulletType.ICE, false, false, 0));
+        } else if (name.equalsIgnoreCase("Rotobaga")) {
+            bullets.add(new Bullet(dmg, Math.max(0, py - 1), px + 1, Bullet.BulletType.NORMAL, false, false, 0));
+            bullets.add(new Bullet(dmg, Math.min(board.getRows() - 1, py + 1), px + 1, Bullet.BulletType.NORMAL, false, false, 0));
+            bullets.add(new Bullet(dmg, Math.max(0, py - 1), Math.max(0, px - 1), Bullet.BulletType.NORMAL, false, false, 0));
+            bullets.add(new Bullet(dmg, Math.min(board.getRows() - 1, py + 1), Math.max(0, px - 1), Bullet.BulletType.NORMAL, false, false, 0));
         } else if (name.equalsIgnoreCase("Split Pea")) {
-            bullets.add(new Bullet(20, py, px + 1, Bullet.BulletType.NORMAL, false, false, 0));
-            bullets.add(new Bullet(20, py, px - 1, Bullet.BulletType.NORMAL, false, false, 0));
-            bullets.add(new Bullet(20, py, px - 1, Bullet.BulletType.NORMAL, false, false, 0));
+            bullets.add(new Bullet(dmg, py, px + 1, Bullet.BulletType.NORMAL, false, false, 0));
+            bullets.add(new Bullet(dmg, py, Math.max(0, px - 1), Bullet.BulletType.NORMAL, false, false, 0));
+            bullets.add(new Bullet(dmg, py, Math.max(0, px - 1), Bullet.BulletType.NORMAL, false, false, 0));
+        } else if (name.equalsIgnoreCase("Citron")) {
+            bullets.add(new Bullet(dmg, py, px + 1, Bullet.BulletType.LASER, true, false, 0));
+        } else if (name.equalsIgnoreCase("Bowling Bulb")) {
+            int bulbDmg = 40;
+            if (plant.getHitCount() % 3 == 1) bulbDmg = 120;
+            else if (plant.getHitCount() % 3 == 2) bulbDmg = 180;
+            plant.incrementHitCount();
+            bullets.add(new Bullet(bulbDmg, py, px + 1, Bullet.BulletType.NORMAL, true, true, 1));
+        } else if (name.equalsIgnoreCase("Cactus")) {
+            bullets.add(new Bullet(dmg, py, px + 1, Bullet.BulletType.STRIKE_THROUGH, true, false, 0));
+        } else if (name.equalsIgnoreCase("Fire Peashooter")) {
+            bullets.add(new Bullet(40 + (plant.getLevel() >= 2 ? 10 : 0), py, px + 1, Bullet.BulletType.FIRE, false, false, 0));
+            // ذوب کردن یخ زامبی در صورت حضور
+            Zombie z = getFirstZombieInRowAhead(py, px);
+            if (z != null && (z.hasEffect(ZombieEffect.FROZEN) || z.hasEffect(ZombieEffect.CHILLED))) {
+                z.removeEffect(ZombieEffect.FROZEN);
+                z.removeEffect(ZombieEffect.CHILLED);
+                gameLogMessages.add("Fire Peashooter melted ice on zombie in lane " + py);
+            }
+        } else if (name.equalsIgnoreCase("Starfruit")) {
+            // شلیک ۵ جهته (جلو، بالا، پایین، عقب-بالا، عقب-پایین)
+            bullets.add(new Bullet(dmg, py, px + 1, Bullet.BulletType.NORMAL, false, false, 0));
+            if (py > 0) bullets.add(new Bullet(dmg, py - 1, px, Bullet.BulletType.NORMAL, false, false, 0));
+            if (py < board.getRows() - 1) bullets.add(new Bullet(dmg, py + 1, px, Bullet.BulletType.NORMAL, false, false, 0));
+            if (py > 0) bullets.add(new Bullet(dmg, py - 1, Math.max(0, px - 1), Bullet.BulletType.NORMAL, false, false, 0));
+            if (py < board.getRows() - 1) bullets.add(new Bullet(dmg, py + 1, Math.max(0, px - 1), Bullet.BulletType.NORMAL, false, false, 0));
+        } else if (name.equalsIgnoreCase("Laser Bean")) {
+            // شلیک پرتو لیزر نافذ کل لاین
+            bullets.add(new Bullet(dmg, py, px + 1, Bullet.BulletType.LASER, true, false, 0));
+            gameLogMessages.add("Laser Bean fired a laser beam down row " + py);
         } else if (name.equalsIgnoreCase("Mega Gatling Pea")) {
             for (int i = 0; i < 4; i++) {
-                bullets.add(new Bullet(20, py, px + 1, Bullet.BulletType.NORMAL, false, false, 0));
+                bullets.add(new Bullet(dmg, py, px + 1, Bullet.BulletType.NORMAL, false, false, 0));
             }
-        } else if (name.equalsIgnoreCase("Cactus") || name.equalsIgnoreCase("Fume-shroom")) {
+        } else if (name.equalsIgnoreCase("Fume-shroom")) {
             bullets.add(new Bullet(30, py, px + 1, Bullet.BulletType.STRIKE_THROUGH, true, false, 0));
         } else if (name.equalsIgnoreCase("Goo Peashooter")) {
-            bullets.add(new Bullet(20, py, px + 1, Bullet.BulletType.POISON, false, false, 0));
-        } else if (name.equalsIgnoreCase("Citron")) {
-            bullets.add(new Bullet(800, py, px + 1, Bullet.BulletType.LASER, true, false, 0));
-        } else if (name.equalsIgnoreCase("Rotobaga") || name.equalsIgnoreCase("Starfruit")) {
-            bullets.add(new Bullet(20, py, px + 1, Bullet.BulletType.NORMAL, false, false, 0));
-            if (py > 0) bullets.add(new Bullet(20, py - 1, px + 1, Bullet.BulletType.NORMAL, false, false, 0));
-            if (py < board.getRows() - 1) bullets.add(new Bullet(20, py + 1, px + 1, Bullet.BulletType.NORMAL, false, false, 0));
+            bullets.add(new Bullet(dmg, py, px + 1, Bullet.BulletType.POISON, false, false, 0));
         } else if (name.toLowerCase().contains("pult") || name.toLowerCase().contains("melon")) {
             Bullet.BulletType bType = name.toLowerCase().contains("winter") ? Bullet.BulletType.ICE : Bullet.BulletType.LOB;
-            int dmg = name.toLowerCase().contains("melon") ? 80 : 40;
-            bullets.add(new Bullet(dmg, py, px + 1, bType, false, name.toLowerCase().contains("melon"), 1));
+            int pDmg = name.toLowerCase().contains("melon") ? 80 : 40;
+            bullets.add(new Bullet(pDmg, py, px + 1, bType, false, name.toLowerCase().contains("melon"), 1));
         } else {
-            bullets.add(new Bullet(plant.getDamage() > 0 ? plant.getDamage() : 20, py, px + 1, Bullet.BulletType.NORMAL, false, false, 0));
+            bullets.add(new Bullet(dmg, py, px + 1, Bullet.BulletType.NORMAL, false, false, 0));
         }
+    }
+
+    public String applyPlantFood(Plant plant) {
+        if (plant == null) return "";
+        String name = plant.getName();
+        int px = plant.getX();
+        int py = plant.getY();
+        int dmg = plant.getDamage() > 0 ? plant.getDamage() : 20;
+
+        if (name.equalsIgnoreCase("Sunflower")) {
+            addSun(150);
+            gameLogMessages.add("Sunflower generated 150 suns with Plant Food!");
+            return "Plant Food Effect: Produced 150 suns!";
+        } else if (name.equalsIgnoreCase("Twin Sunflower")) {
+            addSun(250);
+            gameLogMessages.add("Twin Sunflower generated 250 suns with Plant Food!");
+            return "Plant Food Effect: Produced 250 suns!";
+        } else if (name.equalsIgnoreCase("Sun-shroom")) { // شناسه ۳
+            plant.setPlantStage(3);
+            addSun(225);
+            gameLogMessages.add("Sun-shroom instantly grew to max size and generated 225 suns!");
+            return "Plant Food Effect: Grew to max size and produced 225 suns!";
+        } else if (name.equalsIgnoreCase("Primal Sunflower")) {
+            addSun(225);
+            gameLogMessages.add("Primal Sunflower generated 225 suns with Plant Food!");
+            return "Plant Food Effect: Produced 225 suns!";
+        } else if (name.equalsIgnoreCase("Gold Bloom")) {
+            addSun(375);
+            gameLogMessages.add("Gold Bloom generated 375 suns with Plant Food!");
+            return "Plant Food Effect: Produced 375 suns!";
+        } else if (name.equalsIgnoreCase("Peashooter")) {
+            for (int i = 0; i < 60; i++) {
+                bullets.add(new Bullet(dmg, py, px + 1, Bullet.BulletType.NORMAL, false, false, 0));
+            }
+            gameLogMessages.add("Peashooter unleashed a Gatling volley of 60 peas!");
+            return "Plant Food Effect: Unleashed Gatling barrage!";
+        } else if (name.equalsIgnoreCase("Repeater")) {
+            for (int i = 0; i < 60; i++) {
+                bullets.add(new Bullet(dmg, py, px + 1, Bullet.BulletType.NORMAL, false, false, 0));
+            }
+            bullets.add(new Bullet(400, py, px + 1, Bullet.BulletType.NORMAL, false, false, 0));
+            gameLogMessages.add("Repeater unleashed heavy barrage + giant pea (400 dmg)!");
+            return "Plant Food Effect: Unleashed heavy barrage & giant pea!";
+        } else if (name.equalsIgnoreCase("Threepeater")) {
+            for (int r = Math.max(0, py - 1); r <= Math.min(board.getRows() - 1, py + 1); r++) {
+                for (int i = 0; i < 20; i++) {
+                    bullets.add(new Bullet(dmg, r, px + 1, Bullet.BulletType.NORMAL, false, false, 0));
+                }
+            }
+            gameLogMessages.add("Threepeater unleashed fan barrage across 3 lanes!");
+            return "Plant Food Effect: Unleashed fan barrage across 3 lanes!";
+        } else if (name.equalsIgnoreCase("Snow Pea")) {
+            for (int i = 0; i < 60; i++) {
+                bullets.add(new Bullet(dmg, py, px + 1, Bullet.BulletType.ICE, false, false, 0));
+            }
+            for (Zombie z : activeZombies) {
+                if (z.getY() == py) {
+                    z.applyFrozen(5.0);
+                }
+            }
+            gameLogMessages.add("Snow Pea unleashed ice barrage and froze all zombies in lane " + py + "!");
+            return "Plant Food Effect: Unleashed ice barrage and froze the lane!";
+        } else if (name.equalsIgnoreCase("Rotobaga")) {
+            for (int i = 0; i < 15; i++) {
+                bullets.add(new Bullet(dmg, Math.max(0, py - 1), px + 1, Bullet.BulletType.NORMAL, false, false, 0));
+                bullets.add(new Bullet(dmg, Math.min(board.getRows() - 1, py + 1), px + 1, Bullet.BulletType.NORMAL, false, false, 0));
+                bullets.add(new Bullet(dmg, Math.max(0, py - 1), Math.max(0, px - 1), Bullet.BulletType.NORMAL, false, false, 0));
+                bullets.add(new Bullet(dmg, Math.min(board.getRows() - 1, py + 1), Math.max(0, px - 1), Bullet.BulletType.NORMAL, false, false, 0));
+            }
+            gameLogMessages.add("Rotobaga unleashed rapid diagonal barrage!");
+            return "Plant Food Effect: Unleashed rapid diagonal barrage!";
+        } else if (name.equalsIgnoreCase("Pea Pod")) {
+            int heads = plant.getPeaPodHeads();
+            for (int i = 0; i < heads; i++) {
+                bullets.add(new Bullet(400, py, px + 1, Bullet.BulletType.NORMAL, false, false, 0));
+            }
+            gameLogMessages.add("Pea Pod fired giant peas for each head!");
+            return "Plant Food Effect: Fired giant peas for each head!";
+        } else if (name.equalsIgnoreCase("Split Pea")) {
+            for (int i = 0; i < 30; i++) {
+                bullets.add(new Bullet(dmg, py, px + 1, Bullet.BulletType.NORMAL, false, false, 0));
+            }
+            for (int i = 0; i < 60; i++) {
+                bullets.add(new Bullet(dmg, py, Math.max(0, px - 1), Bullet.BulletType.NORMAL, false, false, 0));
+            }
+            gameLogMessages.add("Split Pea unleashed rapid barrage forward and backward!");
+            return "Plant Food Effect: Rapid barrage forward and backward!";
+        } else if (name.equalsIgnoreCase("Citron")) {
+            for (Zombie z : activeZombies) {
+                if (z.getY() == py) {
+                    z.takeDamage(5000, true);
+                }
+            }
+            gameLogMessages.add("Citron fired a massive plasma ball, clearing the entire lane!");
+            return "Plant Food Effect: Fired massive plasma ball!";
+        } else if (name.equalsIgnoreCase("Caulipower")) {
+            int count = 0;
+            for (Zombie z : activeZombies) {
+                if (!z.isHypnotized()) {
+                    z.setHypnotized(true);
+                    count++;
+                    if (count >= 3) break;
+                }
+            }
+            gameLogMessages.add("Caulipower hypnotized " + count + " random zombies!");
+            return "Plant Food Effect: Hypnotized multiple zombies!";
+        } else if (name.equalsIgnoreCase("Electric Blueberry")) {
+            int count = 0;
+            for (Zombie z : new ArrayList<>(activeZombies)) {
+                z.takeDamage(5000, true);
+                count++;
+                if (count >= 3) break;
+            }
+            gameLogMessages.add("Electric Blueberry zapped and destroyed " + count + " zombies!");
+            return "Plant Food Effect: Instantly zapped " + count + " zombies!";
+        } else if (name.equalsIgnoreCase("Bowling Bulb")) {
+            for (int i = 0; i < 3; i++) {
+                bullets.add(new Bullet(400, py, px + 1, Bullet.BulletType.NORMAL, true, true, 2));
+            }
+            gameLogMessages.add("Bowling Bulb launched 3 giant explosive bulbs!");
+            return "Plant Food Effect: Launched 3 giant explosive bulbs!";
+        } else if (name.equalsIgnoreCase("Cactus")) {
+            bullets.add(new Bullet(150, py, px + 1, Bullet.BulletType.STRIKE_THROUGH, true, false, 0));
+            gameLogMessages.add("Cactus fired electric thorns with infinite penetration!");
+            return "Plant Food Effect: Fired electric thorns with infinite penetration!";
+        } else if (name.equalsIgnoreCase("Starfruit")) { // شناسه ۱۸
+            for (int i = 0; i < 10; i++) {
+                bullets.add(new Bullet(100, py, px + 1, Bullet.BulletType.NORMAL, false, false, 0));
+                if (py > 0) bullets.add(new Bullet(100, py - 1, px, Bullet.BulletType.NORMAL, false, false, 0));
+                if (py < board.getRows() - 1) bullets.add(new Bullet(100, py + 1, px, Bullet.BulletType.NORMAL, false, false, 0));
+                if (py > 0) bullets.add(new Bullet(100, py - 1, Math.max(0, px - 1), Bullet.BulletType.NORMAL, false, false, 0));
+                if (py < board.getRows() - 1) bullets.add(new Bullet(100, py + 1, Math.max(0, px - 1), Bullet.BulletType.NORMAL, false, false, 0));
+            }
+            gameLogMessages.add("Starfruit unleashed giant star barrage in 5 directions!");
+            return "Plant Food Effect: Unleashed giant star barrage in 5 directions!";
+        } else if (name.equalsIgnoreCase("Fire Peashooter")) { // شناسه ۱۹
+            for (Zombie z : activeZombies) {
+                if (z.getY() == py) {
+                    z.takeDamage(500, true);
+                    z.removeEffect(ZombieEffect.FROZEN);
+                    z.removeEffect(ZombieEffect.CHILLED);
+                }
+            }
+            gameLogMessages.add("Fire Peashooter scorched the entire row with a trail of fire!");
+            return "Plant Food Effect: Scorched the entire row with fire!";
+        } else if (name.equalsIgnoreCase("Laser Bean")) { // شناسه ۲۰
+            for (Zombie z : activeZombies) {
+                if (z.getY() == py) {
+                    z.takeDamage(1800, true);
+                }
+            }
+            gameLogMessages.add("Laser Bean unleashed a massive laser beam dealing 1800 damage to all zombies in row!");
+            return "Plant Food Effect: Unleashed massive laser beam!";
+        }
+        return "Plant Food applied!";
     }
 
     private void executeMeleeAttack(Plant plant) {
         String name = plant.getName();
         int px = plant.getX();
         int py = plant.getY();
-
         if (name.equalsIgnoreCase("Chomper")) {
             if (!plant.isDigesting()) {
                 Zombie target = getFirstZombieInRowAhead(py, px);
@@ -742,7 +903,6 @@ public class Game {
         String name = plant.getName();
         int px = plant.getX();
         int py = plant.getY();
-
         if (name.equalsIgnoreCase("Cherry Bomb") || name.equalsIgnoreCase("Grapeshot")) {
             for (Zombie z : activeZombies) {
                 if (Math.abs(z.getY() - py) <= 1 && Math.abs(z.getX() - px) <= 1.5) {
@@ -822,7 +982,6 @@ public class Game {
         String name = plant.getName();
         int px = plant.getX();
         int py = plant.getY();
-
         if (name.equalsIgnoreCase("Magnet-shroom") && plant.getMagnetCooldownTicks() <= 0) {
             for (Zombie z : activeZombies) {
                 if (z.getArmorHealth() > 0 && ("BUCKET".equalsIgnoreCase(z.getArmorType()) || "CONE".equalsIgnoreCase(z.getArmorType()) || "KNIGHT".equalsIgnoreCase(z.getArmorType()))) {
@@ -835,13 +994,25 @@ public class Game {
             }
         } else if (name.equalsIgnoreCase("Caulipower") || name.equalsIgnoreCase("Electric Blueberry")) {
             if (!activeZombies.isEmpty()) {
-                Zombie target = activeZombies.get(new Random().nextInt(activeZombies.size()));
-                if (name.equalsIgnoreCase("Caulipower")) {
-                    target.setHypnotized(true);
-                    gameLogMessages.add("Caulipower hypnotized zombie " + target.getName() + "!");
+                Zombie target = null;
+                if (name.equalsIgnoreCase("Electric Blueberry") && plant.getLevel() >= 3) {
+                    for (Zombie z : activeZombies) {
+                        if (target == null || z.getHealth() > target.getHealth()) {
+                            target = z;
+                        }
+                    }
                 } else {
-                    target.takeDamage(5000, true);
-                    gameLogMessages.add("Electric Blueberry zapped zombie " + target.getName() + "!");
+                    target = activeZombies.get(new Random().nextInt(activeZombies.size()));
+                }
+
+                if (target != null) {
+                    if (name.equalsIgnoreCase("Caulipower")) {
+                        target.setHypnotized(true);
+                        gameLogMessages.add("Caulipower hypnotized zombie " + target.getName() + "!");
+                    } else {
+                        target.takeDamage(5000, true);
+                        gameLogMessages.add("Electric Blueberry zapped zombie " + target.getName() + "!");
+                    }
                 }
             }
         }
@@ -860,7 +1031,6 @@ public class Game {
             case "catTail-mint" -> "HOMING";
             default -> "";
         };
-
         if (!familyCategory.isEmpty()) {
             triggerMintBoost(familyCategory);
             toRemove.add(plant);
@@ -882,14 +1052,12 @@ public class Game {
 
     private void processZombieDeathDrops(Zombie zombie) {
         Random r = new Random();
-
         if (zombie.isGlowing()) {
             if (getPlantFoodCount() < 3) {
                 addPlantFood();
                 gameLogMessages.add("The glowing zombie dropped a plant food; you have " + getPlantFoodCount() + " plant foods now.");
             }
         }
-
         if (r.nextInt(100) < 10) {
             int dropType = r.nextInt(3);
             if (dropType == 0) {
@@ -910,7 +1078,6 @@ public class Game {
 
     private void processSpecialZombieAbilities(Zombie zombie, List<Zombie> zombiesToAdd) {
         String name = zombie.getName();
-
         if (name.equalsIgnoreCase("ZombieGargantuar") && !zombie.isHasThrownImp()) {
             if (zombie.getHealth() <= zombie.getMaxHealth() / 2) {
                 zombie.setHasThrownImp(true);
@@ -923,7 +1090,6 @@ public class Game {
                 }
             }
         }
-
         if (name.equalsIgnoreCase("ZombieRa")) {
             zombie.incrementRaStealTimer();
             if (zombie.getRaStealTimer() >= 20) {
@@ -935,7 +1101,6 @@ public class Game {
                 }
             }
         }
-
         if (name.equalsIgnoreCase("ZombieTombRaiser")) {
             zombie.incrementTombraiserTimer();
             if (zombie.getTombraiserTimer() >= 100) {
@@ -950,7 +1115,6 @@ public class Game {
                 }
             }
         }
-
         if (name.equalsIgnoreCase("ZombieIceAgeHunter")) {
             if (tickCount % 30 == 0) {
                 Plant p = getFirstPlantInRow(zombie.getY());
@@ -960,7 +1124,6 @@ public class Game {
                 }
             }
         }
-
         if (name.equalsIgnoreCase("ZombieBeachFisherman")) {
             zombie.incrementFishermanTimer();
             if (zombie.getFishermanTimer() >= 25) {
@@ -980,7 +1143,6 @@ public class Game {
                 }
             }
         }
-
         if (name.equalsIgnoreCase("ZombieBeachOctopus")) {
             zombie.incrementOctopusTimer();
             if (zombie.getOctopusTimer() >= 40) {
@@ -992,7 +1154,6 @@ public class Game {
                 }
             }
         }
-
         if (name.equalsIgnoreCase("ZombieDarkKing")) {
             zombie.incrementKingTimer();
             if (zombie.getKingTimer() >= 25) {
@@ -1009,7 +1170,6 @@ public class Game {
                 }
             }
         }
-
         if (name.equalsIgnoreCase("ZombieCrystalSkull")) {
             zombie.incrementTurquoiseLaserTimer();
             if (zombie.getTurquoiseLaserTimer() >= 50) {
@@ -1025,7 +1185,6 @@ public class Game {
                 }
             }
         }
-
         if (name.equalsIgnoreCase("ZombieProspector") && zombie.getDynamiteTimer() > 0) {
             if (zombie.getDynamiteTimer() <= 1.0) {
                 zombie.setDynamiteTimer(0.0);
@@ -1034,7 +1193,6 @@ public class Game {
                 gameLogMessages.add("Prospector Zombie's dynamite exploded! Flew to end of row.");
             }
         }
-
         if (name.equalsIgnoreCase("ZombiePiano")) {
             zombie.incrementPianoPlayTimer();
             if (zombie.getPianoPlayTimer() >= 30) {
@@ -1083,7 +1241,6 @@ public class Game {
         double formulaInterval = Math.max(6 + 0.05 * t, 12);
         double scaleIncrease = difficultyLevel / 3.0;
         int sunDropInterval = (int) (formulaInterval * 10 * scaleIncrease);
-
         if (tickCount - lastSunDropTick >= sunDropInterval) {
             lastSunDropTick = tickCount;
             Random r = new Random();
@@ -1139,19 +1296,47 @@ public class Game {
         sunCount -= amount;
         return true;
     }
-    public void addSun(int amount) { sunCount += amount; sunsProducedInLevel += amount; scoreGame.onSunCollected(amount); }
-    public boolean spendCoins(int amount) { if (coins < amount) return false; coins -= amount; return true; }
-    public void addCoins(int amount) { coins += amount; scoreGame.onCoinEarned(amount); }
-    public boolean spendDiamonds(int amount) { if (diamonds < amount) return false; diamonds -= amount; return true; }
-    public void addDiamonds(int amount) { diamonds += amount; scoreGame.onDiamondEarned(amount); }
+    public void addSun(int amount) {
+        sunCount += amount;
+        sunsProducedInLevel += amount;
+        scoreGame.onSunCollected(amount);
+    }
+    public boolean spendCoins(int amount) {
+        if (coins < amount) return false;
+        coins -= amount;
+        return true;
+    }
+    public void addCoins(int amount) {
+        coins += amount;
+        scoreGame.onCoinEarned(amount);
+    }
+    public boolean spendDiamonds(int amount) {
+        if (diamonds < amount) return false;
+        diamonds -= amount;
+        return true;
+    }
+    public void addDiamonds(int amount) {
+        diamonds += amount;
+        scoreGame.onDiamondEarned(amount);
+    }
     public void addPlantFood() { plantFoodCount++; }
-    public boolean usePlantFood() { if (plantFoodCount <= 0) return false; plantFoodCount--; return true; }
+    public boolean usePlantFood() {
+        if (plantFoodCount <= 0) return false;
+        plantFoodCount--;
+        return true;
+    }
     public void addBullet(Bullet bullet) { bullets.add(bullet); }
     public void addSun(Sun sun) { suns.add(sun); }
     public void addZombie(Zombie zombie) { activeZombies.add(zombie); }
-    public void addPlant(Plant plant) { activePlants.add(plant); scoreGame.onPlantPlaced(plant); }
+    public void addPlant(Plant plant) {
+        activePlants.add(plant);
+        scoreGame.onPlantPlaced(plant);
+    }
     public void removePlant(Plant plant) { activePlants.remove(plant); }
-    public void removeZombie(Zombie zombie) { activeZombies.remove(zombie); scoreGame.onZombieKilled(zombie, this); }
+    public void removeZombie(Zombie zombie) {
+        activeZombies.remove(zombie);
+        scoreGame.onZombieKilled(zombie, this);
+    }
     public boolean isRunning() { return running; }
     public Board getBoard() { return board; }
     public Level getLevel() { return level; }
